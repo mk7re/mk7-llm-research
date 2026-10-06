@@ -42,7 +42,7 @@ every tool. The other builds are references that help understand it, never docum
   local/llm_input_files/  session input files (ignored)
   mk7-llm-research/
     README.md          the entry point: rules, document map
-    LICENSE, LICENSES/ which license covers which files (0BSD for the tooling, CC0 for the rest)
+    LICENSE, LICENSES/ which license covers which files (Unlicense for the tooling, CC0 for the rest)
     docs/tooling/      the workspace's own documentation (this file, SETUP.md, CLI.md, ...)
     docs/research/     human-reviewed research: INDEX.md, one <topic>/ folder per subject
     mk7                launcher of the research CLI
