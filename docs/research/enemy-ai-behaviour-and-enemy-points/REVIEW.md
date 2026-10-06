@@ -1,5 +1,27 @@
 # Review and verification steps for `Enemy AI behaviour and enemy points (KMP ENPT / ENPH)`
 
+## Contents
+
+- [How to verify](#how-to-verify): the commands that reproduce the key evidence
+  - [Code](#code)
+  - [Patch](#patch)
+  - [Course data](#course-data)
+- [Review](#review): the record of the review passes, one subsection per pass
+  - [Fact check](#fact-check)
+  - [Fact check, second round (in game)](#fact-check-second-round-in-game)
+  - [Follow-up research](#follow-up-research)
+  - [Fact check, third round](#fact-check-third-round)
+  - [Second follow-up research](#second-follow-up-research)
+  - [Fact check, fourth round](#fact-check-fourth-round)
+  - [Document review](#document-review)
+  - [Fact check, fifth round](#fact-check-fifth-round)
+  - [Document review, second round](#document-review-second-round)
+  - [Fact check, sixth round](#fact-check-sixth-round)
+  - [Document review, third round](#document-review-third-round)
+  - [Fact check, seventh round](#fact-check-seventh-round)
+  - [Document review, fourth round](#document-review-fourth-round)
+  - [Document review, fifth round](#document-review-fifth-round)
+
 ## How to verify
 
 ### Code

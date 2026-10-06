@@ -8,6 +8,46 @@
 - Images: `eur2` (sha1 e3edb9771fea3149ddfe309e3ca8453046ef8a95), `dlp` only as the source of names. `eur2` also run in Azahar
   (the installed game with its v1.2 update) for the measurements of the findings.
 
+## Contents
+
+- [Overview](#overview): what was researched and found, for readers new to the topic
+  - [Words used in this document](#words-used-in-this-document)
+  - [CPU levels and Mii titles](#cpu-levels-and-mii-titles)
+  - [How CPUs follow the route](#how-cpus-follow-the-route)
+  - [Enemy point settings](#enemy-point-settings)
+  - [Enemy point flags](#enemy-point-flags)
+  - [Enemy path settings](#enemy-path-settings)
+  - [Objects linked to race paths](#objects-linked-to-race-paths)
+  - [Train crossings](#train-crossings)
+  - [Moving boards in battle](#moving-boards-in-battle)
+  - [When a CPU gets stuck](#when-a-cpu-gets-stuck)
+  - [Helper paths for lost CPUs and Bullet Bills](#helper-paths-for-lost-cpus-and-bullet-bills)
+  - [What each Mii title changes](#what-each-mii-title-changes)
+  - [Race and battle compared](#race-and-battle-compared)
+  - [What each setting does, at a glance](#what-each-setting-does-at-a-glance)
+- [Glossary](#glossary): the classes, members and enums involved, with their offsets; the
+  [functions](#functions) and [data](#data) tables with addresses
+- [Findings](#findings): each claim with its evidence
+  - [Sources and method](#sources-and-method)
+  - [1. How the entries become a route](#1-how-the-entries-become-a-route)
+  - [2. Links between points, and the link end flags](#2-links-between-points-and-the-link-end-flags)
+  - [3. Race only: re-sampling](#3-race-only-re-sampling)
+  - [4. Race only: corner value and side axis](#4-race-only-corner-value-and-side-axis)
+  - [5. Reaching a point](#5-reaching-a-point)
+  - [6. Per-field detail](#6-per-field-detail)
+  - [7. Start points and respawns](#7-start-points-and-respawns)
+  - [8. Junction choice](#8-junction-choice)
+  - [9. Fields without a reader](#9-fields-without-a-reader)
+  - [10. Train crossings and battle boards](#10-train-crossings-and-battle-boards)
+  - [11. Stuck CPUs, back-up and Lakitu](#11-stuck-cpus-back-up-and-lakitu)
+  - [12. Re-routes to the nearest point](#12-re-routes-to-the-nearest-point)
+  - [13. In-game tests and the original courses](#13-in-game-tests-and-the-original-courses)
+  - [14. Values used by the original courses](#14-values-used-by-the-original-courses)
+  - [15. Mii titles](#15-mii-titles)
+  - [16. Differences from the input notes](#16-differences-from-the-input-notes)
+- [Confidence](#confidence): what is certain, what is likely, what is a guess
+- [Open questions](#open-questions): what was not resolved
+
 ## Overview
 
 CPU players follow a route that the course file (the KMP) describes in two sections: **enemy points** (ENPT), positions on

@@ -1,5 +1,19 @@
 # Review and verification steps for `Scene and menu sequencing (BSEQ: .brs / .bss)`
 
+## Contents
+
+- [How to verify](#how-to-verify): the commands that reproduce the key evidence
+- [Review](#review): the record of the review passes, one subsection per pass
+  - [Fact check](#fact-check)
+  - [Document review](#document-review)
+  - [Fact check, second pass](#fact-check-second-pass)
+  - [Document review, second pass](#document-review-second-pass)
+  - [Fact check, third pass](#fact-check-third-pass)
+  - [Document review, third pass](#document-review-third-pass)
+  - [Fact check, fourth pass](#fact-check-fourth-pass)
+  - [Document review, fourth pass](#document-review-fourth-pass)
+  - [Template conventions update](#template-conventions-update)
+
 ## How to verify
 
 The flow graph can be regenerated with the command in [Finding 15](README.md#15-the-flow-graph-tool). Its boxes and labels can be compared

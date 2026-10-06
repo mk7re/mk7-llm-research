@@ -11,6 +11,40 @@
 - Images: `eur2` (sha1 e3edb9771fea3149ddfe309e3ca8453046ef8a95); `dlp` as the source of names and for the comparisons of
   Findings 8, 9 and 12.
 
+## Contents
+
+- [Overview](#overview): what was researched and found, for readers new to the topic
+  - [Sections, codes and flows](#sections-codes-and-flows)
+  - [Pages, tasks and sequences](#pages-tasks-and-sequences)
+  - [Scenes](#scenes)
+  - [From boot to the menus and back](#from-boot-to-the-menus-and-back)
+  - [Network errors](#network-errors)
+  - [Debug and unused content](#debug-and-unused-content)
+  - [Editing the files](#editing-the-files)
+  - [The flow graph tool](#the-flow-graph-tool)
+- [Glossary](#glossary): the classes, members and enums involved, with their offsets; the
+  [functions](#functions) and [data](#data) tables with addresses
+- [Findings](#findings): each claim with its evidence
+  - [Sources and method](#sources-and-method)
+  - [1. The files and how they are loaded](#1-the-files-and-how-they-are-loaded)
+  - [2. File format](#2-file-format)
+  - [3. From blocks to objects: pools, layers and class lookup](#3-from-blocks-to-objects-pools-layers-and-class-lookup)
+  - [4. Enter codes, return codes and modes](#4-enter-codes-return-codes-and-modes)
+  - [5. How the sequence classes use the flow list](#5-how-the-sequence-classes-use-the-flow-list)
+  - [6. The building blocks in use](#6-the-building-blocks-in-use)
+  - [7. Scenes, `.bss` files and engines](#7-scenes-bss-files-and-engines)
+  - [8. The retail flow of `Root-Default.brs`](#8-the-retail-flow-of-root-defaultbrs)
+  - [9. Debug and unused content](#9-debug-and-unused-content)
+  - [10. The system dialog and network errors](#10-the-system-dialog-and-network-errors)
+  - [11. What a scene change does](#11-what-a-scene-change-does)
+  - [12. How the game ends](#12-how-the-game-ends)
+  - [13. How button controls complete pages](#13-how-button-controls-complete-pages)
+  - [14. Editing the files](#14-editing-the-files)
+  - [15. The flow graph tool](#15-the-flow-graph-tool)
+  - [16. Differences from the hint sources](#16-differences-from-the-hint-sources)
+- [Confidence](#confidence): what is certain, what is likely, what is a guess
+- [Open questions](#open-questions): what was not resolved
+
 ## Overview
 
 The order in which Mario Kart 7 shows its screens (boot checks, title screen, menus, races, trophy ceremony, credits) is not

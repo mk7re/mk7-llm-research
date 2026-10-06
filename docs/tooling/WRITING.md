@@ -7,6 +7,7 @@ them against these rules ([WORKFLOW.md](WORKFLOW.md)).
 
 - [Structure](#structure): the sections of a topic document and its two parts ([overview](#part-1-the-overview),
   [technical details](#part-2-the-technical-details)); the [review document](#the-review-document), `REVIEW.md`
+- [Contents list](#contents-list): the `## Contents` that opens both documents, what it lists, keeping it current
 - [Headings](#headings): headings instead of bold-titled paragraphs
 - [Wording](#wording): one term per thing, ideas introduced before use, no links outside the topic folder
 - [Glossary and naming](#glossary-and-naming): referring to members, functions, enums and data; final names; the
@@ -22,6 +23,7 @@ them against these rules ([WORKFLOW.md](WORKFLOW.md)).
 - Base commit: <git rev-parse HEAD that the patches apply on; updated with them (PATCHES.md)>
 - Images: <images used, with sha1 for the target>
 
+## Contents           the sections and subsections, linked (Contents list)
 ## Overview           part 1: what was researched and found, for readers new
                       to the topic
 ## Glossary           part 2 starts here: the classes, members, functions and
@@ -77,6 +79,7 @@ game:
 ```
 # Review and verification steps for `<Topic>`
 
+## Contents           the sections and subsections, linked (Contents list)
 ## How to verify      the commands that reproduce the key evidence
 ## Review             added by passes 2 and 3, one subsection per pass
 ```
@@ -87,6 +90,23 @@ game:
   `### Document review`, then `### Fact check, second round` and so on.
 - Links between the two documents name the file: `README.md#<anchor>` from `REVIEW.md`, `REVIEW.md#<anchor>` from the
   topic document.
+
+## Contents list
+
+Topic documents are long, and a reader often needs one mechanism or one finding. Both the topic document and `REVIEW.md`
+open with a `## Contents` list, so that the reader can pick the part it needs and skip the rest.
+
+- It comes right after the opening lines: the status list in the topic document, the title in `REVIEW.md`.
+- One line per `##` section: a link to its anchor and a short phrase that says what is in it. The glossary line also
+  links the `### Functions` and `### Data` tables.
+- Under `## Overview`, `## Findings`, `## How to verify` and `## Review`, one nested line per `###` subsection, linked,
+  with the heading as its text. The glossary's class tables and the `####` sub-subsections are not listed.
+- Anchors are those GitHub generates: lower case, punctuation and backticks dropped, spaces turned into hyphens
+  (`### 1. The quad test` is `#1-the-quad-test`, `` ### 7. Scenes, `.bss` files and engines `` is
+  `#7-scenes-bss-files-and-engines`). A heading text that repeats gets `-1`, `-2` and so on, counted over the whole
+  document.
+- It is updated in the same change as the headings it lists: a pass that adds, renames, moves or removes a section or
+  a listed subsection, including the subsection each review pass adds to `## Review`, updates the list too.
 
 ## Headings
 

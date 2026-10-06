@@ -62,7 +62,9 @@ the topic to be checked. The reviewer:
 4. Corrects what is wrong and removes what cannot be supported. It rewrites only what a correction needs; style, wording
    and structure are left to pass 3.
 5. Adds a `### Fact check` subsection to the `## Review` section of `REVIEW.md` (creating the section if it is not
-   there yet): what was re-checked and how, what was changed, what remains uncertain.
+   there yet): what was re-checked and how, what was changed, what remains uncertain. It adds a line for the
+   subsection to the contents list of `REVIEW.md` ([Contents list](WRITING.md#contents-list)), and updates the one of
+   `README.md` if a correction changed its headings.
 6. If the research holds, sets `Status: facts checked` and leaves the folder in `pending-verification/`. If it does not
    hold, leaves the status as it is, with the review explaining why.
 7. Stops and reports.
@@ -76,8 +78,9 @@ through `REVIEW.md` and the patches, checking:
 
 1. **Structure**: the sections, their order, and similar content laid out the same way everywhere
    ([Structure](WRITING.md#structure)); no section on the patches, and the commands and the reviews in `REVIEW.md`, not
-   in `README.md` ([The review document](WRITING.md#the-review-document)); one heading per self-contained idea, no
-   bold-titled paragraphs ([Headings](WRITING.md#headings)).
+   in `README.md` ([The review document](WRITING.md#the-review-document)); both documents open with a contents list
+   that matches their headings and whose links resolve ([Contents list](WRITING.md#contents-list)); one heading per
+   self-contained idea, no bold-titled paragraphs ([Headings](WRITING.md#headings)).
 2. **The two parts**: the overview can be understood by a reader new to the topic without reading part 2 ([Part
    1](WRITING.md#part-1-the-overview)). Content too technical for it is moved to part 2 and replaced by a plain
    explanation; content of part 2 that a newcomer needs is explained in the overview as well. No address appears outside
@@ -98,8 +101,8 @@ The reviewer may reword, reorder, split and move content between sections, but m
 look at the binary to understand a passage, but if it finds something that looks wrong, or a passage that cannot be made
 clear without changing its meaning, it does not fix it; it writes it down in the review. Then the reviewer:
 
-1. Adds a `### Document review` subsection to `## Review` in `REVIEW.md`: what was changed, and what was found that
-   looks factually wrong or could not be resolved.
+1. Adds a `### Document review` subsection to `## Review` in `REVIEW.md`, with its line in the contents list: what
+   was changed, and what was found that looks factually wrong or could not be resolved.
 2. If nothing factual was found, sets `Status: verified` and moves the folder to `final/<topic>/`. From then on the
    names in the document and the patch are final; only the human changes them. Otherwise sets the status back to
    `pending verification` and leaves the folder where it is, so that the topic goes through pass 2 again.

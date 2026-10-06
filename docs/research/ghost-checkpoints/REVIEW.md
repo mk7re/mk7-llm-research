@@ -1,5 +1,24 @@
 # Review and verification steps for `Ghost checkpoints`
 
+## Contents
+
+- [How to verify](#how-to-verify): the commands that reproduce the key evidence
+  - [Code](#code)
+  - [Running ghost_checkpoints.py](#running-ghost_checkpointspy)
+  - [Reproducing the Wuhu Loop results](#reproducing-the-wuhu-loop-results)
+  - [In game](#in-game)
+- [Review](#review): the record of the review passes, one subsection per pass
+  - [Fact check](#fact-check)
+  - [Document review](#document-review)
+  - [Fact check, second round](#fact-check-second-round)
+  - [Document review, second round](#document-review-second-round)
+  - [Fact check, third round (in game)](#fact-check-third-round-in-game)
+  - [Document review, third round](#document-review-third-round)
+  - [Fact check, fourth round](#fact-check-fourth-round)
+  - [Document review, fourth round](#document-review-fourth-round)
+  - [Document review, fifth round](#document-review-fifth-round)
+  - [Layout update](#layout-update)
+
 ## How to verify
 
 ### Code

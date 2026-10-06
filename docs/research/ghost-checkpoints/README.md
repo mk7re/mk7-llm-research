@@ -12,6 +12,36 @@
   `FindRecursiveSector`; `dlp` only as the source of names. `eur2` also run in Azahar (the installed game with its v1.2
   update) for Finding 8.
 
+## Contents
+
+- [Overview](#overview): what was researched and found, for readers new to the topic
+  - [Checkpoints, quads and respawn points](#checkpoints-quads-and-respawn-points)
+  - [The quad test](#the-quad-test)
+  - [Gap bridging and ghost checkpoints](#gap-bridging-and-ghost-checkpoints)
+  - [Why far quads can pass the bridging test](#why-far-quads-can-pass-the-bridging-test)
+  - [Which results the game accepts](#which-results-the-game-accepts)
+  - [A ghost checkpoint usually lasts one frame](#a-ghost-checkpoint-usually-lasts-one-frame)
+  - [Chains of ghost checkpoints](#chains-of-ghost-checkpoints)
+  - [Ghost checkpoints for a kart inside a quad](#ghost-checkpoints-for-a-kart-inside-a-quad)
+  - [What v1.1 changed](#what-v11-changed)
+  - [The Wuhu Loop shortcut](#the-wuhu-loop-shortcut)
+  - [Checking a course for ghost checkpoints](#checking-a-course-for-ghost-checkpoints)
+  - [Ghost checkpoints on other courses](#ghost-checkpoints-on-other-courses)
+- [Glossary](#glossary): the classes, members and enums involved, with their offsets; the
+  [functions](#functions) and [data](#data) tables with addresses
+- [Findings](#findings): each claim with its evidence
+  - [Sources and method](#sources-and-method)
+  - [1. The quad test](#1-the-quad-test)
+  - [2. The search](#2-the-search)
+  - [3. What v1.1 changed in the bridge](#3-what-v11-changed-in-the-bridge)
+  - [4. From the search result to the respawn point](#4-from-the-search-result-to-the-respawn-point)
+  - [5. Wuhu Loop: course data and model results](#5-wuhu-loop-course-data-and-model-results)
+  - [6. The v1.1 KMP of Wuhu Loop](#6-the-v11-kmp-of-wuhu-loop)
+  - [7. The model: ghost_checkpoints.py](#7-the-model-ghost_checkpointspy)
+  - [8. In game](#8-in-game)
+- [Confidence](#confidence): what is certain, what is likely, what is a guess
+- [Open questions](#open-questions): what was not resolved
+
 ## Overview
 
 To know where a kart is on the course, the game searches for the area between two checkpoints that the kart is in. To
