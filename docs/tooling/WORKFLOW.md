@@ -38,6 +38,7 @@ The user starts the research in a fresh context. The agent:
 3. Writes the results to `pending-verification/<topic>/`, where `<topic>` is a short lowercase name with dashes
    (`kart-unit-layout`, `item-probability`):
    - `README.md`, always, following [WRITING.md](WRITING.md).
+   - `REVIEW.md`, always, with the `## How to verify` section ([The review document](WRITING.md#the-review-document)).
    - `*.patch` files, when the research changes `template/` ([PATCHES.md](PATCHES.md)).
 4. Stops and reports.
 
@@ -60,8 +61,8 @@ the topic to be checked. The reviewer:
      statement that has no finding behind it is either supported with one or removed.
 4. Corrects what is wrong and removes what cannot be supported. It rewrites only what a correction needs; style, wording
    and structure are left to pass 3.
-5. Adds a `## Review` section with a `### Fact check` subsection: what was re-checked and how, what was changed, what
-   remains uncertain.
+5. Adds a `### Fact check` subsection to the `## Review` section of `REVIEW.md` (creating the section if it is not
+   there yet): what was re-checked and how, what was changed, what remains uncertain.
 6. If the research holds, sets `Status: facts checked` and leaves the folder in `pending-verification/`. If it does not
    hold, leaves the status as it is, with the review explaining why.
 7. Stops and reports.
@@ -71,16 +72,18 @@ the topic to be checked. The reviewer:
 The user resets the context again, so the reviewer reads the document the way its readers will, without knowing the
 evidence behind it, and asks for the document of the topic to be reviewed. Only a topic with `Status: facts checked` is
 reviewed. The reviewer reads [WRITING.md](WRITING.md) and goes through the topic `README.md` section by section, then
-through its patches, checking:
+through `REVIEW.md` and the patches, checking:
 
 1. **Structure**: the sections, their order, and similar content laid out the same way everywhere
-   ([Structure](WRITING.md#structure)); one heading per self-contained idea, no bold-titled paragraphs
-   ([Headings](WRITING.md#headings)).
+   ([Structure](WRITING.md#structure)); no section on the patches, and the commands and the reviews in `REVIEW.md`, not
+   in `README.md` ([The review document](WRITING.md#the-review-document)); one heading per self-contained idea, no
+   bold-titled paragraphs ([Headings](WRITING.md#headings)).
 2. **The two parts**: the overview can be understood by a reader new to the topic without reading part 2 ([Part
    1](WRITING.md#part-1-the-overview)). Content too technical for it is moved to part 2 and replaced by a plain
    explanation; content of part 2 that a newcomer needs is explained in the overview as well. No address appears outside
-   the glossary and the commands of `## How to verify`.
-3. **Wording**: one term per thing, one thing per term, no ambiguous words ([Wording](WRITING.md#wording)).
+   the glossary and the commands of `## How to verify` in `REVIEW.md`.
+3. **Wording**: one term per thing, one thing per term, no ambiguous words, no links outside the topic folder
+   ([Wording](WRITING.md#wording)).
 4. **Ideas are introduced before they are used**, in each part on its own: the overview does not rely on part 2, and the
    glossary does not count as an introduction.
 5. **Names**: members written as `Class::member` in part 2, never by offset ([Glossary and
@@ -95,8 +98,8 @@ The reviewer may reword, reorder, split and move content between sections, but m
 look at the binary to understand a passage, but if it finds something that looks wrong, or a passage that cannot be made
 clear without changing its meaning, it does not fix it; it writes it down in the review. Then the reviewer:
 
-1. Adds a `### Document review` subsection to `## Review`: what was changed, and what was found that looks factually
-   wrong or could not be resolved.
+1. Adds a `### Document review` subsection to `## Review` in `REVIEW.md`: what was changed, and what was found that
+   looks factually wrong or could not be resolved.
 2. If nothing factual was found, sets `Status: verified` and moves the folder to `final/<topic>/`. From then on the
    names in the document and the patch are final; only the human changes them. Otherwise sets the status back to
    `pending verification` and leaves the folder where it is, so that the topic goes through pass 2 again.
@@ -105,9 +108,9 @@ clear without changing its meaning, it does not fix it; it writes it down in the
 ## Human review
 
 The human reviews `final/<topic>/`. What they approve, they apply and commit themselves: patches go into `template/`,
-and documents worth keeping as context for future research are moved to `docs/research/<topic>/`, with a line in the
-[index of reviewed research](../research/INDEX.md). The agent does neither on its own; it moves a document to
-`docs/research/` and indexes it only when the human, having reviewed it, asks for it.
+and documents worth keeping as context for future research are moved to `docs/research/<topic>/`, with their
+`REVIEW.md` and a line in the [index of reviewed research](../research/INDEX.md). The agent does neither on its own; it
+moves a document to `docs/research/` and indexes it only when the human, having reviewed it, asks for it.
 
 ## The three folders
 

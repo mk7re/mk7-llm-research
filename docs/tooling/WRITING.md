@@ -1,14 +1,14 @@
 # Writing a topic document
 
-Rules for the `README.md` of a research topic. Pass 1 writes it, pass 3 checks it against these rules
-([WORKFLOW.md](WORKFLOW.md)).
+Rules for the `README.md` of a research topic and for the `REVIEW.md` next to it. Pass 1 writes both, pass 3 checks
+them against these rules ([WORKFLOW.md](WORKFLOW.md)).
 
 ## Contents
 
 - [Structure](#structure): the sections of a topic document and its two parts ([overview](#part-1-the-overview),
-  [technical details](#part-2-the-technical-details))
+  [technical details](#part-2-the-technical-details)); the [review document](#the-review-document), `REVIEW.md`
 - [Headings](#headings): headings instead of bold-titled paragraphs
-- [Wording](#wording): one term per thing, ideas introduced before use
+- [Wording](#wording): one term per thing, ideas introduced before use, no links outside the topic folder
 - [Glossary and naming](#glossary-and-naming): referring to members, functions, enums and data; final names; the
   glossary tables
 
@@ -30,13 +30,15 @@ Rules for the `README.md` of a research topic. Pass 1 writes it, pass 3 checks i
                       instruction or decompiled line that shows it
 ## Confidence         what is certain, what is likely, what is a guess
 ## Open questions     what was not resolved
-## Patches            each .patch file and what it changes
-## How to verify      the commands that reproduce the key evidence
-## Review             added by passes 2 and 3
 ```
 
 The sections come in this order, and similar content is laid out the same way in every section. The document has two
 parts, written for two different readers.
+
+The topic document is what stays once the research is accepted: it describes the game, not the work done on it. So it
+has no section on the patches, which the human applies to `template/` (what a patch names or renames shows in the
+Status column of the glossary), and the commands to verify the research and the record of its reviews are in a
+document of their own, [`REVIEW.md`](#the-review-document).
 
 ### Part 1: the overview
 
@@ -63,9 +65,28 @@ conditions on variables, algorithms, constants, call order, and the evidence for
 - Every claim cites evidence in `eur2`. A claim that rests only on `dlp` or an older build says so and counts as
   unconfirmed.
 - Addresses appear only in the glossary. The evidence names the function and quotes the instruction or decompiled line;
-  the reader looks the address up in the glossary. The one exception is `## How to verify`, whose commands use an
-  address only where the CLI needs one: existing names are accepted (`mk7 decomp Field::MapdataEnemyPoint::setup`),
-  names given by the research are not in the symbol maps yet.
+  the reader looks the address up in the glossary. The one exception is `## How to verify` in
+  [`REVIEW.md`](#the-review-document), whose commands use an address only where the CLI needs one: existing names are
+  accepted (`mk7 decomp Field::MapdataEnemyPoint::setup`), names given by the research are not in the symbol maps yet.
+
+### The review document
+
+`REVIEW.md`, next to the `README.md` of the topic, holds what is needed to check the research, not to understand the
+game:
+
+```
+# Review and verification steps for `<Topic>`
+
+## How to verify      the commands that reproduce the key evidence
+## Review             added by passes 2 and 3, one subsection per pass
+```
+
+- `## How to verify` follows the rules of part 2, with the exception for addresses above. It points to the findings of
+  the topic document instead of restating them, by link in its text (`README.md#1-the-quad-test`).
+- `## Review` is written by the review passes ([WORKFLOW.md](WORKFLOW.md)), each adding a subsection: `### Fact check`,
+  `### Document review`, then `### Fact check, second round` and so on.
+- Links between the two documents name the file: `README.md#<anchor>` from `REVIEW.md`, `REVIEW.md#<anchor>` from the
+  topic document.
 
 ## Headings
 
@@ -83,6 +104,14 @@ sentence. A section that holds a single short idea needs no subsections.
 - Ideas are introduced before they are used. The reader may not read the glossary first, so it does not count as an
   introduction: a class, function, concept or new idea is presented in the text, in a few words, before any sentence
   relies on it. The overview does not rely on part 2 for this.
+- A topic links only within its own folder (`README.md`, `REVIEW.md`, its images and tools). Topics move from
+  `pending-verification/` to `final/` and to `docs/research/`, and are renamed, so links that leave the folder break.
+  - Other research topics are referred to in words, never by a link or a path: "the research on scene sequencing", not
+    `../scene-sequence-bseq/README.md`. The reader finds the topic in the [index of reviewed
+    research](../research/INDEX.md).
+  - The workspace documents (`docs/tooling/`, the workspace `README.md`) are not linked either: a topic describes the
+    game and is read without them. Where a review has to name a rule, it names it in words ("the comment rules of
+    PATCHES.md").
 
 ## Glossary and naming
 
