@@ -1,0 +1,29 @@
+Gctr_WarioShip: 59 checkpoints, 5 key checkpoints, 9 respawn points, 3 lap(s), grid step 7 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   31 (key 3) ->  46 (key 3), overlapping quad, +15 checkpoints, 11 cells, around x 2881..2888 z 2764..2825: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   32 (key 3) ->  45 (key 3), overlapping quad, +13 checkpoints, 56 cells, around x 3064..3261 z 2988..3164: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   32 (key 3) ->  46 (key 3), overlapping quad, +14 checkpoints, 48 cells, around x 2888..3057 z 2832..2981: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   33 (key 3) ->  44 (key 3), overlapping quad, +11 checkpoints, 50 cells, around x 3315..3518 z 3198..3326: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   33 (key 3) ->  45 (key 3), overlapping quad, +12 checkpoints, 12 cells, around x 3261..3308 z 3164..3191: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   34 (key 3) ->  43 (key 3), overlapping quad, +9 checkpoints, 40 cells, around x 3626..3857 z 3347..3381: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   34 (key 3) ->  44 (key 3), overlapping quad, +10 checkpoints, 18 cells, around x 3525..3619 z 3326..3347: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   43 (key 3) ->  34 (key 3), overlapping quad, -9 checkpoints, 45 cells, around x 3633..3857 z 3299..3374: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   44 (key 3) ->  33 (key 3), overlapping quad, -11 checkpoints, 50 cells, around x 3315..3552 z 3171..3265: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   44 (key 3) ->  34 (key 3), overlapping quad, -10 checkpoints, 16 cells, around x 3559..3633 z 3265..3299: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   45 (key 3) ->  32 (key 3), overlapping quad, -13 checkpoints, 59 cells, around x 3064..3281 z 2967..3144: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   45 (key 3) ->  33 (key 3), overlapping quad, -12 checkpoints, 8 cells, around x 3288..3315 z 3144..3171: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   46 (key 3) ->  31 (key 3), overlapping quad, -15 checkpoints, 17 cells, around x 2888..2936 z 2764..2819: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   46 (key 3) ->  32 (key 3), overlapping quad, -14 checkpoints, 40 cells, around x 2942..3064 z 2825..2967: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+
+Overlapping quads far apart along the course:
+  quads 31 and 46: about 1238 square units
+  quads 32 and 45: about 5274 square units
+  quads 32 and 46: about 4724 square units
+  quads 33 and 44: about 10869 square units
+  quads 33 and 45: about 1101 square units
+  quads 34 and 43: about 4586 square units
+  quads 34 and 44: about 4861 square units

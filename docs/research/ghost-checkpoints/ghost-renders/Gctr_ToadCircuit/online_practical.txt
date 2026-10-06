@@ -1,0 +1,12 @@
+Gctr_ToadCircuit: 42 checkpoints, 5 key checkpoints, 11 respawn points, 3 lap(s), grid step 7 units, online (ghost fix on), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+    1 (key 0) ->  15 (key 2), overlapping quad, +14 checkpoints, 189 cells, around x -457..125 z -537..107: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   15 (key 2) ->   1 (key 0), overlapping quad, -14 checkpoints, 163 cells, around x -450..118 z -544..114: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   15 (key 2) ->   2 (key 0), overlapping quad, -13 checkpoints, 2 cells, around x 111..118 z -544..-544: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+
+Overlapping quads far apart along the course:
+  quads 1 and 15: about 375031 square units

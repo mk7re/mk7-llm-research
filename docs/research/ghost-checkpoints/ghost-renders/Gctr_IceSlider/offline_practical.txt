@@ -1,0 +1,39 @@
+Gctr_IceSlider: 68 checkpoints, 5 key checkpoints, 13 respawn points, 3 lap(s), grid step 8 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+    5 (key 0) ->  15 (key 1), overlapping quad, +10 checkpoints, 15 cells, around x 2650..2650 z -2186..-2068: ACCEPTED: a respawn now uses respawn point 2 instead of 0
+    6 (key 0) ->  15 (key 1), overlapping quad, +9 checkpoints, 49 cells, around x 2650..2717 z -2534..-2195: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    6 (key 0) ->  17 (key 1), overlapping quad, +11 checkpoints, 43 cells, around x 2192..2251 z -2695..-2390: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    7 (key 0) ->  14 (key 1), overlapping quad, +7 checkpoints, 16 cells, around x 2768..2845 z -2627..-2568: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    7 (key 0) ->  15 (key 1), overlapping quad, +8 checkpoints, 10 cells, around x 2717..2760 z -2568..-2534: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    7 (key 0) ->  17 (key 1), overlapping quad, +10 checkpoints, 42 cells, around x 2251..2302 z -2991..-2695: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    8 (key 0) ->  13 (key 1), overlapping quad, +5 checkpoints, 3 cells, around x 2861..2878 z -2635..-2627: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    8 (key 0) ->  14 (key 1), overlapping quad, +6 checkpoints, 2 cells, around x 2845..2853 z -2627..-2627: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+    9 (key 0) ->  13 (key 1), overlapping quad, +4 checkpoints, 2 cells, around x 2878..2887 z -2635..-2635: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   10 (key 0) ->  13 (key 1), overlapping quad, +3 checkpoints, 1 cells, around x 2895..2895 z -2635..-2635: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   13 (key 1) ->   8 (key 0), overlapping quad, -5 checkpoints, 3 cells, around x 2861..2870 z -2635..-2635: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   13 (key 1) ->   9 (key 0), overlapping quad, -4 checkpoints, 2 cells, around x 2878..2887 z -2644..-2644: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   13 (key 1) ->  10 (key 0), overlapping quad, -3 checkpoints, 1 cells, around x 2895..2895 z -2644..-2644: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   14 (key 1) ->   7 (key 0), overlapping quad, -7 checkpoints, 8 cells, around x 2785..2836 z -2635..-2627: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   14 (key 1) ->   8 (key 0), overlapping quad, -6 checkpoints, 2 cells, around x 2845..2853 z -2635..-2635: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   15 (key 1) ->   5 (key 0), overlapping quad, -10 checkpoints, 48 cells, around x 2412..2641 z -2237..-2068: ACCEPTED: a respawn now uses respawn point 0 instead of 2
+   15 (key 1) ->   7 (key 0), overlapping quad, -8 checkpoints, 18 cells, around x 2675..2777 z -2669..-2627: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   16 (key 1) ->   5 (key 0), overlapping quad, -11 checkpoints, 15 cells, around x 2336..2412 z -2296..-2237: ACCEPTED: a respawn now uses respawn point 0 instead of 2
+   16 (key 1) ->   6 (key 0), overlapping quad, -10 checkpoints, 22 cells, around x 2243..2345 z -2373..-2296: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   16 (key 1) ->   7 (key 0), overlapping quad, -9 checkpoints, 36 cells, around x 2506..2675 z -2805..-2669: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   17 (key 1) ->   6 (key 0), overlapping quad, -11 checkpoints, 6 cells, around x 2201..2235 z -2381..-2373: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   17 (key 1) ->   7 (key 0), overlapping quad, -10 checkpoints, 45 cells, around x 2319..2506 z -2991..-2805: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+
+Overlapping quads far apart along the course:
+  quads 5 and 15: about 16938 square units
+  quads 5 and 16: about 1077 square units
+  quads 6 and 15: about 58854 square units
+  quads 6 and 16: about 74213 square units
+  quads 6 and 17: about 29714 square units
+  quads 7 and 14: about 1507 square units
+  quads 7 and 15: about 12632 square units
+  quads 7 and 16: about 33661 square units
+  quads 7 and 17: about 50385 square units

@@ -1,0 +1,36 @@
+Gn64_KoopaTroopaBeach: 47 checkpoints, 5 key checkpoints, 22 respawn points, 3 lap(s), grid step 9 units, offline / v1.0 (ghost fix off), mode full (all ghost candidates)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint   2 (key id 0, respawn point 1): about 216449 square units
+      respawn glitch from: 8..15
+      no respawn glitch from: 4..7, 16..18
+  checkpoint   3 (key id 0, respawn point 1): about 216449 square units
+      respawn glitch from: 46
+      no respawn glitch from: 0..1, 30..31, 34..45
+  checkpoint  15 (key id 1, respawn point 7): about 122843 square units
+      respawn glitch from: 18..29, 31..34, 37
+      no respawn glitch from: 17
+  checkpoint  16 (key id 2, respawn point 8): about 122843 square units
+      respawn glitch from: 8..13
+      no respawn glitch from: 0..7, 14
+  checkpoint  25 (key id 2, respawn point 21): about 12476 square units
+      respawn glitch from: 46
+      no respawn glitch from: 0, 26..31
+  checkpoint  26 (key id 2, respawn point 21): about 3958302 square units
+      no respawn glitch from: 27..32
+  checkpoint  31 (key id 2, respawn point 12): about 1645944 square units
+      no respawn glitch from: 26, 30, 33..34
+  checkpoint  32 (key id 2, respawn point 19): about 20304464 square units
+      respawn glitch from: 10..15, 36, 38..43
+      no respawn glitch from: 16..19, 26..28, 33..35, 37, 44
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   24 (key 2) ->  15 (key 1), ghost, -9 checkpoints, 14 cells, around x 97..149 z 2154..2216: ACCEPTED: a respawn now uses respawn point 7 instead of 10
+   25 (key 2) ->  15 (key 1), ghost, -10 checkpoints, 22 cells, around x 18..97 z 2216..2329: ACCEPTED: a respawn now uses respawn point 7 instead of 21
+   32 (key 2) ->  15 (key 1), ghost, -11 checkpoints, 63 cells, around x -148..18 z 2329..2706: ACCEPTED: a respawn now uses respawn point 7 instead of 19
+   33 (key 2) ->  15 (key 1), ghost, -12 checkpoints, 51 cells, around x -148..44 z 2706..2959: ACCEPTED: a respawn now uses respawn point 7 instead of 19
+   34 (key 2) ->  15 (key 1), ghost, -13 checkpoints, 9 cells, around x 44..79 z 2959..2994: ACCEPTED: a respawn now uses respawn point 7 instead of 19
+   36 (key 2) ->   3 (key 0), ghost, +14 checkpoints, 49 cells, around x 1488..1759 z 4315..4455: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+
+Overlapping quads far apart along the course:
+  none

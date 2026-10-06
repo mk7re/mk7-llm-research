@@ -1,0 +1,35 @@
+Gds_DKPass: 77 checkpoints, 6 key checkpoints, 15 respawn points, 3 lap(s), grid step 9 units, offline / v1.0 (ghost fix off), mode viable (only respawn glitches, also after a teleport)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  44 (key id 3, respawn point 7): about 9522 square units
+      respawn glitch from: 48..58
+  checkpoint  73 (key id 5, respawn point 13): about 260468 square units
+      respawn glitch from: 57..58
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   19 (key 2) ->  30 (key 3), overlapping quad, +11 checkpoints, 35 cells, around x 1171..1401 z -1702..-1601: ACCEPTED: a respawn now uses respawn point 5 instead of 3
+   19 (key 2) ->  31 (key 3), overlapping quad, +12 checkpoints, 1 cells, around x 1153..1153 z -1592..-1592: ACCEPTED: a respawn now uses respawn point 5 instead of 3
+   20 (key 2) ->  29 (key 3), overlapping quad, +9 checkpoints, 26 cells, around x 1520..1704 z -1776..-1730: ACCEPTED: a respawn now uses respawn point 5 instead of 3
+   20 (key 2) ->  30 (key 3), overlapping quad, +10 checkpoints, 15 cells, around x 1401..1511 z -1730..-1702: ACCEPTED: a respawn now uses respawn point 5 instead of 3
+   21 (key 2) ->  29 (key 3), overlapping quad, +8 checkpoints, 1 cells, around x 1713..1713 z -1776..-1776: ACCEPTED: a respawn now uses respawn point 5 instead of 3
+   29 (key 3) ->  20 (key 2), overlapping quad, -9 checkpoints, 24 cells, around x 1529..1704 z -1757..-1720: ACCEPTED: a respawn now uses respawn point 3 instead of 5
+   29 (key 3) ->  21 (key 2), overlapping quad, -8 checkpoints, 1 cells, around x 1713..1713 z -1757..-1757: ACCEPTED: a respawn now uses respawn point 3 instead of 5
+   30 (key 3) ->  19 (key 2), overlapping quad, -11 checkpoints, 34 cells, around x 1171..1410 z -1675..-1592: ACCEPTED: a respawn now uses respawn point 3 instead of 5
+   30 (key 3) ->  20 (key 2), overlapping quad, -10 checkpoints, 17 cells, around x 1419..1529 z -1720..-1675: ACCEPTED: a respawn now uses respawn point 3 instead of 5
+   31 (key 3) ->  19 (key 2), overlapping quad, -12 checkpoints, 1 cells, around x 1153..1153 z -1583..-1583: ACCEPTED: a respawn now uses respawn point 3 instead of 5
+    4 (key 0) ->  62 (key 5), overlapping quad, -19 checkpoints, 22 cells, around x -481..-380 z 584..997: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    5 (key 0) ->  62 (key 5), overlapping quad, -20 checkpoints, 154 cells, around x -417..253 z 501..969: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    6 (key 0) ->  62 (key 5), overlapping quad, -21 checkpoints, 74 cells, around x 226..685 z 455..914: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   18 (key 1) ->  31 (key 3), overlapping quad, +13 checkpoints, 1 cells, around x 1135..1135 z -1583..-1583: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   31 (key 3) ->  18 (key 1), overlapping quad, -13 checkpoints, 1 cells, around x 1135..1135 z -1574..-1574: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   62 (key 5) ->   4 (key 0), overlapping quad, +19 checkpoints, 43 cells, around x -490..-481 z 611..988: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   62 (key 5) ->   6 (key 0), overlapping quad, +21 checkpoints, 78 cells, around x 391..685 z 464..868: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+
+Overlapping quads far apart along the course:
+  quads 4 and 62: about 32611 square units
+  quads 5 and 62: about 249514 square units
+  quads 6 and 62: about 129518 square units
+  quads 19 and 30: about 2444 square units
+  quads 20 and 29: about 1180 square units
+  quads 20 and 30: about 1854 square units
+  quads 21 and 29: about 84 square units

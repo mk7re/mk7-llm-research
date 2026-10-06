@@ -1,0 +1,21 @@
+Gctr_UnderGround: 81 checkpoints, 5 key checkpoints, 9 respawn points, 3 lap(s), grid step 9 units, offline / v1.0 (ghost fix off), mode viable (only respawn glitches, also after a teleport)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  36 (key id 2, respawn point 6): about 5393377 square units
+      respawn glitch from: 43..52
+  checkpoint  37 (key id 2, respawn point 6): about 5393377 square units
+      respawn glitch from: 21..27
+  checkpoint  65 (key id 3, respawn point 5): about 1076475 square units
+      respawn glitch from: 76..80
+  checkpoint  68 (key id 3, respawn point 5): about 786899 square units
+      respawn glitch from: 76..80
+  checkpoint  69 (key id 3, respawn point 5): about 7828 square units
+      respawn glitch from: 76..80
+  checkpoint  71 (key id 3, respawn point 5): about 2043278 square units
+      respawn glitch from: 76..80
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   76 (key 4) ->  65 (key 3), ghost, -11 checkpoints, 21 cells, around x 3215..3224 z 3546..3710: ACCEPTED: a respawn now uses respawn point 5 instead of 4
+
+Overlapping quads far apart along the course:
+  none

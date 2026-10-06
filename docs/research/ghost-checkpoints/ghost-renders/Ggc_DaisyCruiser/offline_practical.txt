@@ -1,0 +1,274 @@
+Ggc_DaisyCruiser: 95 checkpoints, 5 key checkpoints, 8 respawn points, 3 lap(s), grid step 9 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+    0 (key 0) ->  64 (key 2), overlapping quad, -31 checkpoints, 14 cells, around x -343..-343 z 698..811: ACCEPTED: a respawn now uses respawn point 2 instead of 0 (the key id stays, Force_No_Lap_Completion is set)
+    0 (key 0) ->  65 (key 2), overlapping quad, -30 checkpoints, 22 cells, around x -343..-343 z 820..1002: ACCEPTED: a respawn now uses respawn point 2 instead of 0 (the key id stays, Force_No_Lap_Completion is set)
+    0 (key 0) ->  66 (key 2), overlapping quad, -29 checkpoints, 13 cells, around x -351..-343 z 1011..1107: ACCEPTED: a respawn now uses respawn point 2 instead of 0 (the key id stays, Force_No_Lap_Completion is set)
+    0 (key 0) ->  67 (key 2), overlapping quad, -28 checkpoints, 22 cells, around x 361..361 z 690..872: ACCEPTED: a respawn now uses respawn point 2 instead of 0 (the key id stays, Force_No_Lap_Completion is set)
+    0 (key 0) ->  68 (key 2), overlapping quad, -27 checkpoints, 28 cells, around x 353..361 z 881..1107: ACCEPTED: a respawn now uses respawn point 2 instead of 0 (the key id stays, Force_No_Lap_Completion is set)
+    1 (key 1) ->  64 (key 2), overlapping quad, -32 checkpoints, 23 cells, around x -360..-343 z 516..690: ACCEPTED: a respawn now uses respawn point 2 instead of 7
+    1 (key 1) ->  66 (key 2), overlapping quad, -30 checkpoints, 8 cells, around x 361..361 z 568..629: ACCEPTED: a respawn now uses respawn point 2 instead of 7
+    1 (key 1) ->  67 (key 2), overlapping quad, -29 checkpoints, 6 cells, around x 361..361 z 637..681: ACCEPTED: a respawn now uses respawn point 2 instead of 7
+    2 (key 1) ->  64 (key 2), overlapping quad, -33 checkpoints, 1 cells, around x -360..-360 z 507..507: ACCEPTED: a respawn now uses respawn point 2 instead of 7
+    6 (key 1) ->  53 (key 2), overlapping quad, +31 checkpoints, 28 cells, around x 309..309 z -649..-414: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+    7 (key 1) ->  52 (key 2), overlapping quad, +29 checkpoints, 20 cells, around x 309..309 z -944..-779: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+    7 (key 1) ->  53 (key 2), overlapping quad, +30 checkpoints, 14 cells, around x 309..309 z -771..-658: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+    8 (key 1) ->  52 (key 2), overlapping quad, +28 checkpoints, 16 cells, around x 309..309 z -1084..-953: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+    9 (key 1) ->  51 (key 2), overlapping quad, +26 checkpoints, 29 cells, around x 179..483 z -1492..-1144: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+    9 (key 1) ->  52 (key 2), overlapping quad, +27 checkpoints, 49 cells, around x 231..666 z -1422..-1084: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+   10 (key 1) ->  51 (key 2), overlapping quad, +25 checkpoints, 5 cells, around x 379..387 z -1518..-1492: ACCEPTED: a respawn now uses respawn point 2 instead of 5
+   11 (key 1) ->  62 (key 2), overlapping quad, -36 checkpoints, 8 cells, around x -212..-177 z 159..185: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   11 (key 1) ->  63 (key 2), overlapping quad, -35 checkpoints, 25 cells, around x -508..-421 z 298..420: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   11 (key 1) ->  64 (key 2), overlapping quad, -34 checkpoints, 16 cells, around x -412..-360 z 429..507: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   12 (key 1) ->  61 (key 2), overlapping quad, -38 checkpoints, 35 cells, around x -317..-221 z -67..133: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   12 (key 1) ->  62 (key 2), overlapping quad, -37 checkpoints, 15 cells, around x -560..-212 z 142..229: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   12 (key 1) ->  63 (key 2), overlapping quad, -36 checkpoints, 10 cells, around x -534..-508 z 238..290: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   13 (key 1) ->  51 (key 2), overlapping quad, +30 checkpoints, 22 cells, around x -673..-673 z -353..-171: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   13 (key 1) ->  52 (key 2), overlapping quad, +31 checkpoints, 43 cells, around x -673..-317 z -353..-75: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   14 (key 1) ->  51 (key 2), overlapping quad, +29 checkpoints, 45 cells, around x -673..-325 z -649..-362: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   14 (key 1) ->  52 (key 2), overlapping quad, +30 checkpoints, 23 cells, around x -325..-325 z -545..-353: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   15 (key 1) ->  50 (key 2), overlapping quad, +27 checkpoints, 30 cells, around x -673..-673 z -944..-692: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   15 (key 1) ->  51 (key 2), overlapping quad, +28 checkpoints, 39 cells, around x -673..-325 z -944..-649: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   16 (key 1) ->  49 (key 2), overlapping quad, +25 checkpoints, 19 cells, around x -673..-673 z -1310..-1153: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   16 (key 1) ->  50 (key 2), overlapping quad, +26 checkpoints, 27 cells, around x -673..-317 z -1144..-953: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   16 (key 1) ->  51 (key 2), overlapping quad, +27 checkpoints, 14 cells, around x -325..-317 z -1057..-944: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   17 (key 1) ->  49 (key 2), overlapping quad, +24 checkpoints, 56 cells, around x -673..-369 z -1501..-1318: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   17 (key 1) ->  50 (key 2), overlapping quad, +25 checkpoints, 19 cells, around x -317..-230 z -1162..-1092: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   17 (key 1) ->  51 (key 2), overlapping quad, +26 checkpoints, 10 cells, around x -221..-177 z -1197..-1162: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   18 (key 1) ->  49 (key 2), overlapping quad, +23 checkpoints, 4 cells, around x -369..-369 z -1527..-1501: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   18 (key 1) ->  51 (key 2), overlapping quad, +25 checkpoints, 1 cells, around x 379..379 z -1518..-1518: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   20 (key 1) ->  61 (key 2), overlapping quad, -38 checkpoints, 21 cells, around x -177..-177 z 3..177: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   20 (key 1) ->  62 (key 2), overlapping quad, -37 checkpoints, 1 cells, around x -177..-177 z 185..185: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   21 (key 1) ->  52 (key 2), overlapping quad, +31 checkpoints, 9 cells, around x -177..-177 z -293..-223: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   21 (key 1) ->  53 (key 2), overlapping quad, +32 checkpoints, 20 cells, around x -177..179 z -293..-75: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   21 (key 1) ->  54 (key 2), overlapping quad, +33 checkpoints, 19 cells, around x 179..179 z -267..-110: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   21 (key 1) ->  59 (key 2), overlapping quad, +38 checkpoints, 8 cells, around x 179..179 z -101..-41: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   21 (key 1) ->  60 (key 2), overlapping quad, +39 checkpoints, 6 cells, around x -177..-177 z -67..-23: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   21 (key 1) ->  61 (key 2), overlapping quad, -39 checkpoints, 2 cells, around x -177..-177 z -14..-6: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   22 (key 1) ->  52 (key 2), overlapping quad, +30 checkpoints, 35 cells, around x -177..-177 z -597..-301: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   22 (key 1) ->  53 (key 2), overlapping quad, +31 checkpoints, 35 cells, around x 179..179 z -597..-301: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   23 (key 1) ->  51 (key 2), overlapping quad, +28 checkpoints, 22 cells, around x -177..-177 z -892..-710: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   23 (key 1) ->  52 (key 2), overlapping quad, +29 checkpoints, 43 cells, around x -177..179 z -892..-606: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   23 (key 1) ->  53 (key 2), overlapping quad, +30 checkpoints, 3 cells, around x 179..179 z -623..-606: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   24 (key 1) ->  51 (key 2), overlapping quad, +27 checkpoints, 45 cells, around x -177..179 z -1197..-901: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   24 (key 1) ->  52 (key 2), overlapping quad, +28 checkpoints, 22 cells, around x 179..179 z -1084..-901: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   26 (key 1) ->  51 (key 2), overlapping quad, +25 checkpoints, 1 cells, around x 379..379 z -1518..-1518: ACCEPTED: a respawn now uses respawn point 2 instead of 6
+   27 (key 1) ->  49 (key 2), overlapping quad, +22 checkpoints, 25 cells, around x -464..-369 z -1648..-1535: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   27 (key 1) ->  51 (key 2), overlapping quad, +24 checkpoints, 19 cells, around x 379..422 z -1631..-1518: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   28 (key 1) ->  47 (key 2), overlapping quad, +19 checkpoints, 3 cells, around x -543..-543 z -1909..-1892: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   28 (key 1) ->  48 (key 2), overlapping quad, +20 checkpoints, 36 cells, around x -534..-464 z -1883..-1657: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   29 (key 1) ->  47 (key 2), overlapping quad, +18 checkpoints, 20 cells, around x -577..-543 z -2048..-1918: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   30 (key 1) ->  45 (key 2), overlapping quad, +15 checkpoints, 6 cells, around x -543..-534 z -2370..-2326: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   30 (key 1) ->  46 (key 2), overlapping quad, +16 checkpoints, 26 cells, around x -569..-543 z -2318..-2127: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   30 (key 1) ->  47 (key 2), overlapping quad, +17 checkpoints, 9 cells, around x -577..-569 z -2118..-2057: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   31 (key 1) ->  44 (key 2), overlapping quad, +13 checkpoints, 2 cells, around x -351..-351 z -2570..-2570: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   31 (key 1) ->  45 (key 2), overlapping quad, +14 checkpoints, 43 cells, around x -534..-360 z -2561..-2370: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   44 (key 2) ->  31 (key 1), overlapping quad, -13 checkpoints, 1 cells, around x -343..-343 z -2570..-2570: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   45 (key 2) ->  30 (key 1), overlapping quad, -15 checkpoints, 1 cells, around x -351..-351 z -2318..-2318: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   45 (key 2) ->  31 (key 1), overlapping quad, -14 checkpoints, 29 cells, around x -351..-343 z -2561..-2326: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   46 (key 2) ->  30 (key 1), overlapping quad, -16 checkpoints, 22 cells, around x -351..-351 z -2309..-2127: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   47 (key 2) ->  28 (key 1), overlapping quad, -19 checkpoints, 2 cells, around x -343..-343 z -1892..-1883: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   47 (key 2) ->  29 (key 1), overlapping quad, -18 checkpoints, 17 cells, around x -343..-343 z -2040..-1901: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   47 (key 2) ->  30 (key 1), overlapping quad, -17 checkpoints, 10 cells, around x -351..-343 z -2118..-2048: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   48 (key 2) ->  28 (key 1), overlapping quad, -20 checkpoints, 24 cells, around x -343..-343 z -1874..-1675: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   49 (key 2) ->  27 (key 1), overlapping quad, -22 checkpoints, 5 cells, around x -212..-186 z -1648..-1648: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   49 (key 2) ->  28 (key 1), overlapping quad, -21 checkpoints, 17 cells, around x -343..-221 z -1675..-1657: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   50 (key 2) ->  27 (key 1), overlapping quad, -23 checkpoints, 47 cells, around x -177..222 z -1648..-1648: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   51 (key 2) ->  27 (key 1), overlapping quad, -24 checkpoints, 24 cells, around x 231..422 z -1648..-1640: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   52 (key 2) ->   8 (key 1), overlapping quad, -28 checkpoints, 12 cells, around x 674..674 z -1283..-1188: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   52 (key 2) ->   9 (key 1), overlapping quad, -27 checkpoints, 3 cells, around x 674..674 z -1310..-1292: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   52 (key 2) ->  13 (key 1), overlapping quad, -31 checkpoints, 12 cells, around x -664..-569 z -75..-75: ACCEPTED: a respawn now uses respawn point 6 instead of 2
+   53 (key 2) ->   7 (key 1), overlapping quad, -30 checkpoints, 19 cells, around x 674..674 z -953..-797: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   53 (key 2) ->   8 (key 1), overlapping quad, -29 checkpoints, 26 cells, around x 674..674 z -1179..-962: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   54 (key 2) ->   6 (key 1), overlapping quad, -32 checkpoints, 19 cells, around x 674..674 z -649..-493: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   54 (key 2) ->   7 (key 1), overlapping quad, -31 checkpoints, 16 cells, around x 674..674 z -788..-658: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   55 (key 2) ->   5 (key 1), overlapping quad, -34 checkpoints, 28 cells, around x 666..674 z -353..-119: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   55 (key 2) ->   6 (key 1), overlapping quad, -33 checkpoints, 15 cells, around x 674..674 z -484..-362: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   56 (key 2) ->   4 (key 1), overlapping quad, -36 checkpoints, 3 cells, around x 570..579 z -67..-58: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   56 (key 2) ->   5 (key 1), overlapping quad, -35 checkpoints, 15 cells, around x 587..666 z -119..-75: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   57 (key 2) ->   3 (key 1), overlapping quad, -38 checkpoints, 2 cells, around x 544..544 z 290..298: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   57 (key 2) ->   4 (key 1), overlapping quad, -37 checkpoints, 43 cells, around x 544..570 z -58..281: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   58 (key 2) ->   3 (key 1), overlapping quad, -39 checkpoints, 30 cells, around x 274..527 z 316..316: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   59 (key 2) ->   3 (key 1), overlapping quad, +39 checkpoints, 25 cells, around x 57..266 z 316..316: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   60 (key 2) ->   2 (key 1), overlapping quad, +37 checkpoints, 1 cells, around x 14..14 z 324..324: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   60 (key 2) ->   3 (key 1), overlapping quad, +38 checkpoints, 5 cells, around x 22..48 z 316..316: ACCEPTED: a respawn now uses respawn point 5 instead of 2
+   61 (key 2) ->   2 (key 1), overlapping quad, +36 checkpoints, 3 cells, around x -4..5 z 324..333: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   62 (key 2) ->   2 (key 1), overlapping quad, +35 checkpoints, 3 cells, around x -12..-4 z 333..342: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   62 (key 2) ->  12 (key 1), overlapping quad, +37 checkpoints, 25 cells, around x -569..-569 z -67..142: ACCEPTED: a respawn now uses respawn point 6 instead of 2
+   62 (key 2) ->  13 (key 1), overlapping quad, +38 checkpoints, 1 cells, around x -569..-569 z -75..-75: ACCEPTED: a respawn now uses respawn point 6 instead of 2
+   63 (key 2) ->   2 (key 1), overlapping quad, +34 checkpoints, 11 cells, around x -12..-4 z 351..429: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   64 (key 2) ->   1 (key 1), overlapping quad, +32 checkpoints, 6 cells, around x -4..-4 z 516..559: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   64 (key 2) ->   2 (key 1), overlapping quad, +33 checkpoints, 9 cells, around x -4..-4 z 437..507: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   65 (key 2) ->   1 (key 1), overlapping quad, +31 checkpoints, 22 cells, around x -4..179 z 559..559: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   66 (key 2) ->   1 (key 1), overlapping quad, +30 checkpoints, 20 cells, around x 188..353 z 559..559: ACCEPTED: a respawn now uses respawn point 7 instead of 2
+   52 (key 2) ->  61 (key 2), overlapping quad, +9 checkpoints, 21 cells, around x -464..-299 z -75..-67: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   52 (key 2) ->  62 (key 2), overlapping quad, +10 checkpoints, 11 cells, around x -560..-473 z -75..-75: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   53 (key 2) ->  60 (key 2), overlapping quad, +7 checkpoints, 23 cells, around x -195..-12 z -67..-58: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   53 (key 2) ->  61 (key 2), overlapping quad, +8 checkpoints, 11 cells, around x -290..-204 z -67..-67: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   54 (key 2) ->  58 (key 2), overlapping quad, +4 checkpoints, 6 cells, around x 196..231 z -119..-110: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   54 (key 2) ->  59 (key 2), overlapping quad, +5 checkpoints, 21 cells, around x 48..188 z -110..-75: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   54 (key 2) ->  60 (key 2), overlapping quad, +6 checkpoints, 8 cells, around x -4..40 z -75..-58: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   58 (key 2) ->  54 (key 2), overlapping quad, -4 checkpoints, 9 cells, around x 188..231 z -154..-127: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   59 (key 2) ->  53 (key 2), overlapping quad, -6 checkpoints, 4 cells, around x 48..75 z -162..-162: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   59 (key 2) ->  54 (key 2), overlapping quad, -5 checkpoints, 13 cells, around x 83..188 z -162..-154: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   60 (key 2) ->  52 (key 2), overlapping quad, -8 checkpoints, 3 cells, around x -247..-230 z -162..-162: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   60 (key 2) ->  53 (key 2), overlapping quad, -7 checkpoints, 31 cells, around x -221..40 z -162..-162: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   61 (key 2) ->  52 (key 2), overlapping quad, -9 checkpoints, 37 cells, around x -569..-256 z -162..-154: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   62 (key 2) ->  52 (key 2), overlapping quad, -10 checkpoints, 8 cells, around x -569..-569 z -145..-84: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   66 (key 2) ->  93 (key 4), overlapping quad, +27 checkpoints, 25 cells, around x -560..-543 z 1202..1394: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   66 (key 2) ->  94 (key 4), overlapping quad, +28 checkpoints, 1 cells, around x -560..-560 z 1194..1194: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   67 (key 2) ->  92 (key 4), overlapping quad, +25 checkpoints, 22 cells, around x -551..-543 z 1480..1663: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   67 (key 2) ->  93 (key 4), overlapping quad, +26 checkpoints, 10 cells, around x -551..-543 z 1402..1472: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   68 (key 2) ->  92 (key 4), overlapping quad, +24 checkpoints, 28 cells, around x -534..-299 z 1663..1663: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   69 (key 2) ->  92 (key 4), overlapping quad, +23 checkpoints, 30 cells, around x -290..-47 z 1654..1663: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   70 (key 2) ->  92 (key 4), overlapping quad, +22 checkpoints, 23 cells, around x -38..144 z 1646..1654: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   71 (key 2) ->  92 (key 4), overlapping quad, +21 checkpoints, 10 cells, around x 144..214 z 1646..1663: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   72 (key 2) ->  91 (key 4), overlapping quad, +19 checkpoints, 1 cells, around x 214..214 z 1706..1706: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   72 (key 2) ->  92 (key 4), overlapping quad, +20 checkpoints, 5 cells, around x 214..214 z 1663..1698: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   73 (key 2) ->  90 (key 4), overlapping quad, +17 checkpoints, 1 cells, around x 214..214 z 1958..1958: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   73 (key 2) ->  91 (key 4), overlapping quad, +18 checkpoints, 28 cells, around x 214..214 z 1715..1950: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   90 (key 4) ->  73 (key 2), overlapping quad, -17 checkpoints, 2 cells, around x 222..231 z 1967..1967: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   91 (key 4) ->  72 (key 2), overlapping quad, -19 checkpoints, 1 cells, around x 361..361 z 1706..1706: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   91 (key 4) ->  73 (key 2), overlapping quad, -18 checkpoints, 43 cells, around x 240..361 z 1715..1967: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   92 (key 4) ->  70 (key 2), overlapping quad, -22 checkpoints, 7 cells, around x 396..405 z 1480..1524: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   92 (key 4) ->  71 (key 2), overlapping quad, -21 checkpoints, 17 cells, around x 370..396 z 1533..1646: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   92 (key 4) ->  72 (key 2), overlapping quad, -20 checkpoints, 7 cells, around x 361..370 z 1654..1698: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   93 (key 4) ->  69 (key 2), overlapping quad, -24 checkpoints, 14 cells, around x 414..414 z 1202..1315: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   93 (key 4) ->  70 (key 2), overlapping quad, -23 checkpoints, 19 cells, around x 405..414 z 1324..1472: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   94 (key 4) ->  65 (key 2), overlapping quad, -29 checkpoints, 1 cells, around x -551..-551 z 1176..1176: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   94 (key 4) ->  66 (key 2), overlapping quad, -28 checkpoints, 31 cells, around x -543..-351 z 1115..1176: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   94 (key 4) ->  68 (key 2), overlapping quad, -26 checkpoints, 2 cells, around x 353..353 z 1115..1115: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   94 (key 4) ->  69 (key 2), overlapping quad, -25 checkpoints, 15 cells, around x 361..414 z 1124..1194: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+
+Overlapping quads far apart along the course:
+  quads 0 and 64: about 9065 square units
+  quads 0 and 65: about 48044 square units
+  quads 0 and 66: about 106739 square units
+  quads 0 and 67: about 97674 square units
+  quads 0 and 68: about 30367 square units
+  quads 1 and 64: about 50234 square units
+  quads 1 and 65: about 27270 square units
+  quads 1 and 66: about 28328 square units
+  quads 1 and 67: about 1209 square units
+  quads 2 and 60: about 76 square units
+  quads 2 and 61: about 302 square units
+  quads 2 and 62: about 1058 square units
+  quads 2 and 63: about 13069 square units
+  quads 2 and 64: about 23342 square units
+  quads 3 and 57: about 227 square units
+  quads 3 and 58: about 26061 square units
+  quads 3 and 59: about 24702 square units
+  quads 3 and 60: about 1133 square units
+  quads 4 and 56: about 302 square units
+  quads 4 and 57: about 54616 square units
+  quads 4 and 58: about 34749 square units
+  quads 4 and 59: about 831 square units
+  quads 5 and 54: about 22360 square units
+  quads 5 and 55: about 66098 square units
+  quads 5 and 56: about 13144 square units
+  quads 5 and 57: about 4155 square units
+  quads 6 and 53: about 26288 square units
+  quads 6 and 54: about 67080 square units
+  quads 6 and 55: about 10047 square units
+  quads 7 and 52: about 12313 square units
+  quads 7 and 53: about 84454 square units
+  quads 7 and 54: about 9971 square units
+  quads 8 and 52: about 58846 square units
+  quads 8 and 53: about 23946 square units
+  quads 9 and 51: about 43436 square units
+  quads 9 and 52: about 65494 square units
+  quads 10 and 49: about 1058 square units
+  quads 10 and 50: about 44191 square units
+  quads 10 and 51: about 76598 square units
+  quads 11 and 62: about 32331 square units
+  quads 11 and 63: about 45475 square units
+  quads 11 and 64: about 6345 square units
+  quads 12 and 61: about 14655 square units
+  quads 12 and 62: about 74105 square units
+  quads 12 and 63: about 2493 square units
+  quads 13 and 51: about 15561 square units
+  quads 13 and 52: about 80451 square units
+  quads 13 and 61: about 16921 square units
+  quads 13 and 62: about 4230 square units
+  quads 14 and 51: about 83246 square units
+  quads 14 and 52: about 16770 square units
+  quads 15 and 50: about 31651 square units
+  quads 15 and 51: about 70026 square units
+  quads 16 and 49: about 8158 square units
+  quads 16 and 50: about 75616 square units
+  quads 16 and 51: about 5892 square units
+  quads 17 and 49: about 23946 square units
+  quads 17 and 50: about 76749 square units
+  quads 17 and 51: about 227 square units
+  quads 18 and 49: about 2342 square units
+  quads 18 and 50: about 72217 square units
+  quads 18 and 51: about 43965 square units
+  quads 19 and 59: about 1058 square units
+  quads 19 and 60: about 453 square units
+  quads 19 and 61: about 604 square units
+  quads 19 and 62: about 4155 square units
+  quads 19 and 63: about 16392 square units
+  quads 19 and 64: about 8612 square units
+  quads 20 and 59: about 38148 square units
+  quads 20 and 60: about 39206 square units
+  quads 20 and 61: about 19716 square units
+  quads 20 and 62: about 8687 square units
+  quads 21 and 52: about 2568 square units
+  quads 21 and 53: about 59299 square units
+  quads 21 and 54: about 14277 square units
+  quads 21 and 59: about 20396 square units
+  quads 21 and 60: about 33918 square units
+  quads 21 and 61: about 76 square units
+  quads 22 and 52: about 60508 square units
+  quads 22 and 53: about 45249 square units
+  quads 23 and 51: about 16015 square units
+  quads 23 and 52: about 86569 square units
+  quads 23 and 53: about 151 square units
+  quads 24 and 51: about 89062 square units
+  quads 24 and 52: about 16694 square units
+  quads 25 and 50: about 36486 square units
+  quads 25 and 51: about 66249 square units
+  quads 26 and 49: about 453 square units
+  quads 26 and 50: about 9518 square units
+  quads 26 and 51: about 4608 square units
+  quads 27 and 49: about 21831 square units
+  quads 27 and 50: about 48875 square units
+  quads 27 and 51: about 28252 square units
+  quads 28 and 47: about 4079 square units
+  quads 28 and 48: about 33616 square units
+  quads 28 and 49: about 1964 square units
+  quads 29 and 47: about 29083 square units
+  quads 30 and 45: about 3701 square units
+  quads 30 and 46: about 38979 square units
+  quads 30 and 47: about 16619 square units
+  quads 31 and 45: about 22964 square units
+  quads 52 and 60: about 227 square units
+  quads 52 and 61: about 21000 square units
+  quads 52 and 62: about 3399 square units
+  quads 53 and 59: about 529 square units
+  quads 53 and 60: about 22889 square units
+  quads 53 and 61: about 3248 square units
+  quads 54 and 58: about 1058 square units
+  quads 54 and 59: about 8536 square units
+  quads 54 and 60: about 1133 square units
+  quads 66 and 93: about 26288 square units
+  quads 66 and 94: about 18659 square units
+  quads 67 and 92: about 19943 square units
+  quads 67 and 93: about 77429 square units
+  quads 67 and 94: about 24702 square units
+  quads 68 and 92: about 45324 square units
+  quads 68 and 93: about 74710 square units
+  quads 68 and 94: about 24626 square units
+  quads 69 and 92: about 45778 square units
+  quads 69 and 93: about 71386 square units
+  quads 69 and 94: about 5137 square units
+  quads 70 and 92: about 38450 square units
+  quads 70 and 93: about 14428 square units
+  quads 71 and 92: about 15561 square units
+  quads 72 and 91: about 1209 square units
+  quads 72 and 92: about 7025 square units
+  quads 73 and 90: about 151 square units
+  quads 73 and 91: about 20623 square units

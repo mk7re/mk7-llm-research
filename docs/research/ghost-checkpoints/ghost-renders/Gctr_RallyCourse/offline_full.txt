@@ -1,0 +1,115 @@
+Gctr_RallyCourse: 99 checkpoints, 5 key checkpoints, 14 respawn points, 3 lap(s), grid step 11 units, offline / v1.0 (ghost fix off), mode full (all ghost candidates)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint   2 (key id 0, respawn point 1): about 2439095 square units
+      no respawn glitch from: 24
+  checkpoint   3 (key id 0, respawn point 1): about 5848660 square units
+      respawn glitch from: 23, 27..38
+      no respawn glitch from: 25..26
+  checkpoint   7 (key id 0, respawn point 2): about 2041215 square units
+      respawn glitch from: 12..23, 39..42
+      no respawn glitch from: 9..11
+  checkpoint   8 (key id 0, respawn point 2): about 2041215 square units
+      respawn glitch from: 0..5, 24..26, 32..33, 91..98
+      no respawn glitch from: 6, 27..31
+  checkpoint  23 (key id 0, respawn point 4): about 1505669 square units
+      respawn glitch from: 2..3, 24..34
+      no respawn glitch from: 35..37
+  checkpoint  37 (key id 0, respawn point 4): about 1505669 square units
+      respawn glitch from: 5..7, 9..13, 19..20
+      no respawn glitch from: 14..18, 21..23
+  checkpoint  67 (key id 2, respawn point 9): about 531969 square units
+      respawn glitch from: 75..79
+      no respawn glitch from: 69..74, 80..83
+  checkpoint  68 (key id 2, respawn point 9): about 531969 square units
+      respawn glitch from: 52..57
+      no respawn glitch from: 58..66
+  checkpoint  73 (key id 2, respawn point 9): about 692 square units
+      respawn glitch from: 76..79
+      no respawn glitch from: 75, 80..89
+  checkpoint  74 (key id 2, respawn point 9): about 692 square units
+      no respawn glitch from: 58..72
+  checkpoint  86 (key id 4, respawn point 13): about 224212 square units
+      respawn glitch from: 0
+      no respawn glitch from: 1..2, 88..98
+  checkpoint  87 (key id 4, respawn point 13): about 224212 square units
+      respawn glitch from: 75..79
+      no respawn glitch from: 71..74, 80..85
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+    3 (key 0) ->  27 (key 0), overlapping quad, +3 checkpoints, 6 cells, around x -2038..-2016 z -1992..-1960: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   12 (key 0) ->  29 (key 0), overlapping quad, -4 checkpoints, 1 cells, around x -1640..-1640 z -2389..-2389: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   13 (key 0) ->  29 (key 0), overlapping quad, -5 checkpoints, 6 cells, around x -1662..-1640 z -2432..-2400: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   14 (key 0) ->  29 (key 0), overlapping quad, -6 checkpoints, 7 cells, around x -1683..-1662 z -2486..-2443: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   17 (key 0) ->   7 (key 0), ghost, -10 checkpoints, 13 cells, around x -985..-963 z -3281..-3173: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   18 (key 0) ->   7 (key 0), ghost, -11 checkpoints, 13 cells, around x -985..-963 z -3399..-3292: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   19 (key 0) ->   7 (key 0), ghost, -12 checkpoints, 16 cells, around x -1028..-985 z -3528..-3410: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   21 (key 0) ->  34 (key 0), overlapping quad, -8 checkpoints, 13 cells, around x -1930..-1877 z -3410..-3324: ACCEPTED: a respawn now uses respawn point 3 instead of 4
+   35 (key 0) ->  20 (key 0), overlapping quad, +6 checkpoints, 12 cells, around x -1672..-1587 z -3474..-3421: ACCEPTED: a respawn now uses respawn point 3 instead of 4
+   78 (key 3) ->  87 (key 4), ghost, +9 checkpoints, 34 cells, around x 1690..1840 z 4475..4668: ACCEPTED: a respawn now uses respawn point 13 instead of 11
+   14 (key 0) ->  30 (key 0), overlapping quad, -5 checkpoints, 21 cells, around x -1737..-1683 z -2658..-2497: accepted, same respawn point 3 (no effect on respawning)
+   14 (key 0) ->  31 (key 0), overlapping quad, -4 checkpoints, 14 cells, around x -1769..-1737 z -2776..-2669: accepted, same respawn point 3 (no effect on respawning)
+   15 (key 0) ->  31 (key 0), overlapping quad, -5 checkpoints, 10 cells, around x -1791..-1769 z -2862..-2776: accepted, same respawn point 3 (no effect on respawning)
+   15 (key 0) ->  32 (key 0), overlapping quad, -4 checkpoints, 14 cells, around x -1812..-1791 z -2991..-2873: accepted, same respawn point 3 (no effect on respawning)
+   16 (key 0) ->  32 (key 0), overlapping quad, -5 checkpoints, 10 cells, around x -1834..-1812 z -3077..-3002: accepted, same respawn point 3 (no effect on respawning)
+   16 (key 0) ->  33 (key 0), overlapping quad, -4 checkpoints, 11 cells, around x -1844..-1834 z -3184..-3088: accepted, same respawn point 3 (no effect on respawning)
+   17 (key 0) ->  33 (key 0), overlapping quad, -5 checkpoints, 5 cells, around x -1844..-1844 z -3238..-3195: accepted, same respawn point 3 (no effect on respawning)
+   18 (key 0) ->  33 (key 0), overlapping quad, -6 checkpoints, 1 cells, around x -1844..-1844 z -3238..-3238: accepted, same respawn point 3 (no effect on respawning)
+   18 (key 0) ->  34 (key 0), overlapping quad, -5 checkpoints, 3 cells, around x -1855..-1855 z -3270..-3249: accepted, same respawn point 3 (no effect on respawning)
+   19 (key 0) ->  34 (key 0), overlapping quad, -6 checkpoints, 4 cells, around x -1866..-1844 z -3292..-3270: accepted, same respawn point 3 (no effect on respawning)
+   20 (key 0) ->  34 (key 0), overlapping quad, -7 checkpoints, 4 cells, around x -1877..-1866 z -3324..-3302: accepted, same respawn point 3 (no effect on respawning)
+   21 (key 0) ->  35 (key 0), overlapping quad, -7 checkpoints, 9 cells, around x -1963..-1930 z -3474..-3421: accepted, same respawn point 4 (no effect on respawning)
+   22 (key 0) ->  35 (key 0), overlapping quad, -8 checkpoints, 18 cells, around x -2038..-1963 z -3582..-3474: accepted, same respawn point 4 (no effect on respawning)
+   22 (key 0) ->  36 (key 0), overlapping quad, -7 checkpoints, 12 cells, around x -2102..-2048 z -3657..-3592: accepted, same respawn point 4 (no effect on respawning)
+   23 (key 0) ->  36 (key 0), overlapping quad, -8 checkpoints, 26 cells, around x -2263..-2102 z -3764..-3657: accepted, same respawn point 4 (no effect on respawning)
+   23 (key 0) ->  37 (key 0), overlapping quad, -7 checkpoints, 8 cells, around x -2317..-2274 z -3807..-3775: accepted, same respawn point 4 (no effect on respawning)
+   23 (key 0) ->  38 (key 0), overlapping quad, -6 checkpoints, 106 cells, around x -2306..-1211 z -3850..-3818: accepted, same respawn point 4 (no effect on respawning)
+   29 (key 0) ->  11 (key 0), overlapping quad, +3 checkpoints, 12 cells, around x -1275..-1232 z -2486..-2411: accepted, same respawn point 2 (no effect on respawning)
+   30 (key 0) ->  12 (key 0), overlapping quad, +3 checkpoints, 9 cells, around x -1221..-1221 z -2593..-2507: accepted, same respawn point 3 (no effect on respawning)
+   30 (key 0) ->  13 (key 0), overlapping quad, +4 checkpoints, 7 cells, around x -1232..-1221 z -2658..-2604: accepted, same respawn point 3 (no effect on respawning)
+   31 (key 0) ->  13 (key 0), overlapping quad, +3 checkpoints, 7 cells, around x -1254..-1232 z -2712..-2669: accepted, same respawn point 3 (no effect on respawning)
+   31 (key 0) ->  14 (key 0), overlapping quad, +4 checkpoints, 11 cells, around x -1297..-1264 z -2787..-2722: accepted, same respawn point 3 (no effect on respawning)
+   32 (key 0) ->  14 (key 0), overlapping quad, +3 checkpoints, 1 cells, around x -1350..-1350 z -2873..-2873: accepted, same respawn point 3 (no effect on respawning)
+   32 (key 0) ->  15 (key 0), overlapping quad, +4 checkpoints, 24 cells, around x -1490..-1361 z -2991..-2883: accepted, same respawn point 3 (no effect on respawning)
+   32 (key 0) ->  16 (key 0), overlapping quad, +5 checkpoints, 19 cells, around x -1608..-1501 z -3088..-3002: accepted, same respawn point 3 (no effect on respawning)
+   33 (key 0) ->  16 (key 0), overlapping quad, +4 checkpoints, 9 cells, around x -1608..-1608 z -3173..-3088: accepted, same respawn point 3 (no effect on respawning)
+   33 (key 0) ->  17 (key 0), overlapping quad, +5 checkpoints, 6 cells, around x -1608..-1608 z -3238..-3184: accepted, same respawn point 3 (no effect on respawning)
+   34 (key 0) ->  17 (key 0), overlapping quad, +4 checkpoints, 1 cells, around x -1608..-1608 z -3249..-3249: accepted, same respawn point 3 (no effect on respawning)
+   34 (key 0) ->  18 (key 0), overlapping quad, +5 checkpoints, 7 cells, around x -1630..-1619 z -3302..-3259: accepted, same respawn point 3 (no effect on respawning)
+   34 (key 0) ->  19 (key 0), overlapping quad, +6 checkpoints, 7 cells, around x -1651..-1630 z -3356..-3313: accepted, same respawn point 3 (no effect on respawning)
+   34 (key 0) ->  20 (key 0), overlapping quad, +7 checkpoints, 8 cells, around x -1672..-1651 z -3421..-3367: accepted, same respawn point 3 (no effect on respawning)
+   35 (key 0) ->  21 (key 0), overlapping quad, +7 checkpoints, 28 cells, around x -1597..-1415 z -3592..-3474: accepted, same respawn point 4 (no effect on respawning)
+   36 (key 0) ->  21 (key 0), overlapping quad, +6 checkpoints, 7 cells, around x -1415..-1415 z -3668..-3603: accepted, same respawn point 4 (no effect on respawning)
+   36 (key 0) ->  22 (key 0), overlapping quad, +7 checkpoints, 8 cells, around x -1415..-1415 z -3754..-3678: accepted, same respawn point 4 (no effect on respawning)
+   36 (key 0) ->  23 (key 0), overlapping quad, +8 checkpoints, 1 cells, around x -1415..-1415 z -3764..-3764: accepted, same respawn point 4 (no effect on respawning)
+   37 (key 0) ->  23 (key 0), overlapping quad, +7 checkpoints, 27 cells, around x -1425..-1211 z -3839..-3764: accepted, same respawn point 4 (no effect on respawning)
+   38 (key 0) ->  23 (key 0), overlapping quad, +6 checkpoints, 106 cells, around x -2306..-1211 z -3839..-3807: accepted, same respawn point 4 (no effect on respawning)
+
+Overlapping quads far apart along the course:
+  quads 3 and 27: about 1269 square units
+  quads 11 and 29: about 17771 square units
+  quads 12 and 29: about 10039 square units
+  quads 12 and 30: about 11309 square units
+  quads 13 and 29: about 9001 square units
+  quads 13 and 30: about 27925 square units
+  quads 13 and 31: about 2769 square units
+  quads 14 and 29: about 2654 square units
+  quads 14 and 30: about 41542 square units
+  quads 14 and 31: about 74660 square units
+  quads 15 and 31: about 18579 square units
+  quads 15 and 32: about 47889 square units
+  quads 16 and 32: about 22387 square units
+  quads 16 and 33: about 22156 square units
+  quads 17 and 33: about 13501 square units
+  quads 17 and 34: about 346 square units
+  quads 18 and 34: about 10732 square units
+  quads 19 and 34: about 7385 square units
+  quads 20 and 34: about 12232 square units
+  quads 20 and 35: about 346 square units
+  quads 21 and 34: about 11078 square units
+  quads 21 and 35: about 50543 square units
+  quads 21 and 36: about 6693 square units
+  quads 22 and 35: about 25156 square units
+  quads 22 and 36: about 67621 square units
+  quads 23 and 36: about 51004 square units
+  quads 23 and 37: about 57467 square units

@@ -1,0 +1,109 @@
+Gctr_WuhuIsland1: 125 checkpoints, 8 key checkpoints, 39 respawn points, 1 lap(s), grid step 17 units, offline / v1.0 (ghost fix off), mode full (all ghost candidates)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  12 (key id 1, respawn point 2): about 8163899 square units
+      respawn glitch from: 28
+      no respawn glitch from: 14..27
+  checkpoint  13 (key id 1, respawn point 2): about 8163899 square units
+      respawn glitch from: 0..7, 124
+      no respawn glitch from: 8..11, 122..123
+  checkpoint  21 (key id 1, respawn point 2): about 219697 square units
+      respawn glitch from: 28..37
+      no respawn glitch from: 23..27
+  checkpoint  22 (key id 1, respawn point 2): about 219697 square units
+      no respawn glitch from: 12..20
+  checkpoint  43 (key id 3, respawn point 8): about 170976 square units
+      no respawn glitch from: 44, 56
+  checkpoint  44 (key id 3, respawn point 9): about 22696 square units
+      no respawn glitch from: 54..63
+  checkpoint  55 (key id 3, respawn point 13): about 898761 square units
+      no respawn glitch from: 57..67
+  checkpoint  56 (key id 3, respawn point 35): about 1052186 square units
+      respawn glitch from: 68, 73
+      no respawn glitch from: 44..52, 66..67, 69..70
+  checkpoint  67 (key id 3, respawn point 13): about 1205308 square units
+      respawn glitch from: 43
+      no respawn glitch from: 41..42, 44..56
+  checkpoint  68 (key id 3, respawn point 14): about 5750 square units
+      no respawn glitch from: 55
+  checkpoint  69 (key id 3, respawn point 14): about 2787673 square units
+      respawn glitch from: 73..85
+      no respawn glitch from: 71..72
+  checkpoint  70 (key id 3, respawn point 15): about 2787673 square units
+      respawn glitch from: 55, 67
+      no respawn glitch from: 42..54, 56..66, 68
+  checkpoint  71 (key id 3, respawn point 15): about 6518894 square units
+      respawn glitch from: 74..87
+      no respawn glitch from: 73
+  checkpoint  72 (key id 3, respawn point 15): about 6518894 square units
+      respawn glitch from: 55, 67
+      no respawn glitch from: 41..42, 45..54, 57..66, 68..70
+  checkpoint  78 (key id 4, respawn point 18): about 642145 square units
+      respawn glitch from: 90..94
+      no respawn glitch from: 80..89
+  checkpoint  79 (key id 4, respawn point 19): about 711141 square units
+      respawn glitch from: 51..55, 63..72, 90..95
+      no respawn glitch from: 73..77, 81..89
+  checkpoint  80 (key id 4, respawn point 19): about 68996 square units
+      respawn glitch from: 52..55, 64..72
+      no respawn glitch from: 73..78
+  checkpoint  82 (key id 4, respawn point 20): about 2088031 square units
+      respawn glitch from: 90..98
+      no respawn glitch from: 84..89
+  checkpoint  83 (key id 4, respawn point 20): about 2088031 square units
+      respawn glitch from: 55, 68..72
+      no respawn glitch from: 73..81
+  checkpoint  94 (key id 5, respawn point 23): about 11512920 square units
+      respawn glitch from: 107..110
+      no respawn glitch from: 96..106
+  checkpoint  95 (key id 5, respawn point 23): about 11512920 square units
+      respawn glitch from: 79..89
+      no respawn glitch from: 90..93
+  checkpoint 100 (key id 5, respawn point 25): about 790123 square units
+      respawn glitch from: 107..116
+      no respawn glitch from: 102..106
+  checkpoint 101 (key id 5, respawn point 25): about 790123 square units
+      respawn glitch from: 85..89
+      no respawn glitch from: 90..99
+  checkpoint 118 (key id 7, respawn point 32): about 3035816 square units
+      respawn glitch from: 0
+      no respawn glitch from: 1..9, 120..124
+  checkpoint 119 (key id 7, respawn point 32): about 8514931 square units
+      respawn glitch from: 0, 107..116
+      no respawn glitch from: 1..10, 103..106, 117, 121..124
+  checkpoint 120 (key id 7, respawn point 33): about 5479115 square units
+      respawn glitch from: 107..116
+      no respawn glitch from: 104..106, 117..118
+  checkpoint 121 (key id 7, respawn point 33): about 1863492 square units
+      respawn glitch from: 0
+      no respawn glitch from: 1..12, 123..124
+  checkpoint 122 (key id 7, respawn point 34): about 1863492 square units
+      no respawn glitch from: 119..120
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   77 (key 4) ->  90 (key 5), overlapping quad, +13 checkpoints, 2 cells, around x -3580..-3562 z -4468..-4451: ACCEPTED: a respawn now uses respawn point 38 instead of 17
+   84 (key 4) ->  95 (key 5), ghost, +11 checkpoints, 44 cells, around x -5267..-4780 z -6990..-6729: ACCEPTED: a respawn now uses respawn point 23 instead of 21
+   85 (key 4) ->  95 (key 5), ghost, +10 checkpoints, 67 cells, around x -5841..-5267 z -7008..-6434: ACCEPTED: a respawn now uses respawn point 23 instead of 21
+   87 (key 4) ->  95 (key 5), ghost, +8 checkpoints, 6 cells, around x -6085..-6067 z -5059..-5007: ACCEPTED: a respawn now uses respawn point 23 instead of 21
+   90 (key 5) ->  77 (key 4), overlapping quad, -13 checkpoints, 2 cells, around x -3562..-3562 z -4468..-4468: ACCEPTED: a respawn now uses respawn point 17 instead of 38
+  107 (key 6) -> 119 (key 7), ghost, +12 checkpoints, 49 cells, around x -8955..-8520 z 507..907: ACCEPTED: a respawn now uses respawn point 32 instead of 27
+  108 (key 6) -> 120 (key 7), ghost, +12 checkpoints, 89 cells, around x -10190..-9303 z 1221..1882: ACCEPTED: a respawn now uses respawn point 33 instead of 28
+  109 (key 6) -> 120 (key 7), ghost, +11 checkpoints, 87 cells, around x -10886..-10155 z 1864..2664: ACCEPTED: a respawn now uses respawn point 33 instead of 28
+   19 (key 1) ->  12 (key 1), ghost, -7 checkpoints, 21 cells, around x 4474..4822 z 942..942: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   20 (key 1) ->  12 (key 1), ghost, -8 checkpoints, 9 cells, around x 4840..4927 z 890..942: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   21 (key 1) ->  12 (key 1), ghost, -9 checkpoints, 23 cells, around x 4927..5135 z 699..890: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   22 (key 1) ->  12 (key 1), ghost, -10 checkpoints, 3 cells, around x 5135..5153 z 664..699: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   23 (key 1) ->  12 (key 1), ghost, -11 checkpoints, 2 cells, around x 5153..5153 z 646..664: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   24 (key 1) ->  12 (key 1), ghost, -12 checkpoints, 39 cells, around x 5153..6301 z 594..1186: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   25 (key 1) ->  12 (key 1), ghost, -13 checkpoints, 42 cells, around x 5170..6301 z 264..577: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   26 (key 1) ->  12 (key 1), ghost, -14 checkpoints, 12 cells, around x 6284..6284 z 55..246: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   26 (key 1) ->  21 (key 1), ghost, -5 checkpoints, 13 cells, around x 6284..6284 z -171..38: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   27 (key 1) ->  12 (key 1), ghost, -15 checkpoints, 10 cells, around x 6318..6336 z -519..-380: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   27 (key 1) ->  21 (key 1), ghost, -6 checkpoints, 13 cells, around x 6284..6318 z -363..-171: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   51 (key 3) ->  66 (key 3), overlapping quad, +3 checkpoints, 15 cells, around x 1430..1552 z -6051..-5929: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   66 (key 3) ->  51 (key 3), overlapping quad, -3 checkpoints, 12 cells, around x 1361..1552 z -5912..-5912: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   67 (key 3) ->  52 (key 3), overlapping quad, -3 checkpoints, 7 cells, around x 665..734 z -5912..-5894: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+
+Overlapping quads far apart along the course:
+  quads 51 and 66: about 12105 square units
+  quads 52 and 67: about 2724 square units

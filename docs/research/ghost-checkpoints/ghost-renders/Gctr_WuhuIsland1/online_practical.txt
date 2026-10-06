@@ -1,0 +1,13 @@
+Gctr_WuhuIsland1: 125 checkpoints, 8 key checkpoints, 39 respawn points, 1 lap(s), grid step 17 units, online (ghost fix on), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   51 (key 3) ->  66 (key 3), overlapping quad, +3 checkpoints, 15 cells, around x 1423..1544 z -6051..-5929: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   66 (key 3) ->  51 (key 3), overlapping quad, -3 checkpoints, 12 cells, around x 1353..1544 z -5912..-5912: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   67 (key 3) ->  52 (key 3), overlapping quad, -3 checkpoints, 6 cells, around x 675..744 z -5912..-5894: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+
+Overlapping quads far apart along the course:
+  quads 51 and 66: about 11197 square units
+  quads 52 and 67: about 2724 square units

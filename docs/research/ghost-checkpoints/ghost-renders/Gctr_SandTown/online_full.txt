@@ -1,0 +1,14 @@
+Gctr_SandTown: 43 checkpoints, 5 key checkpoints, 10 respawn points, 3 lap(s), grid step 9 units, online (ghost fix on), mode full (all ghost candidates)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   19 (key 2) ->  24 (key 3), overlapping quad, +5 checkpoints, 19 cells, around x 1983..2061 z -3431..-3361: ACCEPTED: a respawn now uses respawn point 3 instead of 2
+   19 (key 2) ->  25 (key 3), overlapping quad, +6 checkpoints, 18 cells, around x 2070..2166 z -3518..-3440: ACCEPTED: a respawn now uses respawn point 3 instead of 2
+   24 (key 3) ->  19 (key 2), overlapping quad, -5 checkpoints, 18 cells, around x 1974..2044 z -3449..-3361: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+   25 (key 3) ->  19 (key 2), overlapping quad, -6 checkpoints, 19 cells, around x 2044..2166 z -3527..-3449: ACCEPTED: a respawn now uses respawn point 2 instead of 3
+
+Overlapping quads far apart along the course:
+  quads 19 and 24: about 839 square units
+  quads 19 and 25: about 992 square units

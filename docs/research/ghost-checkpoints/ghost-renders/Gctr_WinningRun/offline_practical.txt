@@ -1,0 +1,29 @@
+Gctr_WinningRun: 49 checkpoints, 5 key checkpoints, 10 respawn points, 3 lap(s), grid step 7 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+    1 (key 0) ->  34 (key 3), overlapping quad, -16 checkpoints, 44 cells, around x 0..298 z 301..301: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    1 (key 0) ->  37 (key 3), overlapping quad, -13 checkpoints, 49 cells, around x 0..333 z -704..-704: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    2 (key 0) ->  34 (key 3), overlapping quad, -17 checkpoints, 64 cells, around x -443..-7 z 301..301: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    2 (key 0) ->  37 (key 3), overlapping quad, -14 checkpoints, 64 cells, around x -443..-7 z -704..-704: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    3 (key 0) ->  34 (key 3), overlapping quad, -18 checkpoints, 15 cells, around x -547..-450 z 301..301: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+    3 (key 0) ->  37 (key 3), overlapping quad, -15 checkpoints, 13 cells, around x -534..-450 z -704..-704: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   35 (key 3) ->   1 (key 0), overlapping quad, +15 checkpoints, 50 cells, around x 305..305 z -45..295: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   35 (key 3) ->   3 (key 0), overlapping quad, +17 checkpoints, 50 cells, around x -554..-554 z -45..295: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   36 (key 3) ->   1 (key 0), overlapping quad, +14 checkpoints, 65 cells, around x 305..305 z -496..-52: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   36 (key 3) ->   3 (key 0), overlapping quad, +16 checkpoints, 65 cells, around x -554..-554 z -496..-52: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   37 (key 3) ->   1 (key 0), overlapping quad, +13 checkpoints, 34 cells, around x 305..340 z -697..-503: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   37 (key 3) ->   3 (key 0), overlapping quad, +15 checkpoints, 31 cells, around x -554..-541 z -697..-503: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+
+Overlapping quads far apart along the course:
+  quads 1 and 35: about 105764 square units
+  quads 1 and 36: about 137494 square units
+  quads 1 and 37: about 64757 square units
+  quads 2 and 35: about 153839 square units
+  quads 2 and 36: about 199991 square units
+  quads 2 and 37: about 89227 square units
+  quads 3 and 35: about 36056 square units
+  quads 3 and 36: about 46873 square units
+  quads 3 and 37: about 19230 square units

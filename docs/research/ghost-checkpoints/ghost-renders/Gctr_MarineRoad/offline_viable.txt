@@ -1,0 +1,13 @@
+Gctr_MarineRoad: 46 checkpoints, 7 key checkpoints, 7 respawn points, 3 lap(s), grid step 8 units, offline / v1.0 (ghost fix off), mode viable (only respawn glitches, also after a teleport)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  28 (key id 3, respawn point 6): about 757080 square units
+      respawn glitch from: 31..34
+  checkpoint  29 (key id 4, respawn point 2): about 757080 square units
+      respawn glitch from: 22..26
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+  none
+
+Overlapping quads far apart along the course:
+  none

@@ -1,0 +1,17 @@
+Gn64_KalimariDesert: 25 checkpoints, 5 key checkpoints, 12 respawn points, 3 lap(s), grid step 9 units, offline / v1.0 (ghost fix off), mode viable (only respawn glitches, also after a teleport)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  10 (key id 2, respawn point 6): about 2068868 square units
+      respawn glitch from: 15..18
+  checkpoint  11 (key id 2, respawn point 6): about 2068868 square units
+      respawn glitch from: 2..8
+  checkpoint  12 (key id 2, respawn point 7): about 340144 square units
+      respawn glitch from: 15..18
+  checkpoint  13 (key id 2, respawn point 7): about 340144 square units
+      respawn glitch from: 2..9
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   17 (key 3) ->  12 (key 2), ghost, -5 checkpoints, 23 cells, around x -1152..-945 z 3905..3905: ACCEPTED: a respawn now uses respawn point 7 instead of 9
+
+Overlapping quads far apart along the course:
+  none

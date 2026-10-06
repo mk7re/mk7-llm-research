@@ -1,0 +1,15 @@
+Gn64_KoopaTroopaBeach: 47 checkpoints, 5 key checkpoints, 22 respawn points, 3 lap(s), grid step 9 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  15 (key id 1, respawn point 7): about 122843 square units
+      respawn glitch from: 24..25, 32..34
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   24 (key 2) ->  15 (key 1), ghost, -9 checkpoints, 14 cells, around x 97..149 z 2154..2216: ACCEPTED: a respawn now uses respawn point 7 instead of 10
+   25 (key 2) ->  15 (key 1), ghost, -10 checkpoints, 22 cells, around x 18..97 z 2216..2329: ACCEPTED: a respawn now uses respawn point 7 instead of 21
+   32 (key 2) ->  15 (key 1), ghost, -11 checkpoints, 63 cells, around x -148..18 z 2329..2706: ACCEPTED: a respawn now uses respawn point 7 instead of 19
+   33 (key 2) ->  15 (key 1), ghost, -12 checkpoints, 51 cells, around x -148..44 z 2706..2959: ACCEPTED: a respawn now uses respawn point 7 instead of 19
+   34 (key 2) ->  15 (key 1), ghost, -13 checkpoints, 9 cells, around x 44..79 z 2959..2994: ACCEPTED: a respawn now uses respawn point 7 instead of 19
+
+Overlapping quads far apart along the course:
+  none

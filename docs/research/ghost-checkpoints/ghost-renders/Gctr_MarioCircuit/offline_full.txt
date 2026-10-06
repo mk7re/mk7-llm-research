@@ -1,0 +1,106 @@
+Gctr_MarioCircuit: 98 checkpoints, 5 key checkpoints, 11 respawn points, 3 lap(s), grid step 8 units, offline / v1.0 (ghost fix off), mode full (all ghost candidates)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  44 (key id 2, respawn point 6): about 2669121 square units
+      respawn glitch from: 54..60
+      no respawn glitch from: 46..53
+  checkpoint  45 (key id 2, respawn point 6): about 2728045 square units
+      no respawn glitch from: 23..27, 29..43, 49..50
+  checkpoint  46 (key id 2, respawn point 6): about 58924 square units
+      no respawn glitch from: 23..28, 30..44
+  checkpoint  48 (key id 2, respawn point 6): about 256407 square units
+      respawn glitch from: 54..64
+      no respawn glitch from: 50..53
+  checkpoint  49 (key id 2, respawn point 6): about 4044661 square units
+      respawn glitch from: 54..65
+      no respawn glitch from: 23..31, 33..47, 51..53
+  checkpoint  50 (key id 2, respawn point 6): about 3788253 square units
+      no respawn glitch from: 23..32, 34..48
+  checkpoint  51 (key id 2, respawn point 6): about 1935790 square units
+      respawn glitch from: 54..67
+      no respawn glitch from: 53
+  checkpoint  52 (key id 2, respawn point 6): about 1935790 square units
+      no respawn glitch from: 23..34, 36..50
+  checkpoint  75 (key id 3, respawn point 7): about 93504 square units
+      respawn glitch from: 84..91
+      no respawn glitch from: 77..83
+  checkpoint  76 (key id 3, respawn point 7): about 93504 square units
+      no respawn glitch from: 54..58, 60..74
+  checkpoint  81 (key id 3, respawn point 10): about 11075320 square units
+      respawn glitch from: 84..97
+      no respawn glitch from: 83
+  checkpoint  82 (key id 3, respawn point 10): about 11075320 square units
+      no respawn glitch from: 54..64, 66..80
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+    2 (key 1) ->  15 (key 1), overlapping quad, +13 checkpoints, 3 cells, around x -1061..-1045 z -1497..-1497: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+    3 (key 1) ->  14 (key 1), overlapping quad, +11 checkpoints, 35 cells, around x -1385..-1176 z -1575..-1521: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+    3 (key 1) ->  15 (key 1), overlapping quad, +12 checkpoints, 17 cells, around x -1169..-1068 z -1521..-1497: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+    4 (key 1) ->  12 (key 1), overlapping quad, +8 checkpoints, 4 cells, around x -1701..-1678 z -1605..-1605: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+    4 (key 1) ->  13 (key 1), overlapping quad, +9 checkpoints, 6 cells, around x -1670..-1639 z -1605..-1605: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+    4 (key 1) ->  14 (key 1), overlapping quad, +10 checkpoints, 35 cells, around x -1632..-1392 z -1598..-1575: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+    7 (key 1) ->  12 (key 1), overlapping quad, +5 checkpoints, 1 cells, around x -1717..-1717 z -1605..-1605: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   12 (key 1) ->   4 (key 1), overlapping quad, -8 checkpoints, 4 cells, around x -1701..-1678 z -1613..-1613: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   12 (key 1) ->   7 (key 1), overlapping quad, -5 checkpoints, 1 cells, around x -1717..-1717 z -1613..-1613: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   13 (key 1) ->   4 (key 1), overlapping quad, -9 checkpoints, 5 cells, around x -1670..-1639 z -1613..-1613: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   14 (key 1) ->   3 (key 1), overlapping quad, -11 checkpoints, 39 cells, around x -1385..-1107 z -1598..-1575: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   14 (key 1) ->   4 (key 1), overlapping quad, -10 checkpoints, 34 cells, around x -1632..-1392 z -1613..-1598: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   15 (key 1) ->   2 (key 1), overlapping quad, -13 checkpoints, 6 cells, around x -1061..-1045 z -1521..-1505: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   15 (key 1) ->   3 (key 1), overlapping quad, -12 checkpoints, 12 cells, around x -1107..-1068 z -1575..-1528: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   25 (key 2) ->  45 (key 2), ghost, +20 checkpoints, 4 cells, around x -1863..-1863 z 1403..1427: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   25 (key 2) ->  52 (key 2), ghost, +27 checkpoints, 5 cells, around x -3414..-3414 z 1365..1396: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   26 (key 2) ->  45 (key 2), ghost, +19 checkpoints, 41 cells, around x -1894..-1863 z 1434..1712: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   26 (key 2) ->  52 (key 2), ghost, +26 checkpoints, 55 cells, around x -3414..-3360 z 1403..1774: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   27 (key 2) ->  45 (key 2), ghost, +18 checkpoints, 18 cells, around x -1902..-1894 z 1720..1843: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   27 (key 2) ->  52 (key 2), ghost, +25 checkpoints, 76 cells, around x -3360..-3283 z 1774..2275: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   28 (key 2) ->  52 (key 2), ghost, +24 checkpoints, 10 cells, around x -3283..-3267 z 2283..2337: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   29 (key 2) ->  45 (key 2), ghost, +16 checkpoints, 115 cells, around x -2905..-1871 z 1874..3417: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   30 (key 2) ->  45 (key 2), ghost, +15 checkpoints, 54 cells, around x -2473..-1871 z 1882..3440: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   31 (key 2) ->  45 (key 2), ghost, +14 checkpoints, 1 cells, around x -1863..-1863 z 1882..1882: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   32 (key 2) ->  45 (key 2), ghost, +13 checkpoints, 1 cells, around x -1863..-1863 z 1882..1882: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   33 (key 2) ->  45 (key 2), ghost, +12 checkpoints, 5 cells, around x -1863..-1848 z 1851..1874: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   34 (key 2) ->  45 (key 2), ghost, +11 checkpoints, 66 cells, around x -1848..-1670 z 1519..1851: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   35 (key 2) ->  45 (key 2), ghost, +10 checkpoints, 18 cells, around x -1670..-1624 z 1434..1519: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   39 (key 2) ->  49 (key 2), ghost, +10 checkpoints, 7 cells, around x -120..-96 z 1427..1450: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   40 (key 2) ->  49 (key 2), ghost, +9 checkpoints, 23 cells, around x -96..-19 z 1326..1427: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   41 (key 2) ->  49 (key 2), ghost, +8 checkpoints, 35 cells, around x -19..73 z 1149..1326: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   42 (key 2) ->  49 (key 2), ghost, +7 checkpoints, 28 cells, around x 73..135 z 995..1149: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   43 (key 2) ->  49 (key 2), ghost, +6 checkpoints, 24 cells, around x 135..174 z 848..995: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   44 (key 2) ->  49 (key 2), ghost, +5 checkpoints, 4 cells, around x 174..181 z 825..848: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   55 (key 3) ->  70 (key 3), overlapping quad, +15 checkpoints, 36 cells, around x -58..58 z -818..-672: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   55 (key 3) ->  71 (key 3), overlapping quad, +16 checkpoints, 11 cells, around x 274..312 z -510..-471: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   56 (key 3) ->  70 (key 3), overlapping quad, +14 checkpoints, 28 cells, around x 58..204 z -896..-826: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   56 (key 3) ->  71 (key 3), overlapping quad, +15 checkpoints, 10 cells, around x 312..351 z -548..-510: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   57 (key 3) ->  70 (key 3), overlapping quad, +13 checkpoints, 6 cells, around x 204..235 z -911..-896: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   57 (key 3) ->  71 (key 3), overlapping quad, +14 checkpoints, 12 cells, around x 243..359 z -926..-548: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   57 (key 3) ->  72 (key 3), overlapping quad, +15 checkpoints, 17 cells, around x 366..474 z -564..-548: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   58 (key 3) ->  72 (key 3), overlapping quad, +14 checkpoints, 36 cells, around x 482..660 z -664..-564: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   59 (key 3) ->  72 (key 3), overlapping quad, +13 checkpoints, 22 cells, around x 660..721 z -772..-672: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   70 (key 3) ->  55 (key 3), overlapping quad, -15 checkpoints, 29 cells, around x -58..58 z -664..-564: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 3) ->  54 (key 3), overlapping quad, -17 checkpoints, 22 cells, around x 66..258 z -556..-464: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 3) ->  55 (key 3), overlapping quad, -16 checkpoints, 17 cells, around x 58..251 z -564..-471: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 3) ->  57 (key 3), overlapping quad, -14 checkpoints, 4 cells, around x 312..328 z -926..-919: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 3) ->  58 (key 3), overlapping quad, -13 checkpoints, 19 cells, around x 336..428 z -911..-872: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 3) ->  59 (key 3), overlapping quad, -12 checkpoints, 12 cells, around x 436..490 z -872..-842: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   72 (key 3) ->  59 (key 3), overlapping quad, -13 checkpoints, 37 cells, around x 498..714 z -842..-780: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   73 (key 3) ->  82 (key 3), ghost, +9 checkpoints, 70 cells, around x 590..667 z -271..192: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   74 (key 3) ->  82 (key 3), ghost, +8 checkpoints, 108 cells, around x 667..1038 z 192..655: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   75 (key 3) ->  82 (key 3), ghost, +7 checkpoints, 21 cells, around x 1038..1153 z 655..701: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   82 (key 3) ->  75 (key 3), ghost, -7 checkpoints, 4 cells, around x 3722..3722 z -1004..-980: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+
+Overlapping quads far apart along the course:
+  quads 2 and 15: about 179 square units
+  quads 3 and 14: about 9225 square units
+  quads 3 and 15: about 3631 square units
+  quads 4 and 14: about 2797 square units
+  quads 55 and 70: about 26307 square units
+  quads 55 and 71: about 28688 square units
+  quads 56 and 70: about 12320 square units
+  quads 56 and 71: about 27676 square units
+  quads 57 and 70: about 595 square units
+  quads 57 and 71: about 40949 square units
+  quads 57 and 72: about 7083 square units
+  quads 58 and 71: about 14046 square units
+  quads 58 and 72: about 28450 square units
+  quads 59 and 71: about 655 square units
+  quads 59 and 72: about 16189 square units

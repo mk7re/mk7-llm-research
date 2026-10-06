@@ -1,0 +1,103 @@
+Ggc_DinoDinoJungle: 77 checkpoints, 5 key checkpoints, 12 respawn points, 3 lap(s), grid step 7 units, offline / v1.0 (ghost fix off), mode viable (only respawn glitches, also after a teleport)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  30 (key id 1, respawn point 1): about 514930 square units
+      respawn glitch from: 36..46
+  checkpoint  31 (key id 1, respawn point 9): about 140011 square units
+      respawn glitch from: 36..47
+  checkpoint  35 (key id 1, respawn point 9): about 940919 square units
+      respawn glitch from: 38..50
+  checkpoint  36 (key id 2, respawn point 2): about 940919 square units
+      respawn glitch from: 14..18, 20..33
+  checkpoint  37 (key id 2, respawn point 2): about 2415866 square units
+      respawn glitch from: 51..53
+  checkpoint  38 (key id 2, respawn point 2): about 2415866 square units
+      respawn glitch from: 22..35
+  checkpoint  50 (key id 2, respawn point 3): about 25105 square units
+      respawn glitch from: 53..56
+  checkpoint  51 (key id 3, respawn point 4): about 25105 square units
+      respawn glitch from: 36..48
+  checkpoint  54 (key id 3, respawn point 5): about 1474357 square units
+      respawn glitch from: 57..70
+  checkpoint  55 (key id 3, respawn point 5): about 1474357 square units
+      respawn glitch from: 39..50
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   25 (key 1) ->  36 (key 2), ghost, +11 checkpoints, 74 cells, around x -1775..-1277 z 689..1443: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   26 (key 1) ->  36 (key 2), ghost, +10 checkpoints, 140 cells, around x -1834..-1270 z 710..2278: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   27 (key 1) ->  36 (key 2), ghost, +9 checkpoints, 82 cells, around x -1980..-1343 z 593..2483: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   27 (key 1) ->  38 (key 2), ghost, +11 checkpoints, 43 cells, around x -1533..-1438 z 2490..2695: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   28 (key 1) ->  36 (key 2), ghost, +8 checkpoints, 35 cells, around x -2046..-1980 z 418..601: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   38 (key 2) ->  31 (key 1), ghost, -7 checkpoints, 12 cells, around x -3767..-3679 z -784..-776: ACCEPTED: a respawn now uses respawn point 9 instead of 2
+   14 (key 1) ->  57 (key 4), overlapping quad, -34 checkpoints, 21 cells, around x 261..342 z -908..-842: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   14 (key 1) ->  59 (key 4), overlapping quad, -32 checkpoints, 3 cells, around x 1001..1008 z -300..-286: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   14 (key 1) ->  75 (key 4), overlapping quad, -16 checkpoints, 16 cells, around x 1008..1038 z -388..-308: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   15 (key 1) ->  57 (key 4), overlapping quad, -35 checkpoints, 84 cells, around x -171..261 z -842..-666: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   15 (key 1) ->  59 (key 4), overlapping quad, -33 checkpoints, 99 cells, around x 737..1001 z -286..169: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   15 (key 1) ->  60 (key 4), overlapping quad, -32 checkpoints, 10 cells, around x 708..737 z 176..220: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   16 (key 1) ->  57 (key 4), overlapping quad, -36 checkpoints, 71 cells, around x -486..-178 z -666..-461: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   16 (key 1) ->  60 (key 4), overlapping quad, -33 checkpoints, 103 cells, around x 312..708 z 220..579: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   17 (key 1) ->  60 (key 4), overlapping quad, -34 checkpoints, 14 cells, around x 232..312 z 579..601: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   57 (key 4) ->  14 (key 1), overlapping quad, +34 checkpoints, 16 cells, around x 349..393 z -908..-842: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   57 (key 4) ->  16 (key 1), overlapping quad, +36 checkpoints, 36 cells, around x -486..-369 z -454..-322: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   58 (key 4) ->  14 (key 1), overlapping quad, +33 checkpoints, 95 cells, around x 393..840 z -842..-593: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   58 (key 4) ->  16 (key 1), overlapping quad, +35 checkpoints, 85 cells, around x -369..-105 z -315..44: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   59 (key 4) ->  14 (key 1), overlapping quad, +32 checkpoints, 55 cells, around x 840..1008 z -593..-366: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   59 (key 4) ->  16 (key 1), overlapping quad, +34 checkpoints, 45 cells, around x -105..19 z 44..242: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   59 (key 4) ->  17 (key 1), overlapping quad, +35 checkpoints, 63 cells, around x 19..195 z 249..535: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   59 (key 4) ->  74 (key 4), overlapping quad, +15 checkpoints, 41 cells, around x 1052..1177 z -300..-132: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   59 (key 4) ->  75 (key 4), overlapping quad, +16 checkpoints, 13 cells, around x 1016..1052 z -359..-308: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   60 (key 4) ->  17 (key 1), overlapping quad, +34 checkpoints, 12 cells, around x 195..217 z 535..593: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+   60 (key 4) ->  73 (key 4), overlapping quad, +13 checkpoints, 21 cells, around x 1338..1389 z 132..227: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   60 (key 4) ->  74 (key 4), overlapping quad, +14 checkpoints, 57 cells, around x 1177..1330 z -132..125: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   61 (key 4) ->  72 (key 4), overlapping quad, +11 checkpoints, 27 cells, around x 1265..1301 z 601..754: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   61 (key 4) ->  73 (key 4), overlapping quad, +12 checkpoints, 62 cells, around x 1301..1389 z 234..593: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   62 (key 4) ->  71 (key 4), overlapping quad, +9 checkpoints, 10 cells, around x 1235..1243 z 1040..1099: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   62 (key 4) ->  72 (key 4), overlapping quad, +10 checkpoints, 41 cells, around x 1243..1265 z 762..1033: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   63 (key 4) ->  71 (key 4), overlapping quad, +8 checkpoints, 40 cells, around x 1221..1235 z 1106..1384: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   64 (key 4) ->  69 (key 4), overlapping quad, +5 checkpoints, 1 cells, around x 1191..1191 z 1465..1465: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   64 (key 4) ->  70 (key 4), overlapping quad, +6 checkpoints, 7 cells, around x 1191..1206 z 1428..1458: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   64 (key 4) ->  71 (key 4), overlapping quad, +7 checkpoints, 8 cells, around x 1206..1221 z 1384..1421: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   66 (key 4) ->  69 (key 4), overlapping quad, +3 checkpoints, 1 cells, around x 1191..1191 z 1472..1472: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   69 (key 4) ->  64 (key 4), overlapping quad, -5 checkpoints, 1 cells, around x 1184..1184 z 1465..1465: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   69 (key 4) ->  66 (key 4), overlapping quad, -3 checkpoints, 1 cells, around x 1184..1184 z 1472..1472: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   70 (key 4) ->  64 (key 4), overlapping quad, -6 checkpoints, 5 cells, around x 1184..1184 z 1428..1458: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 4) ->  62 (key 4), overlapping quad, -9 checkpoints, 11 cells, around x 1199..1206 z 1040..1106: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 4) ->  63 (key 4), overlapping quad, -8 checkpoints, 38 cells, around x 1191..1199 z 1113..1377: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   71 (key 4) ->  64 (key 4), overlapping quad, -7 checkpoints, 7 cells, around x 1184..1191 z 1384..1421: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   72 (key 4) ->  61 (key 4), overlapping quad, -11 checkpoints, 29 cells, around x 1111..1147 z 608..776: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   72 (key 4) ->  62 (key 4), overlapping quad, -10 checkpoints, 43 cells, around x 1147..1206 z 784..1033: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   73 (key 4) ->  60 (key 4), overlapping quad, -13 checkpoints, 43 cells, around x 994..1052 z 125..374: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   73 (key 4) ->  61 (key 4), overlapping quad, -12 checkpoints, 39 cells, around x 1052..1111 z 381..601: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   74 (key 4) ->  59 (key 4), overlapping quad, -15 checkpoints, 46 cells, around x 964..986 z -308..0: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   74 (key 4) ->  60 (key 4), overlapping quad, -14 checkpoints, 17 cells, around x 986..994 z 7..117: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   75 (key 4) ->  14 (key 1), overlapping quad, +16 checkpoints, 20 cells, around x 972..1030 z -388..-308: rejected: skips a whole key checkpoint section (sets Force_No_Lap_Completion until the kart is back)
+
+Overlapping quads far apart along the course:
+  quads 14 and 57: about 7403 square units
+  quads 14 and 58: about 53161 square units
+  quads 14 and 59: about 35673 square units
+  quads 14 and 74: about 376 square units
+  quads 14 and 75: about 1287 square units
+  quads 15 and 57: about 57238 square units
+  quads 15 and 58: about 220424 square units
+  quads 15 and 59: about 263286 square units
+  quads 15 and 60: about 536 square units
+  quads 15 and 74: about 912 square units
+  quads 16 and 57: about 68289 square units
+  quads 16 and 58: about 184804 square units
+  quads 16 and 59: about 293273 square units
+  quads 16 and 60: about 32830 square units
+  quads 17 and 59: about 8959 square units
+  quads 17 and 60: about 5633 square units
+  quads 59 and 74: about 37122 square units
+  quads 59 and 75: about 1931 square units
+  quads 60 and 73: about 62066 square units
+  quads 60 and 74: about 54985 square units
+  quads 61 and 72: about 24086 square units
+  quads 61 and 73: about 76926 square units
+  quads 62 and 71: about 1931 square units
+  quads 62 and 72: about 18615 square units
+  quads 63 and 71: about 8047 square units
+  quads 64 and 70: about 322 square units
+  quads 64 and 71: about 858 square units

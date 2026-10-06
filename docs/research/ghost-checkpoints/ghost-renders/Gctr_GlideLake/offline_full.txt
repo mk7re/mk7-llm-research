@@ -1,0 +1,14 @@
+Gctr_GlideLake: 47 checkpoints, 5 key checkpoints, 11 respawn points, 3 lap(s), grid step 8 units, offline / v1.0 (ghost fix off), mode full (all ghost candidates)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint   2 (key id 0, respawn point 1): about 51928 square units
+      respawn glitch from: 5..18
+      no respawn glitch from: 4
+  checkpoint   3 (key id 0, respawn point 1): about 51928 square units
+      no respawn glitch from: 0..1, 34..46
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+  none
+
+Overlapping quads far apart along the course:
+  none

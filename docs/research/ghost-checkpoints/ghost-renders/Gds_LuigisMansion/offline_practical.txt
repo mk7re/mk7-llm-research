@@ -1,0 +1,24 @@
+Gds_LuigisMansion: 92 checkpoints, 5 key checkpoints, 5 respawn points, 3 lap(s), grid step 8 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  checkpoint  70 (key id 3, respawn point 3): about 7446 square units
+      respawn glitch from: 79
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   16 (key 1) ->  40 (key 2), overlapping quad, +24 checkpoints, 2 cells, around x 2487..2487 z -2860..-2852: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   16 (key 1) ->  41 (key 2), overlapping quad, +25 checkpoints, 3 cells, around x 2131..2139 z -2860..-2852: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   17 (key 1) ->  40 (key 2), overlapping quad, +23 checkpoints, 73 cells, around x 2471..2487 z -3421..-2868: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   17 (key 1) ->  41 (key 2), overlapping quad, +24 checkpoints, 72 cells, around x 2139..2147 z -3421..-2868: ACCEPTED: a respawn now uses respawn point 2 instead of 1
+   40 (key 2) ->  16 (key 1), overlapping quad, -24 checkpoints, 10 cells, around x 2408..2479 z -2844..-2844: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   40 (key 2) ->  17 (key 1), overlapping quad, -23 checkpoints, 8 cells, around x 2408..2463 z -3429..-3429: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   41 (key 2) ->  16 (key 1), overlapping quad, -25 checkpoints, 34 cells, around x 2139..2400 z -2844..-2844: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   41 (key 2) ->  17 (key 1), overlapping quad, -24 checkpoints, 32 cells, around x 2155..2400 z -3429..-3429: ACCEPTED: a respawn now uses respawn point 1 instead of 2
+   79 (key 4) ->  70 (key 3), ghost, -9 checkpoints, 8 cells, around x -1935..-1903 z 1649..1665: ACCEPTED: a respawn now uses respawn point 3 instead of 4
+   22 (key 1) ->  25 (key 1), overlapping quad, +3 checkpoints, 1 cells, around x 2471..2471 z -3706..-3706: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   25 (key 1) ->  22 (key 1), overlapping quad, -3 checkpoints, 1 cells, around x 2463..2463 z -3706..-3706: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+
+Overlapping quads far apart along the course:
+  quads 16 and 40: about 1251 square units
+  quads 16 and 41: about 4192 square units
+  quads 17 and 40: about 38669 square units
+  quads 17 and 41: about 144913 square units

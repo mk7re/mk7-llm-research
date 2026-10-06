@@ -1,0 +1,38 @@
+Gctr_DKJungle: 91 checkpoints, 6 key checkpoints, 17 respawn points, 3 lap(s), grid step 10 units, offline / v1.0 (ghost fix off), mode practical (only respawn glitches next to the quad the kart leaves)
+
+Ghost areas (outside every quad, the search still returns a checkpoint; found from the checkpoint the kart was in, also after a teleport or speed glitch):
+  none
+
+Jumps (a kart leaving quad A gets checkpoint B, more than 2 checkpoints away):
+   57 (key 3) ->  70 (key 4), overlapping quad, +13 checkpoints, 7 cells, around x 1370..1389 z 1691..1730: ACCEPTED: a respawn now uses respawn point 13 instead of 11
+   58 (key 3) ->  68 (key 4), overlapping quad, +10 checkpoints, 13 cells, around x 1292..1311 z 2354..2451: ACCEPTED: a respawn now uses respawn point 13 instead of 11
+   58 (key 3) ->  69 (key 4), overlapping quad, +11 checkpoints, 48 cells, around x 1311..1360 z 1935..2344: ACCEPTED: a respawn now uses respawn point 13 instead of 11
+   58 (key 3) ->  70 (key 4), overlapping quad, +12 checkpoints, 23 cells, around x 1360..1389 z 1740..1925: ACCEPTED: a respawn now uses respawn point 13 instead of 11
+   59 (key 3) ->  68 (key 4), overlapping quad, +9 checkpoints, 38 cells, around x 1233..1292 z 2461..2763: ACCEPTED: a respawn now uses respawn point 13 instead of 11
+   68 (key 4) ->  58 (key 3), overlapping quad, -10 checkpoints, 20 cells, around x 1233..1263 z 2334..2490: ACCEPTED: a respawn now uses respawn point 11 instead of 13
+   68 (key 4) ->  59 (key 3), overlapping quad, -9 checkpoints, 30 cells, around x 1204..1233 z 2500..2753: ACCEPTED: a respawn now uses respawn point 11 instead of 13
+   69 (key 4) ->  58 (key 3), overlapping quad, -11 checkpoints, 48 cells, around x 1263..1302 z 1906..2325: ACCEPTED: a respawn now uses respawn point 11 instead of 13
+   70 (key 4) ->  57 (key 3), overlapping quad, -13 checkpoints, 16 cells, around x 1321..1350 z 1691..1808: ACCEPTED: a respawn now uses respawn point 11 instead of 13
+   70 (key 4) ->  58 (key 3), overlapping quad, -12 checkpoints, 11 cells, around x 1302..1321 z 1818..1896: ACCEPTED: a respawn now uses respawn point 11 instead of 13
+   59 (key 3) ->  67 (key 3), overlapping quad, +8 checkpoints, 9 cells, around x 1214..1233 z 2773..2831: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   60 (key 3) ->  66 (key 3), overlapping quad, +6 checkpoints, 6 cells, around x 1155..1165 z 3124..3163: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   60 (key 3) ->  67 (key 3), overlapping quad, +7 checkpoints, 34 cells, around x 1165..1214 z 2841..3114: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   61 (key 3) ->  64 (key 3), overlapping quad, +3 checkpoints, 1 cells, around x 1146..1146 z 3211..3211: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   61 (key 3) ->  65 (key 3), overlapping quad, +4 checkpoints, 2 cells, around x 1155..1155 z 3192..3201: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   61 (key 3) ->  66 (key 3), overlapping quad, +5 checkpoints, 2 cells, around x 1155..1155 z 3172..3182: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   65 (key 3) ->  61 (key 3), overlapping quad, -4 checkpoints, 4 cells, around x 1136..1146 z 3172..3201: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   66 (key 3) ->  60 (key 3), overlapping quad, -6 checkpoints, 6 cells, around x 1146..1155 z 3114..3163: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   66 (key 3) ->  61 (key 3), overlapping quad, -5 checkpoints, 1 cells, around x 1146..1146 z 3172..3172: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   67 (key 3) ->  59 (key 3), overlapping quad, -8 checkpoints, 9 cells, around x 1194..1204 z 2763..2831: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+   67 (key 3) ->  60 (key 3), overlapping quad, -7 checkpoints, 33 cells, around x 1155..1194 z 2841..3114: rejected: same key checkpoint section, not next to the current checkpoint (the current checkpoint stays)
+
+Overlapping quads far apart along the course:
+  quads 57 and 70: about 1898 square units
+  quads 58 and 68: about 5599 square units
+  quads 58 and 69: about 21259 square units
+  quads 58 and 70: about 7592 square units
+  quads 59 and 67: about 1329 square units
+  quads 59 and 68: about 9206 square units
+  quads 60 and 66: about 285 square units
+  quads 60 and 67: about 2942 square units
+  quads 61 and 65: about 285 square units
