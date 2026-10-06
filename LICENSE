@@ -1,0 +1,16 @@
+This workspace is released under two licenses. The full texts are in LICENSES/.
+
+Tooling: 0BSD (LICENSES/0BSD.txt)
+  mk7
+  requirements.txt
+  tools/
+
+Documentation, notes and data: CC0-1.0 (LICENSES/CC0-1.0.txt)
+  everything else, including the *.md files, docs/, final/,
+  pending-verification/, symbols/ and images.json
+
+Most of this content was written with the help of AI tools and reviewed by
+humans.
+
+Neither license covers the game's own files or data, which are not part of
+this workspace (see the `local` folders in README.md).

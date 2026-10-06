@@ -1,0 +1,38 @@
+{
+  "default": "eur2",
+  "images": {
+    "eur2": {
+      "role": "target",
+      "path": "local/code/eur_rev2/eur_rev2_code.bin",
+      "user_symbols": "mk7-llm-research/symbols/eur2.map",
+      "romfs": {
+        "rom": "local/code/eur_rev2/main_romfs.bin",
+        "pat1": "local/code/eur_rev2/patch_romfs.bin"
+      },
+      "version": "VERSION_EUR_REV2",
+      "note": "Retail EUR v1.2 (rev2), the final build: fixes a vulnerability over v1.1. THE research target: template/ documents this build. No linker map; names come from `mk7 port --all` (marked ~) and symbols/eur2.map."
+    },
+    "eur1": {
+      "role": "reference",
+      "path": "local/code/eur_rev1/eur_rev1_code.bin",
+      "user_symbols": "mk7-llm-research/symbols/eur1.map",
+      "version": "VERSION_EUR_REV1",
+      "note": "Retail EUR v1.1 (rev1): patches a few track glitches over v1.0. Reference only, not documented."
+    },
+    "eur0": {
+      "role": "reference",
+      "path": "local/code/eur_rev0/eur_rev0_code.bin",
+      "user_symbols": "mk7-llm-research/symbols/eur0.map",
+      "version": "VERSION_EUR_REV0",
+      "note": "Retail EUR v1.0 (rev0), the launch build. Reference only, not documented."
+    },
+    "dlp": {
+      "role": "reference",
+      "path": "local/code/dlp_child/dlp_code.bin",
+      "symbols": "local/code/dlp_child/CTRDash.xmap",
+      "user_symbols": "mk7-llm-research/symbols/dlp.map",
+      "version": null,
+      "note": "Download Play child, built slightly before v1.0: parts of the game are missing, the SDK is older and some functions are adapted for the DLP client. Its linker map names every function, so it is the source of names. Reference only, not documented."
+    }
+  }
+}

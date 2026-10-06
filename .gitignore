@@ -1,0 +1,4 @@
+# Machine-local, regenerable files (caches, Ghidra project, compile-check scratch).
+local/
+__pycache__/
+*.pyc
