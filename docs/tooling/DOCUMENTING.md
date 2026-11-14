@@ -7,7 +7,7 @@ research follow [WRITING.md](WRITING.md) instead.
 
 ## Contents
 
-- [Where documents live](#where-documents-live): the router, `docs/tooling/`, `docs/research/`
+- [Where documents live](#where-documents-live): the router, `docs/tooling/`, `docs/research/`, `docs/CANDIDATES.md`
 - [Every document](#every-document): opening lines and table of contents
 - [Main documents and subdocuments](#main-documents-and-subdocuments): when to split, how to link
 - [Examples and measurements](#examples-and-measurements): only in subdocuments, in sections of their own
@@ -24,6 +24,8 @@ research follow [WRITING.md](WRITING.md) instead.
   workflow and these rules. Subdocuments go into a subfolder named after their main document (`cli/`, `emulator/`).
 - `docs/research/<topic>/` holds human-reviewed research only ([WORKFLOW.md](WORKFLOW.md#human-review)); its index is
   [docs/research/INDEX.md](../research/INDEX.md), one line per subject.
+- `docs/CANDIDATES.md` lists candidate research topics, unverified; agents and humans add to it
+  ([Candidate topics](WORKFLOW.md#candidate-topics)).
 - No documents at the top of `mk7-llm-research/` other than `README.md`.
 
 ## Every document

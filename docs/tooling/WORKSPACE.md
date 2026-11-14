@@ -45,6 +45,7 @@ every tool. The other builds are references that help understand it, never docum
     LICENSE, LICENSES/ which license covers which files (Unlicense for the tooling, CC0 for the rest)
     docs/tooling/      the workspace's own documentation (this file, SETUP.md, CLI.md, ...)
     docs/research/     human-reviewed research: INDEX.md, one <topic>/ folder per subject
+    docs/CANDIDATES.md candidate research topics (unverified leads, see WORKFLOW.md)
     mk7                launcher of the research CLI
     requirements.txt   pip packages of the CLI (installed into local/venv)
     tools/mk7re/       the CLI implementation (Python package): cli.py, paths.py

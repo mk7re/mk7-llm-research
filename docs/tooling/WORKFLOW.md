@@ -13,6 +13,8 @@ nothing is moved or committed beyond what the pass says.
 - [Pass 3: document review](#pass-3-document-review): checking the document against [WRITING.md](WRITING.md)
 - [Human review](#human-review): what the human does with `final/`
 - [The three folders](#the-three-folders): `pending-verification/`, `final/`, `docs/research/` and how far to trust each
+- [Candidate topics](#candidate-topics): the list of possible next subjects, `docs/CANDIDATES.md`; adding, picking up
+  and dropping an entry
 
 ## The passes
 
@@ -23,6 +25,9 @@ nothing is moved or committed beyond what the pass says.
 | 3. Document review | agent, fresh context | `Status: facts checked` | `final/<topic>/`, `Status: verified` |
 | Human review | human | `final/<topic>/` | patches applied, document moved to `docs/research/` |
 
+In every pass, a subject worth a research of its own that lies outside the question is added to the [candidate
+topics](../CANDIDATES.md) instead of being researched ([Candidate topics](#candidate-topics)).
+
 ## Pass 1: research
 
 The user starts the research in a fresh context. The agent:
@@ -30,7 +35,9 @@ The user starts the research in a fresh context. The agent:
 1. Checks what is already known about the topic, without reading everything: it looks through the [index of reviewed
    research](../research/INDEX.md) and the topic names in `final/`, and reads only the documents that are relevant to
    the question. The topic names in `pending-verification/` only show work already under way; their content is not used
-   ([The three folders](#the-three-folders)). A relevant document of `docs/research/` is a good source, but it may not
+   ([The three folders](#the-three-folders)). When the question matches an entry of the [candidate
+   topics](../CANDIDATES.md), the agent reads the sources that entry names and moves it to "Started"
+   ([Candidate topics](#candidate-topics)). A relevant document of `docs/research/` is a good source, but it may not
    be fully accurate: `eur2` always wins. Where the two disagree, the agent says so in the topic document and in its
    report, so that the human can correct `docs/research/`.
 2. Investigates in `eur2` (`mk7 struct`, `gaps`, `access`, `dis`, `decomp`, `xref`, ...), using the other builds as
@@ -127,3 +134,27 @@ moves a document to `docs/research/` and indexes it only when the human, having 
 its index, one line per subject. It holds what future research needs and that is not visible in `template/`: how
 subsystems relate, conventions of the compiler and the engine, names and addresses of important functions and tables in
 `eur2`, dead ends that are not worth retrying.
+
+## Candidate topics
+
+[docs/CANDIDATES.md](../CANDIDATES.md) lists subjects that could become research topics. It is where a subject goes
+when it is worth a research of its own but lies outside the question being worked on: it is noted there instead of
+being researched on the side. The list is for choosing what to research next; its entries are leads, not facts.
+
+- **Adding.** Any pass, the user, or a human reading the research may add an entry. Pass 2 and pass 3 add one without
+  changing the topic document for it. An open question of a topic stays in that topic's `## Open questions`; it
+  also becomes a candidate when answering it needs a research of its own (a new subsystem, a file format, a set of
+  in-game tests).
+- **An entry** is one bullet under the `###` heading of the part of the game it belongs to (a new heading when none
+  fits): a proposed topic name in bold (short, lowercase with dashes, the folder name the research would get), what to
+  research and why, what is already known with its certainty and the classes, functions or data to start from, and a
+  `Source:` naming where the idea comes from. A research is named by its subject and section, never by its folder
+  ([Every document](DOCUMENTING.md#every-document)); a user request gets its date. An entry holds no addresses.
+- **Picking one up.** The user names a candidate, or asks what to research next and chooses from the list. Pass 1
+  verifies the entry's claims like any other lead and moves the entry to "Started" as one line: the subject of the
+  research, and which candidate it took up. A candidate that a research only partly covers stays in the list, rewritten
+  to what is left.
+- **Dropping one.** When a research shows that a candidate is wrong, already answered, or not worth a research, or the
+  user rejects it, the entry moves to "Dropped" with the reason and its source.
+- The contents list of `docs/CANDIDATES.md` lists only its `##` sections, so it does not change when a `###` heading is
+  added.

@@ -6,7 +6,8 @@ the notes that help produce them.
 
 Agents read this file fully at the start of every session, then only the documents the task needs: the
 [document map](#document-map) says which, and every document opens with a contents list to pick sections from.
-What is already known about the game is indexed in [docs/research/INDEX.md](docs/research/INDEX.md).
+What is already known about the game is indexed in [docs/research/INDEX.md](docs/research/INDEX.md), and subjects
+that could be researched next are listed in [docs/CANDIDATES.md](docs/CANDIDATES.md).
 
 ## Contents
 
@@ -49,8 +50,8 @@ at `mk7-llm-research/`. "The repository" below means that parent repository.
 
 ## Document map
 
-The workspace's documents are in `docs/tooling/`; reviewed research is in `docs/research/`. Subdocuments are listed
-under their main document, which routes to them in more detail.
+The workspace's documents are in `docs/tooling/`; reviewed research is in `docs/research/`; candidate topics are in
+`docs/CANDIDATES.md`. Subdocuments are listed under their main document, which routes to them in more detail.
 
 | Document | Read it when |
 | --- | --- |
@@ -75,3 +76,4 @@ under their main document, which routes to them in more detail.
 | [PATCHES.md](docs/tooling/PATCHES.md) | research changes `template/`, or a patch has to be checked |
 | [DOCUMENTING.md](docs/tooling/DOCUMENTING.md) | changing the tooling or any document of `docs/tooling/` or this file |
 | [docs/research/INDEX.md](docs/research/INDEX.md) | starting any research task: what is already known and reviewed, one line per subject |
+| [docs/CANDIDATES.md](docs/CANDIDATES.md) | the user asks what to research next or names a candidate, or a pass meets a subject worth its own research outside the question |
