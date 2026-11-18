@@ -1,0 +1,486 @@
+diff -ruN a/template/Kart/NetData.hpp b/template/Kart/NetData.hpp
+--- a/template/Kart/NetData.hpp	2026-11-16 09:59:52.197005812 +0100
++++ b/template/Kart/NetData.hpp	2026-11-16 10:19:35.756911845 +0100
+@@ -24,6 +24,8 @@
+         bool read(Net::NetworkBuffer *, NetData **, NetData **);
+         void send(s32);
+ 
++        // The controls of the kart, and the events of VehicleControlNet::ENetEvent: an event flips its bit, so
++        // the receivers see it as a difference with the previous NetData
+         struct KartData
+         {
+             u32
+@@ -33,53 +35,51 @@
+                 hop                     : 1, // 0x4
+ 
+                 _0x8                    : 1,
+-                _0x10                   : 1,
+-                _0x20                   : 1,
+-                _0x40                   : 1,
+-                _0x80                   : 1,
+-                _0x100                  : 1,
+-                _0x200                  : 1,
+-                _0x400                  : 1,
+-                _0x800                  : 1,
+-                _0x1000                 : 1,
+-                _0x2000                 : 1,
+-                _0x4000                 : 1,
+-                _0x8000                 : 1,
+-                _0x10000                : 1,
+-                warp                    : 1; // 0x20000
++                stick_x_positive        : 1, // 0x10
++                stick_x                 : 5, // 0x3E0: |VehicleControl::m_stick_x| * 31
++                stick_y_positive        : 1, // 0x400
++                stick_y                 : 5, // 0xF800: |VehicleControl::m_stick_y| * 31
++                drift_jump              : 1, // 0x10000
++                warp                    : 1, // 0x20000
++                hit_kart                : 8, // 0x3FC0000: one bit per player id
++                jump_action             : 1, // 0x4000000
++                twist                   : 1, // 0x8000000
++                throw_forward           : 1, // 0x10000000
++                throw_backward          : 1, // 0x20000000
++                dash_restart            : 1; // 0x40000000
+         };
+         static_assert(sizeof(KartData) == 0x4);
+ 
+-        /M/s32 m_frame/0x4/0x0/
++        /M/s32 m_frame/0x4/0x0/ // sender's frame; older NetData are ignored
+         /M/KartData m_kart_data/0x4/0x4/
+         /M/VehicleMove::StatusFlags m_status_flags/0x4/0x8/
+-        /M/s8 m_sender_player_id/0x1/0xC/
++        /M/s8 m_sender_player_id/0x1/0xC/ // player id of the kart
+         /M/u8 m_coins/0x1/0xD/
+         /M/u8 m_balloon_points/0x1/0xE/
+         /M/u8 m_balloon_count/0x1/0xF/
+-        /M/sead::Vector3<s16> m_position/0x6/0x10/
+-        /M/sead::Vector3<s16> m_velocity/0x6/0x16/
+-        /M/sead::Vector3<s16> m_angular_velocity/0x6/0x1C/
+-        /M/s16 m_turning_speed/0x2/0x22/
+-        /M/s16 m_forward_speed/0x2/0x24/
+-        /M/s16 m_drift_steering/0x2/0x26/
+-        /M/s16 m_directional_speed/0x2/0x28/
++        /M/sead::Vector3<s16> m_position/0x6/0x10/ // whole units
++        /M/sead::Vector3<s16> m_velocity/0x6/0x16/ // * 256, length at most 50
++        /M/sead::Vector3<s16> m_forward_dir/0x6/0x1C/ // * 1024
++        /M/s16 m_turning_speed/0x2/0x22/ // * 1024
++        /M/s16 m_forward_speed/0x2/0x24/ // * 256
++        /M/s16 m_drift_steering/0x2/0x26/ // * 64
++        /M/s16 m_directional_speed/0x2/0x28/ // * 64
+         /M/u8 m_drift_type/0x1/0x2A/
+-        /M/u8 m_wing_path_id/0x1/0x2B/
+-        /M/u8 m_dokan_warp/0x1/0x2C/
++        /M/u8 m_wing_path_id/0x1/0x2B/ // 0xFF: none
++        /M/u8 m_dokan_warp/0x1/0x2C/ // 0xFF: none
+         /M/u8 m_boost_type/0x1/0x2D/
+-        /M/s16 m_boost_speed/0x2/0x2E/
++        /M/s16 m_boost_speed/0x2/0x2E/ // * 256
+         /M/u8 m_boost_frames/0x1/0x30/
+-        /M/u8 m_star_timer/0x1/0x31/
++        /M/u8 m_star_timer/0x1/0x31/ // frames / 4, as the four timers below
+         /M/u8 m_ink_timer/0x1/0x32/
+         /M/u8 m_shrink_timer/0x1/0x33/
+         /M/u8 m_squish_timer/0x1/0x34/
+         /M/u8 m_blink_timer/0x1/0x35/
+-        /M/s8 m_respawn_point_id/0x1/0x36/
++        /M/s8 m_respawn_point_id/0x1/0x36/ // -1: none
+         /M/u8 m_hit_item_type_id/0x1/0x37/
+-        /M/u8 m_hit_player_id/0x1/0x38/
+-        /M/VehicleReact::EAcdType m_accident_type/0x1/0x39/
+-        /M/sead::Vector3<s16> m_hit_direction_1/0x6/0x3A/
+-        /M/sead::Vector3<s16> m_hit_direction_2/0x6/0x40/
++        /M/u8 m_hit_player_id/0x1/0x38/ // 8: none
++        /M/VehicleReact::EAcdType m_accident_type/0x1/0x39/ // Dummy: none
++        /M/sead::Vector3<s16> m_hit_direction_1/0x6/0x3A/ // * 256; lowest bit of y set when present
++        /M/sead::Vector3<s16> m_hit_direction_2/0x6/0x40/ // * 256; lowest bit of y set when present
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Kart/Vehicle/VehicleControlNet.hpp b/template/Kart/Vehicle/VehicleControlNet.hpp
+--- a/template/Kart/Vehicle/VehicleControlNet.hpp	2026-11-16 09:59:52.197136972 +0100
++++ b/template/Kart/Vehicle/VehicleControlNet.hpp	2026-11-16 10:21:51.921224927 +0100
+@@ -2,15 +2,61 @@
+ 
+ #include "VehicleControl.hpp"
+ 
++
++#include <math/seadQuat.h>
++
+ BEGIN_NAMESPACE(Kart)
+ {
+ 	/START_CLASS/NAME@VehicleControlNet/SIZE@0xBE8/BASE@VehicleControl/BSIZE@0x11C/
+ 	public:
++		// Events of a kart that the remote consoles replay. A console that drives the kart sets the bits in
++		// m_net_event_send_bits; each one toggles a bit of NetData::m_kart_data, and the receiving consoles set the
++		// same bit in m_net_event_recv_bits and clear it once the event is replayed
++		enum ENetEvent : u32 {
++			DRIFT_JUMP = 0x1,
++			WARP = 0x2,             // the receivers move the kart to the received position at once
++			HIT_KART_0 = 0x4,       // hit the kart of player id 0; HIT_KART_0 << n for player id n (0 to 7)
++			JUMP_ACTION = 0x400,
++			TWIST = 0x800,
++			THROW_FORWARD = 0x1000,
++			THROW_BACKWARD = 0x2000,
++			DASH_RESTART = 0x4000,
++		};
++
+ 		/START_STRUCT/NAME@NetTrackData/SIZE@0x20/
+ 			/M/sead::Vector3f position/0xC/0x0/
+-			/U/sead::Vector3f/0xC/0xC/ // Vehicle::0xF44
++			/M/sead::Vector3f forward_dir/0xC/0xC/
+ 			/U/f32/0x4/0x18/ // slip
+ 			/M/u32 frame/0x4/0x1C/
+ 		/END/
++
++		// Ring buffer of NetTrackData
++		/START_STRUCT/NAME@NetTrackRing/SIZE@0x10/
++			/M/NetTrackData *m_entries/0x4/0x0/
++			/M/s32 m_capacity/0x4/0x4/
++			/M/s32 m_head/0x4/0x8/
++			/M/s32 m_count/0x4/0xC/
++		/END/
++
++		/M/u8 m_net_send_data[0x48]/0x48/0x11C/ // NetData: what the console that drives the kart sends
++		/M/u8 m_net_recv_datas[2][0x48]/0x90/0x164/ // two NetData, used by m_net_recv_data and m_net_recv_data_prev
++		/M/NetData *m_net_recv_data/0x4/0x1F4/ // the newest NetData received for this kart
++		/M/NetData *m_net_recv_data_prev/0x4/0x1F8/ // the NetData received before it
++		/M/s32 m_net_recv_frame/0x4/0x1FC/ // own frame when the newest NetData arrived; -1: none yet
++		/M/f32 m_net_delay/0x4/0x200/ // frames between the sender's frame of the newest NetData and the own frame, smoothed
++		/M/f32 m_net_delay_weight/0x4/0x204/ // 1 when a NetData arrives, then decays every frame
++		/M/f32 m_net_track_delay/0x4/0x208/ // delay used to pick the received position the kart is steered to
++		/M/NetTrackRing m_own_track/0x10/0x20C/ // the last 60 positions of the kart on this console
++		/M/NetTrackData m_own_track_storage[60]/0x780/0x21C/
++		/M/NetTrackRing m_recv_track/0x10/0x99C/ // the last 16 received positions
++		/M/NetTrackData m_recv_track_storage[16]/0x200/0x9AC/
++		/M/sead::Vector3f m_net_correction/0xC/0xBAC/ // position correction applied to a received kart
++		/M/sead::Vector3f m_net_track_offset/0xC/0xBB8/ // newest usable received position minus the own position of the same frame
++		/M/sead::Quatf m_net_track_rotation/0x10/0xBC4/ // rotation from the own forward direction to the received one
++		/M/u32 m_net_track_frame/0x4/0xBD4/ // sender's frame of that received position
++		/M/u32 m_net_warp_frame/0x4/0xBD8/ // frame of the last warp to the received position
++		/M/u32 m_net_event_send_bits/0x4/0xBDC/ // ENetEvent
++		/M/u32 m_net_event_recv_bits/0x4/0xBE0/ // ENetEvent
++		/M/Net::NetworkEngine *m_network_engine/0x4/0xBE4/
+ 	/END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkEngine.hpp b/template/Net/NetworkEngine.hpp
+--- a/template/Net/NetworkEngine.hpp	2026-11-16 09:59:52.205982293 +0100
++++ b/template/Net/NetworkEngine.hpp	2026-11-16 10:48:06.966797413 +0100
+@@ -39,6 +39,7 @@
+         /M/NetworkPlayerDataManager *m_network_player_data_manager/0x4/0x2B8/
+         /M/NetworkGhostUploadManager *m_network_ghost_upload_manager/0x4/0x2BC/
+         /M/EventLogger *m_event_logger/0x4/0x2C0/
++        /M/NetworkItemSlotMgr *m_network_item_slot_mgr/0x4/0x2D0/
+         /M/u8 m_dlp_child_aid_bits/0x1/0x438/ // aids of the Download Play children
+         /M/bool m_is_wbt_running/0x1/0x4B4/ // a block transfer runs: Mii and SupplyInfo data are not sent
+         /M/u8 m_heard_aid_bits/0x1/0x4F0/ // aids heard from in the current keep-alive window
+diff -ruN a/template/Net/NetworkEventModule.hpp b/template/Net/NetworkEventModule.hpp
+--- a/template/Net/NetworkEventModule.hpp	2026-11-16 09:59:52.197411625 +0100
++++ b/template/Net/NetworkEventModule.hpp	2026-11-16 10:48:06.967072038 +0100
+@@ -6,8 +6,24 @@
+ {
+     /START_CLASS/NAME@NetworkEventModule/SIZE@0x1/
+     public:
++        // Identifies an event; sent in front of the event data
++        /START_STRUCT/NAME@EventHeader/SIZE@0x4/
++            /M/u8 m_index/0x1/0x0/ // counter of the sending console, increased with every event
++            /M/u8 m_size/0x1/0x1/ // bytes of event data
++            /M/u16 m_exec_frame/0x2/0x2/ // race frame at which the receivers run the event
++        /END/
++
+         /START_STRUCT/NAME@Slot/SIZE@0x24/
+-            /M/u32 frame/0x4/0x4/
++            /M/bool m_is_used/0x1/0x0/
++            /M/bool m_is_handled/0x1/0x1/ // the event was handed to the event handler
++            /M/u32 frame/0x4/0x4/ // race frame when the slot was filled
++            /M/bool m_is_seen/0x1/0x8/ // the event was in the last packet of its sender
++            /M/s32 m_aid/0x4/0xC/ // aid of the console that sent the event
++            /M/Slot *m_prev/0x4/0x10/ // in the list ordered by m_exec_frame
++            /M/Slot *m_next/0x4/0x14/
++            /M/EventHeader m_header/0x4/0x18/
++            /M/u32 m_data_capacity/0x4/0x1C/
++            /M/u8 *m_data/0x4/0x20/
+         /END/
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkGameMgr.hpp b/template/Net/NetworkGameMgr.hpp
+--- a/template/Net/NetworkGameMgr.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/NetworkGameMgr.hpp	2026-11-16 10:22:13.850418314 +0100
+@@ -0,0 +1,91 @@
++#pragma once
++
++#include "../common.hpp"
++#include "../types.hpp"
++
++#include "NetworkDataManager.hpp"
++
++#include "../Object/Actor.hpp"
++
++#include <container/seadBuffer.h>
++#include <prim/seadDelegate.h>
++
++BEGIN_NAMESPACE(Net)
++{
++    // What each console sends in the GameData buffer: the goals and scores it knows of, and how far the consoles
++    // agree on them. The bitmaps are by aid
++    /START_STRUCT/NAME@NetworkGameDataFormat/SIZE@0x30/
++        /M/u8 m_goal_aid_bits/0x1/0x0/ // karts whose goal the sender knows, with their m_scores
++        /M/u8 m_goal_confirmed_aid_bits/0x1/0x1/ // goals the sender knows every connected console has
++        /M/u8 m_disconnected_aid_bits/0x1/0x2/ // consoles the sender has seen leave
++        /M/u8 m_disconnect_confirmed_aid_bits/0x1/0x3/ // departures every connected console has seen
++        /U/u8/0x1/0x4/
++        /M/u8 m_takeover_goal_aid_bits/0x1/0x5/ // goals of karts the sender took over
++        // By aid of the console that took a kart over: the karts whose goal, sent by that console, the sender
++        // accepted
++        /M/u8 m_accepted_takeover_goal_aid_bits[KART_MAX]/0x8/0x6/
++        /M/s32 m_scores[KART_MAX]/0x20/0x10/ // finish time or points; -1: none
++    /END/
++
++    /START_CLASS/NAME@NetworkGameDataManager/SIZE@0x90/BASE@NetworkDataManager<NetworkGameDataFormat>/BSIZE@0x7D/
++    public:
++        /M/sead::Buffer<NetworkGameDataFormat> m_received/0x8/0x80/ // by aid: the last packet accepted
++        /M/bool m_is_before_start/0x1/0x88/ // the race has not started: packets are stored without checks
++        /M/bool m_is_rank_fixed/0x1/0x89/ // every rank is fixed: packets are no longer stored
++        /U/bool/0x1/0x8A/
++        /M/NetworkGameMgr *m_network_game_mgr/0x4/0x8C/
++    /END/
++
++    // Ranks, goals and scores of a race or battle, agreed between the consoles
++    /START_CLASS/NAME@NetworkGameMgr/SIZE@0xC4/BASE@Object::Actor/BSIZE@0x8/
++    public:
++        // Deterministic choice of the console that drives the karts nobody drives: the CPUs and, online, the
++        // karts of the consoles that left
++        /START_STRUCT/NAME@TakeoverMigration/SIZE@0x5C/
++            /M/NetworkGameDataManager *m_data_manager/0x4/0x0/
++            /M/s32 m_owner_player_ids[KART_MAX]/0x20/0x4/ // by aid: player id of the console that drives the kart; -1: none
++            /M/sead::IDelegate2<s32, s32> *m_handler/0x4/0x44/ // called with the kart's aid and the new owner
++            /M/u8 m_lost_aid_bits/0x1/0x48/ // karts that need a new owner: disconnected or empty slots
++            /M/u8 m_lost_aid_bits_prev/0x1/0x49/
++            /M/u8 m_absent_aid_bits/0x1/0x4B/ // slots without a human racer: the CPUs
++            /M/u8 m_taken_over_by_me_aid_bits/0x1/0x4C/
++            /M/u8 m_handled_aid_bits/0x1/0x4E/ // karts whose new owner has been chosen
++            /M/bool m_is_enabled/0x1/0x4F/
++            /M/bool m_take_over_humans/0x1/0x50/ // karts of consoles that left get an owner too (online)
++            /M/u8 m_takeover_goal_aid_bits/0x1/0x58/ // karts whose goal the owner has set
++        /END/
++
++        /START_CLASS/NAME@Rank/SIZE@0xC8/
++        public:
++            enum class Type : s32 {
++                TIME = 1,   // lowest score first
++                SCORE = 2,  // highest score first
++            };
++
++            /M/NetworkGameDataManager *m_data_manager/0x4/0x0/
++            /M/TakeoverMigration *m_takeover_migration/0x4/0x4/
++            /M/void *m_policy/0x4/0x8/ // the PolicyTime or PolicyScore below
++            /M/void *m_policy_time/0x4/0xC/ // vtable of Rank::PolicyTime
++            /M/void *m_policy_score/0x4/0x10/ // vtable of Rank::PolicyScore
++            /M/s32 m_my_score/0x4/0x18/ // -1: none
++            /M/bool m_is_my_goal/0x1/0x1C/
++            /M/bool m_is_finished/0x1/0x1F/ // every rank is fixed
++            /M/u8 m_goal_confirmed_aid_bits/0x1/0x20/ // AND of the consoles' NetworkGameDataFormat::m_goal_confirmed_aid_bits
++            /M/u8 m_disconnect_confirmed_aid_bits/0x1/0x21/ // AND of the consoles' NetworkGameDataFormat::m_disconnect_confirmed_aid_bits
++            /M/u8 m_auto_rank_aid_bits/0x1/0x22/ // karts given the one rank left over
++            /U/u8/0x1/0x23/
++            /M/u8 m_disconnected_aid_bits/0x1/0x24/
++            /M/s32 m_ranks[KART_MAX]/0x20/0x28/ // by aid: fixed rank; -1: none
++            /M/s32 m_auto_ranks[KART_MAX]/0x20/0x48/ // by aid: rank left over, given without a goal; -1: none
++            /M/s32 m_aids_by_rank[KART_MAX]/0x20/0x68/
++            /M/s32 m_aids_by_auto_rank[KART_MAX]/0x20/0x88/
++            /M/s32 m_scores[KART_MAX]/0x20/0xA8/ // by aid
++        /END/
++
++        /M/NetworkGameDataManager m_data_manager/0x90/0x8/
++        /M/Rank *m_rank/0x4/0x98/
++        /M/bool m_is_race_active/0x1/0x9C/ // a race is running
++        /M/bool m_is_alone/0x1/0x9D/ // no other console is left
++                /M/u32 m_goal_frame_counter/0x4/0xC0/ // counts frames from the local goal on
++    /END/
++}
+diff -ruN a/template/Net/NetworkItemEventDataMgr.hpp b/template/Net/NetworkItemEventDataMgr.hpp
+--- a/template/Net/NetworkItemEventDataMgr.hpp	2026-11-16 09:59:52.197434528 +0100
++++ b/template/Net/NetworkItemEventDataMgr.hpp	2026-11-16 11:06:04.490209128 +0100
+@@ -14,7 +14,7 @@
+             InitBurst,
+             SevenFrame,
+             SelfMove,
+-            SevenInitUse,
++            UpdateKartItem_EquipHit,    // an item held around a kart is knocked off
+             UpdateKartItem_DestroyOther,
+             UpdateKartItem_DestroySelf,
+             InitSpin,
+@@ -27,25 +27,23 @@
+ 
+         /START_STRUCT/NAME@SSelfMove/SIZE@0x24/
+             /M/u8 player_id/0x1/
+-            /M/u8 sequence_id/0x1/
+-            /M/bool is_dropped/0x1/
+-            /M/bool is_deflected/0x1/
++            /M/u8 sequence_id/0x1/ // ItemObjBase::m_serial
++            /M/bool is_dropped/0x1/ // ItemObjBase::m_is_dropped
++            /M/bool is_serial_kept/0x1/ // the item kept its serial; false: it was given a new one
+             /M/float cpad_y/0x4/
+             /M/sead::Vector3f position/0xC/
+             /M/sead::Vector3f velocity/0xC/
+             /M/float gravity/0x4/
+         /END/
+ 
+-        // Below is the most likely pattern for SlotData,
+-        // with an array of indeterminate size. The game
+-        // reinterpret_casts the data member to one of
+-        // the structs avobe.
++        // An event as handed to the receiver. The data starts with the player id of the item's owner, then the
++        // sequence id of the item object, then what the event type needs
+ 
+         struct SlotData {
+             u32 frame_count;                // (O:0x4,S:0x4)
+             Item::eItemType item_type;      // (O:0x4,S:0x1)
+             EEventType event_type;          // (O:0x5,S:0x1)
+-            u8 unk_0x6;                     // (O:0x6,S:0x1) maybe player ID?
++            u8 unk_0x6;                     // (O:0x6,S:0x1) not set by the receiver
+             u8 data_size;                   // (O:0x7,S:0x1)
+             u8 data[];                      // (O:0x8,S:Variable)
+         };
+diff -ruN a/template/Net/NetworkItemSlotMgr.hpp b/template/Net/NetworkItemSlotMgr.hpp
+--- a/template/Net/NetworkItemSlotMgr.hpp	2026-11-16 09:59:52.197443408 +0100
++++ b/template/Net/NetworkItemSlotMgr.hpp	2026-11-16 11:06:04.490310545 +0100
+@@ -14,25 +14,39 @@
+ 
+ BEGIN_NAMESPACE(Net)
+ {
+-    /START_CLASS/NAME@NetworkItemSlotMgr/SIZE@0x264/BASE@Object::Actor/BSIZE@0x8/
++    /START_CLASS/NAME@NetworkItemSlotMgr/SIZE@0x26C/BASE@Object::Actor/BSIZE@0x8/
+     public:
++        // Items left in the item the kart uses (trailing or circling items): 8 minus the number
+         enum class EEquipItemState : u32
+         {
+-            
++            NONE = 0,
++            LEFT_7 = 1,
++            LEFT_6 = 2,
++            LEFT_5 = 3,
++            LEFT_4 = 4,
++            LEFT_3 = 5,
++            LEFT_2 = 6,
++            LEFT_1 = 7,
+         };
+ 
+         enum class EStockItemState : u32
+         {
+-            
++            NONE = 0,
++            REQUESTED = 1,  // waiting for the other consoles to accept the item
++            DECIDED = 2,    // accepted or replaced, the roulette still turns
++            HOLD_3 = 3,     // the kart holds the item: three of it
++            HOLD_2 = 4,
++            HOLD_1 = 5,     // one, or a Lucky Seven
+         };
+ 
+         /START_CLASS/NAME@Node/SIZE@0x24/
+         public:
+             Node()
+             {
+-                m_player_bit = {};
++                m_accepted_request_aid_bits = {};
+             }
+ 
++            // The same members for the karts the sender took over, one column per entry of m_takeover_aids
+             /START_STRUCT/NAME@Takeover/SIZE@0x12/
+                 /M/u8 m_frame[TAKEOVER_MAX]/0x3/0x0/
+                 /M/Item::eItemSlot m_stock_item[TAKEOVER_MAX]/0x3/0x3/
+@@ -42,19 +56,20 @@
+                 /M/u8 m_equip_items_used[TAKEOVER_MAX]/0x3/0xF/
+             /END/
+ 
+-            /M/u8 m_frame/0x1/0x0/
+-            /M/Item::eItemSlot m_stock_item/0x1/0x1/
+-            /M/Item::eItemSlot m_equip_item/0x1/0x2/
+-            /M/u8 m_stock_item_state/0x1/0x3/
+-            /M/u8 m_equip_item_state/0x1/0x4/
+-            /M/u8 m_player_bit/0x1/0x5/
+-            /M/u8 m_equip_items_used/0x1/0x6/
+-            /M/u8 m_0x7[KART_MAX]/0x8/0x7/ // takeover frames?
+-            /M/s8 m_0xF[TAKEOVER_MAX]/0x3/0xF/ // amount or takeover player IDs?
++            /M/u8 m_frame/0x1/0x0/ // race frame of the request / 8, low 8 bits
++            /M/Item::eItemSlot m_stock_item/0x1/0x1/ // the item asked for, or held; Empty: none
++            /M/Item::eItemSlot m_equip_item/0x1/0x2/ // the item in use; Empty: none
++            /M/u8 m_stock_item_state/0x1/0x3/ // EStockItemState
++            /M/u8 m_equip_item_state/0x1/0x4/ // EEquipItemState
++            /M/u8 m_accepted_request_aid_bits/0x1/0x5/ // karts whose request the sender of this node accepts, its own included
++            /M/u8 m_equip_items_used/0x1/0x6/ // KartItem::m_equip_items_used: changes with every item the kart starts to use
++            // By kart aid: m_frame of that kart's request as last judged by the sender of this node
++            /M/u8 m_judged_frames[KART_MAX]/0x8/0x7/
++            /M/s8 m_takeover_aids[TAKEOVER_MAX]/0x3/0xF/ // karts the sender took over; -1: none
+             /M/Takeover m_takeover/0x12/0x12/
+         /END/
+ 
+-        /START_STRUCT/NAME@Buffer/SIZE@0x254/BASE@NetworkDataManager<Node>/BSIZE@0x71/
++        /START_STRUCT/NAME@Buffer/SIZE@0x264/BASE@NetworkDataManager<Node>/BSIZE@0x71/
+             /START_STRUCT/NAME@NodeIdPair/SIZE@0x8/
+                 /M/Node *node/0x4/0x0/
+                 /M/s32 id/0x4/0x4/
+@@ -62,8 +77,10 @@
+ 
+             /M/Node m_nodes[KART_MAX]/0x120/0x71/
+             /M/sead::TListNode<NodeIdPair> m_node_id_pairs[KART_MAX]/0xA0/0x194/
++            /M/bool m_is_idle/0x1/0x240/ // no race runs: the manager does nothing
++            /M/s32 m_request_frames[KART_MAX]/0x20/0x244/ // by aid: race frame of the last request
+         /END/
+ 
+-        /M/Buffer m_buffer/0x254/0x8/
++        /M/Buffer m_buffer/0x264/0x8/
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkSystemInfoManager.hpp b/template/Net/NetworkSystemInfoManager.hpp
+--- a/template/Net/NetworkSystemInfoManager.hpp	2026-11-16 09:59:52.207888623 +0100
++++ b/template/Net/NetworkSystemInfoManager.hpp	2026-11-16 10:20:08.502321878 +0100
+@@ -3,11 +3,34 @@
+ #include "../types.hpp"
+ 
+ #include "../Object/Actor.hpp"
++#include "NetworkStateCalc.hpp"
++#include "NetworkSystemInfo.hpp"
+ 
+ BEGIN_NAMESPACE(Net)
+ {
+     /START_CLASS/NAME@NetworkSystemInfoManager/SIZE@0x2F0/BASE@Object::Actor/BSIZE@0x8/
+     public:
++        // Starts the race on every console at the same time: each console counts down
++        // NetworkSystemInfo::m_start_countdown, corrected by the countdowns and latencies of the others
++        /START_CLASS/NAME@Sync/SIZE@0x58/
++        public:
++            /M/NetworkStateManager<Sync> m_state/0x4C/0x4/
++            /M/bool m_is_syncing/0x1/0x50/
++            /M/NetworkSystemInfo *m_system_info/0x4/0x54/
++        /END/
++
++        // Lets a spectator catch up with the racers, one frame at a time
++        /START_STRUCT/NAME@FrameSync/SIZE@0x14/
++            /M/NetworkSystemInfo *m_system_info/0x4/0x0/
++            /M/s32 m_wait/0x4/0x8/ // frames before the next frame may be skipped
++            /M/u16 m_frame/0x2/0xC/ // sent as NetworkSystemSendFormat::m_sync_frame
++            /M/bool m_is_active/0x1/0xE/
++            /M/s32 m_target_player_id/0x4/0x10/ // player whose m_sync_frame is followed; -1: the highest of all
++        /END/
++
+         /M/NetworkSystemInfo m_system_info/0x208/0x40/
++        /M/Sync *m_sync/0x4/0x248/
++        /M/FrameSync *m_frame_sync/0x4/0x24C/
++        /M/bool m_is_sync_started/0x1/0x250/
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/forward.hpp b/template/forward.hpp
+--- a/template/forward.hpp	2026-11-16 09:59:52.193459287 +0100
++++ b/template/forward.hpp	2026-11-16 10:48:06.966897462 +0100
+@@ -280,6 +280,7 @@
+ 	class NetworkGhostUploadManager;
+ 	class NetworkItemEventDataMgr;
+ 	class NetworkItemEventMgr;
++	class NetworkItemSlotMgr;
+ 	class NetworkMiiManager;
+ 	class NetworkPlayerData;
+ 	class NetworkPlayerDataManager;

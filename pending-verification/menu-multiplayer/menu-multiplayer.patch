@@ -1,0 +1,694 @@
+diff -ruN a/template/Net/NetworkBufferController.hpp b/template/Net/NetworkBufferController.hpp
+--- a/template/Net/NetworkBufferController.hpp	2026-11-14 23:13:21.199579613 +0100
++++ b/template/Net/NetworkBufferController.hpp	2026-11-14 23:13:45.843580942 +0100
+@@ -33,7 +33,7 @@
+         /M/u32 m_total_recv_buffer/0x4/0x28/
+         /M/void* on_received_delegate1R/0x4/0x2C/
+         /M/u8 m_critical_section[0x1C]/0x1C/0x30/
+-        /M/u8 m_has_recv_bitfield/0x1/0x4C/
+-        /M/u8 m_connector_ack_bitfield/0x1/0x4D/
++        /M/u8 m_has_recv_bitfield/0x1/0x4C/ // aids whose data of this type arrived since the last reset
++        /M/u8 m_empty_recv_bitfield/0x1/0x4D/ // aids whose last packet held no data of this type
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkEngine.hpp b/template/Net/NetworkEngine.hpp
+--- a/template/Net/NetworkEngine.hpp	2026-11-14 23:13:21.199546889 +0100
++++ b/template/Net/NetworkEngine.hpp	2026-11-14 23:22:35.623154295 +0100
+@@ -9,6 +9,7 @@
+     /START_CLASS/NAME@NetworkEngine/SIZE@0x598/
+     public:
+         enum class ENetworkMode : s32 {
++            LOCAL = 0,      // local wireless play, through LocalMatchingManager
+             WIFI = 1,       // online play, with matchmaking through WifiMatchingManager
+         };
+ 
+@@ -20,6 +21,11 @@
+         /M/s32 m_local_player_id/0x4/0x268/
+         /M/s32 m_master_station_id/0x4/0x26C/
+         /M/s32 m_master_player_id/0x4/0x270/
++        /M/bool m_is_accepting_players/0x1/0x27C/ // the master still lets consoles join; clients copy the master's
++        /M/bool m_is_players_decided/0x1/0x27D/ // the master has fixed the racers; clients copy the master's
++        // The local console is not one of the racers (not joined yet, or a spectator): it sends no SelectMenu or
++        // SystemInfo data
++        /M/bool m_is_not_racer/0x1/0x280/
+         /M/NetworkErrorHandler *m_network_error_handler/0x4/0x290/
+         /U/bool/0x1/0x294/
+         /M/NetworkSystemInfoManager *m_network_system_info_manager/0x4/0x298/
+@@ -33,5 +39,9 @@
+         /M/NetworkPlayerDataManager *m_network_player_data_manager/0x4/0x2B8/
+         /M/NetworkGhostUploadManager *m_network_ghost_upload_manager/0x4/0x2BC/
+         /M/EventLogger *m_event_logger/0x4/0x2C0/
++        /M/u8 m_dlp_child_aid_bits/0x1/0x438/ // aids of the Download Play children
++        /M/bool m_is_wbt_running/0x1/0x4B4/ // a block transfer runs: Mii and SupplyInfo data are not sent
++        /M/u8 m_heard_aid_bits/0x1/0x4F0/ // aids heard from in the current keep-alive window
++        /M/u32 m_no_send_delay/0x4/0x534/ // 0: 50 ms are added to the send interval
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkFriendsManager.hpp b/template/Net/NetworkFriendsManager.hpp
+--- a/template/Net/NetworkFriendsManager.hpp	2026-11-14 23:13:21.199611954 +0100
++++ b/template/Net/NetworkFriendsManager.hpp	2026-11-14 23:17:38.750062663 +0100
+@@ -1,11 +1,29 @@
+ #pragma once
+ 
+ #include "../types.hpp"
++#include "../common.hpp"
+ 
+ BEGIN_NAMESPACE(Net)
+ {
++    // What each console sends in the Friend buffer during the local multiplayer handshake
++    /START_STRUCT/NAME@FriendApproachSendFormat/SIZE@0x264/
++        /M/u8 m_approach_context[0x200]/0x200/0x0/ // nn::friends approach context of the sender
++        // Scrambled local friend codes (nn::uds ScrambledLocalFriendCode, 0xC bytes each): [0] the sender's own,
++        // then the consoles the player chose to register as friends; 0xFF bytes: empty
++        /M/u8 m_friend_codes[KART_MAX][0xC]/0x60/0x200/
++        /M/bool m_is_valid/0x1/0x260/
++    /END/
++
+     /START_CLASS/NAME@NetworkFriendsManager/SIZE@0xA800/
+     public:
++        enum EApproachFlags : u8 {
++            APPROACH_CONTEXT_OK = 0x01,
++            NO_APPROACH = 0x08,     // a friend preference forbids approaches
++        };
++
+         /M/u32 m_my_principal_id/0x4/0xA314/
++        /M/FriendApproachSendFormat m_approach_send_format/0x264/0xA448/
++        /M/s32 m_approach_context_result/0x4/0xA7F8/ // result of the last nn::friends GetMyApproachContext
++        /M/u8 m_approach_flags/0x1/0xA7FC/ // EApproachFlags
+     /END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkMiiManager.hpp b/template/Net/NetworkMiiManager.hpp
+--- a/template/Net/NetworkMiiManager.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/NetworkMiiManager.hpp	2026-11-14 23:17:31.673310971 +0100
+@@ -0,0 +1,39 @@
++#pragma once
++
++#include "../types.hpp"
++#include "../common.hpp"
++#include "../CFL/cfl.hpp"
++#include "NetworkDataManager.hpp"
++
++#include <container/seadPtrArray.h>
++
++BEGIN_NAMESPACE(Net)
++{
++    // The Mii of the local player as sent in the Mii buffer: a CFL net packet
++    /START_STRUCT/NAME@MiiSendFormat/SIZE@0x88/
++        /M/u8 m_packet[0x88]/0x88/0x0/
++    /END/
++
++    // The Miis of the human racers, decoded from their Mii packets
++    /START_CLASS/NAME@NetworkMiiStorage/SIZE@0x500/
++    public:
++        /START_STRUCT/NAME@Node/SIZE@0x6C/
++            /M/s32 m_aid/0x4/0x0/
++            /M/s32 m_player_id/0x4/0x4/
++            /M/bool m_is_valid/0x1/0x8/
++            /M/CFLStoreData m_store_data/0x60/0xC/
++        /END/
++
++        /M/sead::PtrArray<Node> m_nodes/0xC/0x0/ // object array over m_node_storage
++        /M/Node m_node_storage[10]/0x438/0x14/
++        /M/Node *m_nodes_by_player_id[10]/0x28/0x474/
++        /M/void *m_net_info_work/0x4/0x49C/ // work buffer of the CFL net information
++        /M/CFLStoreData m_my_store_data/0x60/0x4A0/
++    /END/
++
++    /START_CLASS/NAME@NetworkMiiManager/SIZE@0x520/BASE@NetworkDataManager<MiiSendFormat>/BSIZE@0xD5/
++    public:
++        /M/NetworkMiiStorage *m_storage/0x4/0xD8/
++        /M/MiiSendFormat m_last_received[KART_MAX]/0x440/0xE0/ // by aid
++    /END/
++}
+diff -ruN a/template/Net/NetworkPlayerData.hpp b/template/Net/NetworkPlayerData.hpp
+--- a/template/Net/NetworkPlayerData.hpp	2026-11-14 23:13:21.199642123 +0100
++++ b/template/Net/NetworkPlayerData.hpp	2026-11-14 23:17:17.780742022 +0100
+@@ -7,7 +7,7 @@
+ {
+     /START_CLASS/NAME@NetworkPlayerData/SIZE@0xA8/BASE@System::PlayerData/BSIZE@0xA0/
+     public:
+-        /M/u32 m_0xA0/0x4/0xA0/
+-        /M/bool m_created/0x1/0xA4/
++        /M/u32 m_race_point/0x4/0xA0/
++        /M/bool m_created/0x1/0xA4/ // filled from the data received from that player
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkPlayerDataManager.hpp b/template/Net/NetworkPlayerDataManager.hpp
+--- a/template/Net/NetworkPlayerDataManager.hpp	2026-11-14 23:13:21.199651674 +0100
++++ b/template/Net/NetworkPlayerDataManager.hpp	2026-11-14 23:17:17.801309591 +0100
+@@ -7,8 +7,17 @@
+ 
+ BEGIN_NAMESPACE(Net)
+ {
++    // The profile and Mii of every human racer, built from the SystemInfo, Mii and SupplyInfo buffers
+     /START_CLASS/NAME@NetworkPlayerDataManager/SIZE@0xE00/
+     public:
++        /M/NetworkPlayerData m_network_player_datas[PLAYER_MAX]/0x690/0x0/ // by player id
++        // The local player first, then the other connected human racers
+         /M/NetworkPlayerData m_network_player_datas_connected[PLAYER_MAX]/0x690/0x690/
++        /M/CFLStoreData *m_connected_mii_datas[PLAYER_MAX]/0x28/0xD20/ // Mii of each m_network_player_datas_connected entry
++        /M/NetworkPlayerData m_my_player_data/0xA8/0xD48/
++        /M/bool m_is_built/0x1/0xDF0/
++        /M/bool m_is_player_info_updated/0x1/0xDF1/
++        /M/s32 m_racer_num/0x4/0xDF4/ // human racers, disconnected ones included
++        /M/s32 m_connected_num/0x4/0xDF8/ // entries of m_network_player_datas_connected in use
+     /END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkSelectMenuDataManager.hpp b/template/Net/NetworkSelectMenuDataManager.hpp
+--- a/template/Net/NetworkSelectMenuDataManager.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/NetworkSelectMenuDataManager.hpp	2026-11-14 23:14:58.327953600 +0100
+@@ -0,0 +1,13 @@
++#pragma once
++
++#include "../common.hpp"
++#include "NetworkDataManager.hpp"
++#include "NetworkSelectMenuSendFormat.hpp"
++
++BEGIN_NAMESPACE(Net)
++{
++    /START_CLASS/NAME@NetworkSelectMenuDataManager/SIZE@0x5CC/BASE@NetworkDataManager<NetworkSelectMenuSendFormat>/BSIZE@0xE9/
++    public:
++        /M/NetworkSelectMenuSendFormat m_received[KART_MAX]/0x4E0/0xEC/ // by aid: the last packet received
++    /END/
++}
+diff -ruN a/template/Net/NetworkSelectMenuProcess.hpp b/template/Net/NetworkSelectMenuProcess.hpp
+--- a/template/Net/NetworkSelectMenuProcess.hpp	2026-11-14 23:13:21.199670616 +0100
++++ b/template/Net/NetworkSelectMenuProcess.hpp	2026-11-14 23:16:03.100700458 +0100
+@@ -2,13 +2,35 @@
+ 
+ #include "../types.hpp"
+ #include "../forward.hpp"
++#include "NetworkStateCalc.hpp"
++#include "NetworkSelectMenuDataManager.hpp"
+ 
+ BEGIN_NAMESPACE(Net)
+ {
+-    /START_CLASS/NAME@NetworkSelectMenuProcess/SIZE@0x634/
++    // Keeps the multiplayer menu pages of all consoles in step and holds what each console chose on them
++    /START_CLASS/NAME@NetworkSelectMenuProcess/SIZE@0x634/VTABLE@True/
+     public:
+-        /M/u8 m_selected_course_vote_index/0x1/0x6B/
+-        /M/u8 m_selected_random_course_id/0x1/0x70/
+-        /M/NetworkBufferController *m_buffer_controller/0x4/0x108/
++        virtual void stateSelectWait() {} // 0
++        virtual void stateSelectChange() {} // 1
++        virtual void stateSelectChange2() {} // 2
++        virtual void stateSelectChange3() {} // 3
++        virtual void stateSelectChange4() {} // 4
++        virtual void stateSelectChange5() {} // 5
++        virtual void stateSelectChange6() {} // 6
++        virtual void stateSelectChange7() {} // 7
++        virtual void stateSelectChange8() {} // 8
++        virtual void stateSelectChange9() {} // 9
++        virtual void stateSelectChange10() {} // 10
++        virtual void stateSelectChange11() {} // 11
++        virtual void stateSelectChange12() {} // 12
++        virtual void stateSelectChange13() {} // 13
++        virtual void stateSelectChange14() {} // 14
++        virtual void stateSelectChange15() {} // 15
++        virtual void stateSelectChange16() {} // 16
++        virtual void stateSelectChange17() {} // 17
++
++        // Agreed step of the menus; each change moves to the next state, after 16 back to 0
++        /M/NetworkStateManager<NetworkSelectMenuProcess> m_select_state/0x4C/0x4/
++        /M/NetworkSelectMenuDataManager m_data_manager/0x5CC/0x58/
+     /END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkSelectMenuSendFormat.hpp b/template/Net/NetworkSelectMenuSendFormat.hpp
+--- a/template/Net/NetworkSelectMenuSendFormat.hpp	2026-11-14 23:13:21.199681225 +0100
++++ b/template/Net/NetworkSelectMenuSendFormat.hpp	2026-11-14 23:36:47.795122454 +0100
+@@ -1,15 +1,53 @@
+ #pragma once
+ 
+ #include "../types.hpp"
++#include "../common.hpp"
+ 
+ BEGIN_NAMESPACE(Net)
+ {
++    // What each console sends every frame in the SelectMenu buffer: its choices on the multiplayer menu pages
+     /START_CLASS/NAME@NetworkSelectMenuSendFormat/SIZE@0x9C/
+     public:
+-        /M/u8 m_course_id/0x1/0x3/
+-        /M/u8 m_driver_id/0x1/0x4/
++        enum EFlags : u8 {
++            TEAM_RED = 0x04,
++        };
++
++        /START_STRUCT/NAME@CourseVoteEntry/SIZE@0x8/
++            /M/u32 m_station_id/0x4/0x0/ // 0: empty entry
++            /M/u8 m_course_id/0x1/0x4/ // RaceSys::ECourseID
++        /END/
++
++        /START_STRUCT/NAME@TeamEntry/SIZE@0x8/
++            /M/u32 m_station_id/0x4/0x0/
++            /M/bool m_is_red/0x1/0x4/
++        /END/
++
++        // Local play: 0 Grand Prix, 1 VS, 2 balloon battle, 3 coin battle. Online: 0 VS, 1 coin battle, 2 balloon
++        // battle
++        /M/u8 m_mode/0x1/0x0/
++        /M/u8 m_engine_class/0x1/0x1/
++        // Course this player voted for: cup in bits 3 to 6, course in the cup in bits 0 to 2, bit 7 set for a battle
++        // course; 0xFF: no vote yet
++        /M/u8 m_course_vote/0x1/0x2/
++        /M/u8 m_selected_course_vote_index/0x1/0x3/ // index of the winning vote, drawn by the master; 0x27: none yet
++        /M/u8 m_driver_id/0x1/0x4/ // EDriverID; 0x13: no data
+         /M/u8 m_body_id/0x1/0x5/
+         /M/u8 m_wing_id/0x1/0x6/
+         /M/u8 m_tire_id/0x1/0x7/
++        /M/u8 m_selected_random_course_id/0x1/0x8/ // course drawn by the master when the winning vote is "random"
++        /M/u8 m_page_return_code/0x1/0x9/ // button that ended the last page all consoles go through together
++        // Value of each row of the VS settings page; 8: not set
++        /M/u8 m_vs_settings[5]/0x5/0xA/
++        /M/u8 m_race_rank/0x1/0xF/
++        /M/u16 m_race_point/0x2/0x10/ // 0x141: none
++        /M/u8 m_red_team_bits/0x1/0x12/ // master: one bit per player id, set for the red team
++        /M/u8 m_team_assign_bits/0x1/0x13/ // master: players who still have to take their team from m_red_team_bits
++        /M/u8 m_cpu_num/0x1/0x14/
++        /M/u8 m_unlocked_cups/0x1/0x15/ // one bit per cup
++        /M/u8 m_flags/0x1/0x16/ // EFlags
++        /M/CourseVoteEntry m_course_vote_list[KART_MAX]/0x40/0x18/ // the master's: the votes in the order shown
++        /M/TeamEntry m_team_list[KART_MAX]/0x40/0x58/ // team of each human racer, set by the master
++        /M/u8 m_select_state/0x1/0x98/ // NetworkStateCalc state of the sender
++        /M/bool m_select_ready/0x1/0x99/ // the sender is ready to leave m_select_state
+     /END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkStateCalc.hpp b/template/Net/NetworkStateCalc.hpp
+--- a/template/Net/NetworkStateCalc.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/NetworkStateCalc.hpp	2026-11-14 23:16:11.572452102 +0100
+@@ -0,0 +1,36 @@
++#pragma once
++
++#include "../types.hpp"
++#include "../forward.hpp"
++#include "../Util/TStateObserver.hpp"
++
++#include <container/seadBuffer.h>
++
++BEGIN_NAMESPACE(Net)
++{
++    // A state number that the connected racers change together: a console asks for the next state and every
++    // console switches once all of them are ready
++    /START_CLASS/NAME@NetworkStateCalc/SIZE@0x2C/VTABLE@True/
++    public:
++        virtual void onChangeState() {} // 0: the state has just switched
++        virtual void onDisconnect() {} // 1: the set of connected racers has changed
++
++        /M/bool m_is_active/0x1/0x4/
++        /M/u8 m_ready_aid_bits/0x1/0x5/ // aids ready to leave the current state
++        /M/sead::Buffer<u8> m_states/0x8/0x8/ // by aid: the last state that console sent
++        /M/s32 m_requested_state/0x4/0x10/ // -1: none
++        /M/u8 m_waiting_state/0x1/0x14/ // state sent while the local console is not a racer
++        /M/bool m_waiting_ready/0x1/0x15/ // ready bit sent while the local console is not a racer
++        /M/bool m_state_changed/0x1/0x16/ // the state changed this frame
++        /M/NetworkEngine *m_network_engine/0x4/0x18/
++        /M/u8 m_connected_racer_aid_bits/0x1/0x28/ // NetworkStationBufferManager::m_registered_aid_bits last frame
++    /END/
++
++    template <class T>
++    class NetworkStateManager : public NetworkStateCalc
++    {
++    public:
++        Util::TStateObserver<T> m_state_observer;
++    };
++    static_assert(sizeof(NetworkStateManager<void>) == 0x4C);
++}
+diff -ruN a/template/Net/NetworkStationBufferManager.hpp b/template/Net/NetworkStationBufferManager.hpp
+--- a/template/Net/NetworkStationBufferManager.hpp	2026-11-14 23:13:21.199690394 +0100
++++ b/template/Net/NetworkStationBufferManager.hpp	2026-11-14 23:13:59.758808238 +0100
+@@ -23,7 +23,7 @@
+             /M/bool m_is_ai/0x1/0x4/
+             /M/s32 m_station_id/0x4/0x8/
+             /M/void *m_do_handle/0x4/0xC/
+-            /M/s32 m_buffer_id/0x4/0x10/
++            /M/s32 m_buffer_id/0x4/0x10/ // slot of the read buffers; -1 for spectators
+         /END/
+ 
+         /START_CLASS/NAME@ConnectorInfo/SIZE@0xC/
+@@ -50,30 +50,33 @@
+             if (aid == -1)
+                 return -1;
+ 
+-            auto player_id = m_connector_info_racers[aid].m_player_id;
++            auto player_id = m_connector_info_humans[aid].m_player_id;
+             if (player_id != -1)
+                 return player_id;
+             
+-            return m_connector_info_audience[aid].m_player_id;
++            return m_connector_info_cpus[aid].m_player_id;
+         }
+ 
+         /M/sead::PtrArray<NetworkBufferController> m_buffer_controllers/0xC/0x0/
+         /M/NetworkBufferController m_container_controller/0x50/0xC/
+         /M/StationAccessInfo m_station_access_info_racers/0x10/0x5C/ // Entries 9
+-        /M/StationAccessInfo m_station_access_info_audience/0x10/0x6C/ // Entries 8
+-        /M/sead::Buffer<ConnectorInfo> m_connector_info_racers/0x8/0x7C/ // Entries: 17
+-        /M/sead::Buffer<ConnectorInfo> m_connector_info_audience/0x8/0x84/ // Entries: 8
+-        /U/sead::PtrArray<ConnectorInfo>/0xC/0x8C/ // racers?
+-        /M/sead::PtrArray<ConnectorInfo> m_player_without_deleted/0xC/0x98/
+-        /M/sead::PtrArray<ConnectorInfo> m_other_player_not_deleted/0xC/0xA4/
+-        /M/sead::PtrArray<ConnectorInfo> m_without_unregistered/0xC/0xB0/
++        /M/StationAccessInfo m_station_access_info_audience/0x10/0x6C/ // Entries 8; their stations get no buffer id
++        // Indexed by aid: the human stations, racers first, then spectators
++        /M/sead::Buffer<ConnectorInfo> m_connector_info_humans/0x8/0x7C/ // Entries: 17
++        // Indexed by aid: the CPU slots, at the aids that follow the last human
++        /M/sead::Buffer<ConnectorInfo> m_connector_info_cpus/0x8/0x84/ // Entries: 8
++        /M/sead::PtrArray<ConnectorInfo> m_human_connectors/0xC/0x8C/ // racers and spectators
++        /M/sead::PtrArray<ConnectorInfo> m_racer_connectors/0xC/0x98/ // human racers, disconnected ones included
++        /M/sead::PtrArray<ConnectorInfo> m_other_racer_connectors/0xC/0xA4/ // m_racer_connectors without the local station
++        /M/sead::PtrArray<ConnectorInfo> m_without_unregistered/0xC/0xB0/ // m_other_racer_connectors without the disconnected ones
+         /M/sead::Buffer<s32> m_player_id_to_aid/0x8/0xBC/
+         /M/sead::Buffer<s32> m_buffer_id_to_aid/0x8/0xC4/ // Entries: 8
+-        /M/u8 m_free_aid_bits/0x1/0xCC/
+-        /M/u8 m_unregistered_aid_bits/0x1/0xCD/ // getConnectedAIDBitmap
+-        /M/u8 m_registered_aid_bits/0x1/0xCE/
+-        /M/s32 m_player_num/0x4/0xD0/
+-        /U/sead::Buffer<s32>/0x8/0xD4/ // m_without_unregistered again?
+-        /M/u8 m_wbt_started/0x1/0xDC/
++        /M/u8 m_racer_aid_bits/0x1/0xCC/ // aids of the human racers
++        /M/u8 m_unregistered_aid_bits/0x1/0xCD/ // aids of the disconnected human racers
++        /M/u8 m_registered_aid_bits/0x1/0xCE/ // m_racer_aid_bits without m_unregistered_aid_bits
++        /M/s32 m_player_num/0x4/0xD0/ // number of entries in m_racer_connectors
++        /M/s32 m_human_num/0x4/0xD4/ // number of entries in m_connector_info_humans in use
++        /M/s32 m_connected_human_num/0x4/0xD8/ // m_human_num without the disconnected stations
++        /M/u8 m_wbt_started/0x1/0xDC/ // a block transfer runs: kart data is left out of the packets
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkSupplyInfoManager.hpp b/template/Net/NetworkSupplyInfoManager.hpp
+--- a/template/Net/NetworkSupplyInfoManager.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/NetworkSupplyInfoManager.hpp	2026-11-14 23:17:31.676146045 +0100
+@@ -0,0 +1,52 @@
++#pragma once
++
++#include "../types.hpp"
++#include "../common.hpp"
++#include "../System/PlayerData.hpp"
++#include "NetworkDataManager.hpp"
++#include "NetworkSelectMenuSendFormat.hpp"
++
++#include <container/seadPtrArray.h>
++
++BEGIN_NAMESPACE(Net)
++{
++    // One player's choices packed into 39 bits, in this order: driver (5 bits), body (5), tire (4), wing (3), race
++    // point (9), race rank minus one (3), course (6), mode (3), team (1)
++    /START_STRUCT/NAME@RaceSetting/SIZE@0x8/
++        /M/u8 m_bits[8]/0x8/0x0/
++    /END/
++
++    /START_STRUCT/NAME@PlayerInfo/SIZE@0xC/
++        /M/u32 m_principal_id/0x4/0x0/ // 0: empty entry
++        /M/RaceSetting m_race_setting/0x8/0x4/
++    /END/
++
++    // What each console sends every frame in the NetworkSupplyInfo buffer: the choices it knows of every player
++    /START_STRUCT/NAME@NetworkSupplyInfoSendFormat/SIZE@0x60/
++        /M/PlayerInfo m_player_infos[KART_MAX]/0x60/0x0/ // by player id
++    /END/
++
++    // Keeps the choices and profiles of every player, also of those whose own packets were missed or who left, by
++    // merging what every console reports
++    /START_CLASS/NAME@NetworkSupplyInfoManager/SIZE@0xEE8/BASE@NetworkDataManager<NetworkSupplyInfoSendFormat>/BSIZE@0xAD/
++    public:
++        // Profile and Mii of one console, as received from it
++        /START_STRUCT/NAME@ExSetting/SIZE@0x110/
++            /M/s32 m_station_id/0x4/0x0/
++            /M/System::PlayerData m_player_data/0xA0/0x8/
++            /M/CFLStoreData m_store_data/0x60/0xA8/
++            /M/bool m_has_mii/0x1/0x108/
++        /END/
++
++        /START_STRUCT/NAME@InnerPlayerInfo/SIZE@0xB0/
++            /M/u64 m_key/0x8/0x0/ // arrival tick of the report the entry comes from; 0: no entry
++            /M/PlayerInfo *m_player_info/0x4/0x8/ // the reported entry
++            /M/ExSetting *m_ex_setting/0x4/0xC/
++            /M/NetworkSelectMenuSendFormat m_select_menu_info/0x9C/0x10/ // m_player_info unpacked
++        /END/
++
++        /M/InnerPlayerInfo m_inner_player_infos[KART_MAX]/0x580/0xB0/ // by player id: the merged choices
++        /M/sead::PtrArray<ExSetting> m_ex_settings/0xC/0x630/ // object array over m_ex_setting_storage
++        /M/ExSetting m_ex_setting_storage[KART_MAX]/0x880/0x644/
++    /END/
++}
+diff -ruN a/template/Net/NetworkSystemInfo.hpp b/template/Net/NetworkSystemInfo.hpp
+--- a/template/Net/NetworkSystemInfo.hpp	2026-11-14 23:13:21.199699901 +0100
++++ b/template/Net/NetworkSystemInfo.hpp	2026-11-14 23:14:19.163415243 +0100
+@@ -4,10 +4,28 @@
+ #include "NetworkDataManager.hpp"
+ #include "NetworkSystemSendFormat.hpp"
+ 
++#include <container/seadBuffer.h>
++
+ BEGIN_NAMESPACE(Net)
+ {
+-    /START_CLASS/NAME@NetworkSystemInfo/SIZE@0x1F0/BASE@NetworkDataManager<NetworkSystemSendFormat>/BSIZE@0xED/
++    /START_CLASS/NAME@NetworkSystemInfo/SIZE@0x208/BASE@NetworkDataManager<NetworkSystemSendFormat>/BSIZE@0xED/
+     public:
+-        /M/u64 m_ticks[KART_MAX]/0x40/0x1A8/
++        /M/u16 m_spare_u16/0x2/0xEE/ // sent as NetworkSystemSendFormat::m_spare_u16
++        /M/u32 m_spare_u32/0x4/0xF0/ // sent as NetworkSystemSendFormat::m_spare_u32
++        /M/sead::Buffer<u64> m_last_sequences/0x8/0xF4/ // by aid: m_sequence of the last accepted packet
++        /M/sead::Buffer<NetworkSystemSendFormat> m_last_received/0x8/0xFC/ // by aid: the last accepted packet
++        /M/u32 m_racer_station_id_num/0x4/0x108/ // entries of NetworkSystemSendFormat::m_racer_station_ids in use
++        // Set when a packet of another phase arrives. Double buffered: m_other_phase_received_index selects the half
++        // written by the packets of this frame
++        /M/bool m_other_phase_received[2]/0x2/0x10C/
++        /M/u8 m_other_phase_received_index/0x1/0x10E/
++        /M/bool m_accept_other_phase/0x1/0x10F/ // keep packets whose m_phase differs from the own one
++        /M/bool m_skip_game_frame/0x1/0x110/ // do not write the game frame into the packet
++        /M/u16 m_latencies[KART_MAX]/0x10/0x112/ // by aid: one-way latency, in ms
++        /M/u64 m_last_accepted_ticks[KART_MAX]/0x40/0x128/ // by aid: when the last accepted packet arrived
++        /M/u64 m_accepted_intervals[KART_MAX]/0x40/0x168/ // by aid: ticks between the last two accepted packets
++        /M/u64 m_ticks[KART_MAX]/0x40/0x1A8/ // by aid: when the last packet arrived, accepted or not
++        // By aid: own game frame when the last accepted packet of that aid arrived
++        /M/s32 m_game_frames_at_receive[KART_MAX]/0x20/0x1E8/
+     /END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkSystemInfoManager.hpp b/template/Net/NetworkSystemInfoManager.hpp
+--- a/template/Net/NetworkSystemInfoManager.hpp	2026-11-14 23:13:21.199710678 +0100
++++ b/template/Net/NetworkSystemInfoManager.hpp	2026-11-14 23:14:19.177742715 +0100
+@@ -8,6 +8,6 @@
+ {
+     /START_CLASS/NAME@NetworkSystemInfoManager/SIZE@0x2F0/BASE@Object::Actor/BSIZE@0x8/
+     public:
+-        /M/NetworkSystemInfo m_system_info/0x1F0/0x40/
++        /M/NetworkSystemInfo m_system_info/0x208/0x40/
+     /END/
+ }
+\ No newline at end of file
+diff -ruN a/template/Net/NetworkSystemSendFormat.hpp b/template/Net/NetworkSystemSendFormat.hpp
+--- a/template/Net/NetworkSystemSendFormat.hpp	2026-11-14 23:13:21.199720198 +0100
++++ b/template/Net/NetworkSystemSendFormat.hpp	2026-11-14 23:14:08.433422955 +0100
+@@ -1,11 +1,50 @@
+ #pragma once
+ 
+ #include "../types.hpp"
++#include "../common.hpp"
++#include "../System/PlayerDataNoMii.hpp"
+ 
+ BEGIN_NAMESPACE(Net)
+ {
++    // What each console sends every frame in the SystemInfo buffer
+     /START_STRUCT/NAME@NetworkSystemSendFormat/SIZE@0xA0/
+-        /M/s32 m_master_game_frame/0x4/0x10/
+-        /M/u32 m_master_random/0x4/0x18/
++        // Where the sender is in the flow between the menus and the races. In local play, a race sends its race
++        // number instead, which is always below WIFI_RACE.
++        enum class EPhase : u8 {
++            WIFI_RACE = 0x31,
++            SELECT_MENU = 0x32,
++            TROPHY = 0x33,      // award ceremony, when another race follows
++            APPLY = 0x34,       // last step of the menus before the race
++        };
++
++        enum EFlags : u8 {
++            SEND_PLAY_LOG = 0x01,
++        };
++
++        enum EMatchFlags : u8 {
++            ACCEPTING_PLAYERS = 0x01,
++            PLAYERS_DECIDED = 0x02,
++        };
++
++        /M/u64 m_sequence/0x8/0x0/ // increased by one with every packet; older or repeated packets are dropped
++        /M/u16 m_spare_u16/0x2/0x8/
++        /M/u8 m_sequence_sync_return_code/0x1/0xA/ // 0xFF: none
++        /M/EPhase m_phase/0x1/0xB/
++        /M/u32 m_spare_u32/0x4/0xC/
++        // During a race, the sender's own game frame. In the community lobby, the master's countdown before the
++        // match starts
++        /M/s32 m_game_frame/0x4/0x10/
++        /M/u8 m_community_race_point/0x1/0x14/
++        /M/u8 m_race_num/0x1/0x15/ // number of the current race; 0xFF: none
++        /M/u8 m_lobby_talk_id/0x1/0x16/ // message chosen in the community lobby; 0xFF: none
++        /M/u8 m_decided_course_id/0x1/0x17/ // course the master chose without a vote (ECourseID); 0x29: none yet
++        /M/u32 m_master_random/0x4/0x18/ // the master's random seed, shared by every console
++        /M/u8 m_flags/0x1/0x1E/ // EFlags
++        /M/System::PlayerDataNoMii m_player_data/0x3C/0x20/ // the sender's profile, rating included
++        /M/u8 m_connected_racer_aid_bits/0x1/0x66/ // NetworkStationBufferManager::m_registered_aid_bits of the sender
++        /M/u8 m_heard_aid_bits/0x1/0x67/ // aids the sender received packets from in the last keep-alive window
++        /M/u8 m_match_flags/0x1/0x68/ // EMatchFlags; only the master's count
++        /M/u32 m_racer_station_ids[KART_MAX]/0x20/0x6C/ // station ids of the human racers
++        /M/u16 m_latency_timestamps[KART_MAX]/0x10/0x8C/ // ms; own clock at the own aid, echoed clocks at the others
+     /END/
+-}
+\ No newline at end of file
++}
+diff -ruN a/template/Net/NetworkWbtMgr.hpp b/template/Net/NetworkWbtMgr.hpp
+--- a/template/Net/NetworkWbtMgr.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/NetworkWbtMgr.hpp	2026-11-14 23:18:16.360619337 +0100
+@@ -0,0 +1,40 @@
++#pragma once
++
++#include "../types.hpp"
++#include "../Object/Actor.hpp"
++#include "NetworkDataManager.hpp"
++#include "WbtProtocol.hpp"
++
++#include <prim/seadDelegate.h>
++#include <time/seadTickTime.h>
++
++BEGIN_NAMESPACE(Net)
++{
++    // Sends large data (the course archive and its sound data) to Download Play children over the Wbt buffer
++    /START_CLASS/NAME@NetworkWbtMgr/SIZE@0x58E0/BASE@Object::Actor/BSIZE@0x8/
++    public:
++        /START_STRUCT/NAME@Node/SIZE@0x1/
++            /M/u8 m_unused/0x1/0x0/
++        /END/
++
++        /START_CLASS/NAME@Buffer/SIZE@0x58AC/BASE@NetworkDataManager<Node>/BSIZE@0x4D/
++        public:
++            /M/WbtProtocol m_protocol/0x584C/0x50/
++            /M/bool m_is_ready/0x1/0x589C/
++            /M/bool m_is_running/0x1/0x589D/
++            /M/bool m_is_parent/0x1/0x589E/
++            /M/bool m_is_finish_pending/0x1/0x589F/
++            /M/u8 m_child_aid_bits/0x1/0x58A0/
++            /M/s32 m_player_num_at_ready/0x4/0x58A4/ // the transfer stops if the number of racers changes
++            /M/sead::IDelegate *m_finish_delegate/0x4/0x58A8/
++        /END/
++
++        /M/Buffer m_buffer/0x58AC/0x8/
++        /M/u16 m_saved_send_interval/0x2/0x58B4/
++        /M/s32 m_packets_per_frame/0x4/0x58B8/
++        /M/s32 m_frame_counter/0x4/0x58BC/
++        /M/sead::Delegate<NetworkWbtMgr> m_finish_delegate/0x10/0x58C0/
++        /M/bool m_is_waiting/0x1/0x58D0/ // waiting after a send failure
++        /M/sead::TickTime m_wait_start/0x8/0x58D8/
++    /END/
++}
+diff -ruN a/template/Net/WbtProtocol.hpp b/template/Net/WbtProtocol.hpp
+--- a/template/Net/WbtProtocol.hpp	1970-01-01 01:00:00.000000000 +0100
++++ b/template/Net/WbtProtocol.hpp	2026-11-14 23:18:16.353619419 +0100
+@@ -0,0 +1,60 @@
++#pragma once
++
++#include "../types.hpp"
++
++BEGIN_NAMESPACE(Net)
++{
++    // Block transfer protocol: the parent sends registered data blocks in chunks, the children ask for the chunks
++    // they missed
++    /START_CLASS/NAME@WbtProtocol/SIZE@0x584C/
++    public:
++        enum class EPacketKind : u8 {
++            DATA = 0,       // parent: a chunk of data; child: a report or a request
++            END_OF_PASS = 1,
++        };
++
++        // Starts every packet. The payload of a data chunk follows it
++        /START_STRUCT/NAME@PacketHeader/SIZE@0x8/
++            /M/u8 m_block_id/0x1/0x0/ // child: 0xFF once it has received every block
++            /M/EPacketKind m_kind/0x1/0x1/
++            /M/u16 m_chunk_index/0x2/0x2/ // 0xFFFF in an end-of-pass packet
++            /M/u32 m_value/0x4/0x4/ // parent: size of the block; child: number of chunks it has received
++        /END/
++
++        /START_STRUCT/NAME@Block/SIZE@0xC/
++            /M/u8 m_id/0x1/0x0/
++            /M/u8 *m_data/0x4/0x4/
++            /M/u32 m_size/0x4/0x8/
++        /END/
++
++        /M/bool m_is_parent/0x1/0x0/
++        /M/bool m_is_running/0x1/0x1/
++        /M/bool m_is_finished/0x1/0x2/
++        /M/bool m_is_dummy_child/0x1/0x3/ // takes part without receiving the data
++        /M/s32 m_player_id/0x4/0x4/
++        /M/s32 m_chunk_size/0x4/0x8/ // payload bytes per packet
++        /M/s32 m_max_size/0x4/0xC/ // packet size times 400
++        /M/s32 m_block_num/0x4/0x10/
++        /M/Block m_blocks[16]/0xC0/0x14/
++        /M/s32 m_current_block_id/0x4/0xD4/ // -1: none
++        // Parent: next chunk of the first pass, -1 once it is over. Child: highest chunk index received
++        /M/s32 m_chunk_cursor/0x4/0xD8/
++        /M/s32 m_child_block_index/0x4/0xDC/ // child: index in m_blocks of the block being received
++        /M/s32 m_child_chunk_num/0x4/0xE0/
++        /M/s32 m_child_received_num/0x4/0xE4/
++        /M/s32 m_child_chunk_size/0x4/0xE8/
++        /M/u32 m_child_received_bits[400]/0x640/0xEC/ // child: one bit per chunk of the block
++        /M/s32 m_child_request_cursor/0x4/0x72C/ // child: where the search for a missing chunk resumes
++        /M/u32 m_child_aid_bits/0x4/0x730/
++        /M/u32 m_wait_aid_bits/0x4/0x734/ // parent: aids it must hear from before it sends
++        /M/s32 m_child_block_ids[32]/0x80/0x738/ // parent, by aid: the block each child reported last; -1: none
++        /M/s32 m_parent_chunk_num/0x4/0x7B8/
++        // Parent: queue of the chunks the children asked for again (ring buffer over m_request_storage)
++        /M/u16 *m_request_buffer/0x4/0x7BC/
++        /M/s32 m_request_capacity/0x4/0x7C0/
++        /M/s32 m_request_head/0x4/0x7C4/
++        /M/s32 m_request_num/0x4/0x7C8/
++        /M/u16 m_request_storage[0x2800]/0x5000/0x7CC/
++        /M/u32 m_child_received_nums[32]/0x80/0x57CC/ // parent, by aid: chunks received that each child reported
++    /END/
++}
+diff -ruN a/template/Sequence/MenuData.hpp b/template/Sequence/MenuData.hpp
+--- a/template/Sequence/MenuData.hpp	2026-11-14 23:13:21.200963288 +0100
++++ b/template/Sequence/MenuData.hpp	2026-11-14 23:24:52.886592122 +0100
+@@ -33,7 +33,7 @@
+         /START_STRUCT/NAME@FriendApproach/SIZE@0x10/
+             FriendApproach();
+ 
+-            /U/s32/0x4/0x0/
++            /M/s32 m_register_state/0x4/0x0/ // 1: the player chose to register this console as a friend
+             /M/u64 m_friend_code/0x8/0x8/
+         /END/
+ 
+@@ -76,19 +76,21 @@
+         /M/bool m_gold_wheel_unlocked[KART_MAX]/0x8/0x640/
+         /M/RaceSys::EGrandPrixRecord m_gp_record_per_player[KART_MAX]/0x20/0x648/
+         /M/u8 m_ai_level/0x1/0x668/
+-        /M/u8 m_selected_option/0x1/0x669/
++        /M/u8 m_selected_option/0x1/0x669/ // course selection of the VS / battle settings: 0 choose, 1 random, 2 in order
+         /M/s32 m_num_races/0x4/0x66c/   // Total number of races
+         /M/s32 m_race_no/0x4/0x670/     // Current race number
+         /M/RaceSys::ECourseID m_course_id[NUM_COURSES]/0xA0/0x674/
++        /M/bool m_is_community_watch/0x1/0x714/ // joined the current community match as a spectator
+         /M/RaceSys::ECourseID unk_0x718[NUM_COURSES_PER_CUP]/0x10/0x718/
+         /M/sead::PtrArray<CourseVote> m_course_votes/0xc/0x72c/
+         /M/Net::NetworkSelectMenuProcess *m_network_select_menu_process/0x4/0x7a0/
++        /M/u32 m_watch_principal_id/0x4/0x7b8/ // player a spectator's camera follows, if that player races
+         /M/sead::WSafeString m_mii_name/0x8/0x7bc/
+         /M/FriendApproach m_friend_approach[KART_MAX]/0x80/0x7e0/
+         /M/RaceSys::CRaceInfo::CKartInfo m_cpu_kart_infos[KART_MAX - 2]/0x108/0x860/
+         // Set to `true` if CPUs are enabled in the VS / Battle settings
+         /M/bool m_is_cpu_enabled/0x1/0x968/
+-        /M/u32 m_num_free_player_slots/0x4/0x96c/
++        /M/u32 m_num_free_player_slots/0x4/0x96c/ // number of CPU karts; negative: not decided yet
+     /END/
+ 
+     Utility::Random *GetRandom();
